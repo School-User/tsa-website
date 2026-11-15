@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Module 2: Using AI tools well – AI Lab</title>
+<meta name="description" content="Learn to choose AI tools, write useful prompts, study effectively, and check AI answers.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="bar">
+  <a class="brand" href="index.html">AI Lab</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="module1.html">1 · What AI is</a></li>
+    <li><a href="module2.html" aria-current="page">2 · Using AI tools</a></li>
+    <li><a href="module3.html">3 · Ethical AI</a></li>
+    <li><a href="reference.html">Reference Page</a></li>
+  </ul></nav>
+</div></header>
+
+<main id="main">
+  <h1>Using AI tools well</h1>
+  <p class="lead">Learn how to choose AI tools, guide them with clear prompts, study actively, and check their answers.</p>
+
+  <section class="card" aria-labelledby="lesson-1">
+    <h2 id="lesson-1">Types of AI tools</h2>
+    <p>AI tools can help with different kinds of tasks. A chat tool responds to questions or instructions in a conversation. You might ask it to brainstorm a story idea or explain a science term. An image tool creates or changes pictures from instructions, such as a description of a landscape. Check your assignment rules before using a generated image in schoolwork.</p>
+    <p>A coding helper can suggest computer code, explain what code does, or help find a bug, which is a mistake in a program. A study helper can create practice questions, offer hints, or explain a topic in another way. Some tools combine several of these abilities, so the categories can overlap.</p>
+    <p>Choose a tool based on your goal and whether your teacher permits it. Each tool can produce mistakes: a picture may contain impossible details, and suggested code may not work. Review the result yourself. For study features and their limits, see <a href="https://help.openai.com/en/articles/11780217-using-study-mode-in-chatgpt">OpenAI's study mode guide</a>.</p>
+    <button class="btn" type="button" data-lesson="l1">Mark as read</button>
+  </section>
+
+  <section class="card" aria-labelledby="lesson-2">
+    <h2 id="lesson-2">Writing a good prompt</h2>
+    <p>A prompt is the instruction or question you give an AI tool. A useful prompt tells the tool what you need without sharing private information. Three helpful ingredients are context, task, and format. Context gives background, such as your course and what you already know. The task says what you want the tool to do. The format describes the shape of the answer, such as a short list or a table.</p>
+    <p>Before: “Tell me about cells.”</p>
+    <p>After: “I'm studying ninth-grade biology and know that cells have different parts. Explain how the nucleus and cell membrane differ, using two short paragraphs and one everyday comparison.”</p>
+    <p>The second prompt gives the tool a clearer target. You can also say what to leave out or ask it to use simpler language. If the response misses your goal, follow up: “Give a different comparison” or “Quiz me instead.” A detailed prompt can improve usefulness, but it cannot guarantee accuracy. <a href="https://developers.openai.com/api/docs/guides/prompt-engineering">OpenAI's prompt engineering guide</a> discusses giving clear instructions.</p>
+    <button class="btn" type="button" data-lesson="l2">Mark as read</button>
+  </section>
+
+  <section class="card" aria-labelledby="lesson-3">
+    <h2 id="lesson-3">Studying with AI</h2>
+    <p>Think of an AI study helper as a practice partner, not an answer key. If your teacher allows it, ask for a short summary of a topic, then compare it with your notes or textbook. You might request five practice questions, answer them yourself, and ask for feedback. Try explaining your answer aloud before looking at the tool's explanation; that helps you see what you can explain independently.</p>
+    <p>For a difficult idea, ask for a simpler explanation or an everyday comparison. For example, “Explain how supply and demand affect price using a school bake sale.” Then check whether the comparison fits the lesson: even a clear example can leave out important details. You can also ask for a hint instead of a complete solution.</p>
+    <p><a href="https://help.openai.com/en/articles/11780217-using-study-mode-in-chatgpt">OpenAI's study mode guide</a> says its study tool can quiz students and give guidance, but can also make mistakes. Keep your teacher and course materials as guides, and follow your school's rules about what you may share and submit.</p>
+    <button class="btn" type="button" data-lesson="l3">Mark as read</button>
+  </section>
+
+  <section class="card" aria-labelledby="lesson-4">
+    <h2 id="lesson-4">Checking an AI answer</h2>
+    <p>An AI answer can sound confident and still be wrong. A made-up or incorrect claim produced by an AI tool is often called a hallucination. It might include an invented quotation, a wrong date, or a source that does not exist. OpenAI describes this problem in <a href="https://openai.com/index/why-language-models-hallucinate/">“Why Language Models Hallucinate.”</a></p>
+    <p>Check important claims against reliable, independent sources. For a historical date, consult a museum, a textbook, or an archive; for a scientific claim, try a relevant scientific organization or government agency. Use sources suited to the topic and look for who published them and when. Do not rely on another AI answer as your only check.</p>
+    <p>If the AI supplies a link or citation, open it. Confirm that the source exists and actually supports the claim, quotation, and context. <a href="https://style.mla.org/citing-generative-ai-updated-revised/">The MLA Style Center</a> warns that AI can invent sources or summarize them incorrectly. If you cannot verify a detail, leave it out or label it unverified and ask your teacher for help.</p>
+    <button class="btn" type="button" data-lesson="l4">Mark as read</button>
+  </section>
+
+  <h2>Check your understanding</h2>
+  <div id="quiz"></div>
+  <p><a class="btn ghost" href="module3.html">Next: Module 3</a></p>
+</main>
+
+<footer>Built by a student for the TSA Webmaster event. See the <a href="reference.html">Reference Page</a> for sources and AI-use disclosure.</footer>
+<script src="js/progress.js"></script>
+<script src="js/quiz.js"></script>
+<script>
+const QUESTIONS = [
+  {
+    "q": "Which prompt gives the clearest instructions for a biology review?",
+    "options": [
+      "“Biology.”",
+      "“I'm reviewing cells; compare the nucleus and membrane in two short paragraphs.”",
+      "“Tell me everything.”",
+      "“Write something interesting.”"
+    ],
+    "answer": 1,
+    "why": "It provides context, a specific task, and a requested format."
+  },
+  {
+    "q": "An AI says, “The Declaration of Independence was signed in 1876,” but a reliable historical archive says 1776; what should you do?",
+    "options": [
+      "Use 1876 because the AI sounded confident.",
+      "Average the two dates.",
+      "Ask the same AI repeatedly until it agrees.",
+      "Trust the verified archive and correct the date."
+    ],
+    "answer": 3,
+    "why": "A relevant, reliable source can expose an incorrect AI claim."
+  },
+  {
+    "q": "An AI gives you a quotation and a link to an article; what is the best next step?",
+    "options": [
+      "Open the article and check the quotation and its context.",
+      "Assume the link proves the quotation is accurate.",
+      "Cite the article without reading it.",
+      "Remove the quotation marks and use the words anyway."
+    ],
+    "answer": 0,
+    "why": "A link does not prove that a quotation is real or used in the right context."
+  },
+  {
+    "q": "You are stuck on a practice problem and want to learn the process; what should you ask for?",
+    "options": [
+      "A finished answer to copy without reading.",
+      "A longer answer with no explanation.",
+      "A hint, then try the next step yourself.",
+      "An unrelated image."
+    ],
+    "answer": 2,
+    "why": "A hint lets you practice the reasoning while getting help when you need it."
+  },
+  {
+    "q": "Which task is a coding helper suited to?",
+    "options": [
+      "Guaranteeing that every program is secure.",
+      "Suggesting an explanation for an error in code.",
+      "Replacing all testing of a program.",
+      "Proving a suggested solution is correct without review."
+    ],
+    "answer": 1,
+    "why": "A coding helper can suggest explanations, but its suggestions still need review and testing."
+  }
+];
+Quiz.mount(document.getElementById('quiz'), 'm2', QUESTIONS);
+Quiz.initLessons('m2');
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Lab – Learn AI the smart way</title>
+<meta name="description" content="A free, gamified AI learning portal for high school students: how AI works, how to use it well, and how to use it ethically.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="bar">
+  <a class="brand" href="index.html">AI Lab</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="index.html" aria-current="page">Home</a></li>
+    <li><a href="module1.html">1 · What AI is</a></li>
+    <li><a href="module2.html">2 · Using AI tools</a></li>
+    <li><a href="module3.html">3 · Ethical AI</a></li>
+    <li><a href="reference.html">Reference Page</a></li>
+  </ul></nav>
+</div></header>
+
+<main id="main">
+  <h1>Learn AI the smart way</h1>
+  <p class="lead">Three short modules for grades 9–12. Read the lessons, pass the quizzes, earn XP and badges, and learn how to use AI well and honestly at school.</p>
+
+  <section class="card" aria-labelledby="yp">
+    <h2 id="yp" style="margin-top:0">Your progress</h2>
+    <div class="stats">
+      <span>Level <strong id="level">1</strong></span>
+      <span><strong id="xp">0</strong> XP</span>
+      <span id="next" class="muted"></span>
+    </div>
+    <div class="progress-bar" role="progressbar" aria-label="Progress to next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="xpbar"><span style="width:0%"></span></div>
+  </section>
+
+  <h2>Modules</h2>
+  <ul class="grid" id="modules"></ul>
+
+  <h2>Badges</h2>
+  <ul class="badges" id="badges"></ul>
+
+  <section class="card" aria-labelledby="move">
+    <h2 id="move" style="margin-top:0">Switch devices</h2>
+    <p>No account needed. Copy your progress code, then paste it on your other device. Restoring only adds progress, it never erases any.</p>
+    <p>
+      <button class="btn" id="show-code" type="button">Show my code</button>
+      <output id="code-out" class="code" for="show-code"></output>
+      <button class="btn ghost" id="copy-code" type="button" hidden>Copy</button>
+    </p>
+    <p>
+      <label for="code-in">Have a code from another device?</label><br>
+      <input id="code-in" class="field" type="text" autocomplete="off" spellcheck="false" placeholder="AIL1-…">
+      <button class="btn" id="restore" type="button">Restore</button>
+    </p>
+    <p id="code-msg" role="status"></p>
+  </section>
+
+  <p><button class="btn ghost" id="reset" type="button">Reset my progress</button></p>
+  <noscript><p>This site saves your progress in your browser, so it needs JavaScript turned on to track XP and badges. The lessons are still readable without it.</p></noscript>
+</main>
+
+<footer>Built by a student for the TSA Webmaster event. See the <a href="reference.html">Reference Page</a> for sources and AI-use disclosure.</footer>
+<script src="js/progress.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
