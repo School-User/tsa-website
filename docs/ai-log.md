@@ -8,3 +8,4 @@
 - 2026-11-15: Codex built module2.html and module3.html (and module1.html). Freebuff (DeepSeek) built reference.html. Claude tested all pages end to end and edited the copyright wording in reference.html.
 - 2026-11-15: Claude added the progress-code feature (exportCode/importCode in js/progress.js with tests, Switch devices box in index.html/dashboard.js) and a global [hidden] CSS rule.
 - 2026-11-15: Codex built module1.html and listed its sources; Claude verified the URLs and added them to reference.html.
+- 2026-11-16: Freebuff (DeepSeek) wrote docs/forms-guide.md — structure and fact-check sheet for the two required PDFs (no form text written for the user). Checked the site for media/frameworks/network calls and checked the 11 reference URLs: 7 returned 200, the 4 openai.com-family URLs could not be tested from this machine.
