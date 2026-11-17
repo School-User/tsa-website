@@ -102,3 +102,8 @@ main > section.card { border-left: 6px solid var(--accent); }
 footer { border-top: 1px solid var(--line); background: var(--surface); text-align: center; padding: 1.5rem 1rem; font-size: .9rem; color: var(--soft); }
 @media (prefers-reduced-motion: reduce) { .progress-bar > span { transition: none; } }
 @media (max-width: 560px) { body { font-size: 16px; } .card { padding: 1rem; } }
+
+.map { width: 100%; border-collapse: collapse; margin-top: .5rem; }
+.map th, .map td { text-align: left; padding: .5rem .6rem; border-top: 1px solid var(--line); vertical-align: top; }
+.map thead th { border-top: 0; font-size: .9rem; color: var(--soft); }
+.map caption { text-align: left; padding-bottom: .25rem; }
