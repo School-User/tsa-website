@@ -33,8 +33,17 @@
     MODULES.forEach(function (m) {
       var read = (s.lessons[m.id] || []).length, score = s.quiz[m.id];
       var card = el('li', { 'class': 'card' });
+      // Mastery: lessons read are half, passing the quiz is the other half.
+      var passed = score >= Progress.PASS;
+      var pct = Math.round((read / LESSONS_PER_MODULE) * 50 + (passed ? 50 : 0));
+      var label = pct === 100 ? 'Mastered' : passed ? 'Proficient' : (read >= 2 || score !== undefined) ? 'Familiar' : read ? 'Attempted' : 'Not started';
+      card.appendChild(el('p', { 'class': 'mastery' }, label));
       card.appendChild(el('h3', {}, m.title));
       card.appendChild(el('p', {}, m.blurb));
+      var bar = el('div', { 'class': 'progress-bar', role: 'progressbar', 'aria-label': m.title + ' mastery',
+        'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': String(pct) });
+      bar.appendChild(el('span', { style: 'width:' + pct + '%' }));
+      card.appendChild(bar);
       var status = 'Lessons read: ' + read + ' of ' + LESSONS_PER_MODULE + ' · ' +
         (score === undefined ? 'Quiz not taken' : 'Best quiz: ' + score + ' of 5');
       card.appendChild(el('p', {}, status));
