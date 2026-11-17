@@ -14,3 +14,4 @@
 - 2026-11-16: Claude Code checked the lesson claims against saved copies of every source (all matched; UNESCO PDF read via OCR) and drafted a possible Module 4 in docs/content-m4-draft.md (draft only, not on the site).
 - 2026-11-16: Codex reviewed the Module 4 draft against Modules 1-3 and the saved sources (read-only) and flagged an overstatement, repeated content and an unsupported line in Module 1. Claude fixed them, built module4.html from the corrected draft, softened one sentence in module1.html, and updated js/progress.js (4 modules, AIL2- codes, AIL1- codes still restore), js/dashboard.js, the nav links and tests/progress.test.js.
 - 2026-11-16: Claude Code drafted Module 5 (docs/content-m5-draft.md) from four Anthropic pages read in full; draft only.
+- 2026-11-16: Codex reviewed docs/content-m5-draft.md (read-only); Claude fixed three overstatements it flagged (early-adopter limit, 'any tool', 'do not submit').
