@@ -5,7 +5,7 @@
   var PASS = 4;            // correct answers needed for a module badge
   var LESSON_XP = 10;      // per lesson
   var QUIZ_XP = 10;        // per correct quiz answer
-  var MODULES = ['m1', 'm2', 'm3', 'm4', 'm5'];
+  var MODULES = ['m1', 'm2', 'm3', 'm4', 'm5', 'm6'];
   var memory = null;       // fallback when localStorage is blocked
 
   function empty() { return { lessons: {}, quiz: {} }; }
@@ -70,13 +70,14 @@
   }
 
   // ---- Progress code: move progress between devices with no account ----
-  // Format: AIL3- then, per module, one hex digit (which of the 4 lessons are
+  // Format: AIL4- then, per module, one hex digit (which of the 4 lessons are
   // read, as bits) and one quiz score (0-5, or X for "not taken"), then one
-  // checksum character that catches typos. Example: AIL3-F5F5F5F5F5K
-  // Older AIL1- (3 modules) and AIL2- (4 modules) codes still restore.
+  // checksum character that catches typos. Example: AIL4-F5F5F5F5F5F5K
+  // Older AIL1- (3), AIL2- (4) and AIL3- (5 module) codes still restore.
   var LESSON_IDS = ['l1', 'l2', 'l3', 'l4'];
-  var PREFIX = 'AIL3-';
-  var CODE_MODULES = { 'AIL1-': ['m1', 'm2', 'm3'], 'AIL2-': ['m1', 'm2', 'm3', 'm4'], 'AIL3-': MODULES };
+  var PREFIX = 'AIL4-';
+  var CODE_MODULES = { 'AIL1-': ['m1', 'm2', 'm3'], 'AIL2-': ['m1', 'm2', 'm3', 'm4'],
+    'AIL3-': ['m1', 'm2', 'm3', 'm4', 'm5'], 'AIL4-': MODULES };
 
   // Position-weighted sum, so swapped characters are caught too.
   function checksum(body) {

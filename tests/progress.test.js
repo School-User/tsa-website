@@ -33,7 +33,8 @@ assert.deepStrictEqual(P.badges(P.submitQuiz('m1', 4, 5)), ['m1'], '4/5 passes')
 P.submitQuiz('m2', 5, 5);
 assert.deepStrictEqual(P.badges(P.submitQuiz('m3', 4, 5)), ['m1', 'm2', 'm3']);
 assert.deepStrictEqual(P.badges(P.submitQuiz('m4', 4, 5)), ['m1', 'm2', 'm3', 'm4']);
-assert.deepStrictEqual(P.badges(P.submitQuiz('m5', 4, 5)), ['m1', 'm2', 'm3', 'm4', 'm5', 'reflective-learner']);
+assert.deepStrictEqual(P.badges(P.submitQuiz('m5', 4, 5)), ['m1', 'm2', 'm3', 'm4', 'm5']);
+assert.deepStrictEqual(P.badges(P.submitQuiz('m6', 4, 5)), ['m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'reflective-learner']);
 
 // level boundaries
 P = fresh();
@@ -62,8 +63,8 @@ assert.strictEqual(P.xp(P.load()), 0);
 P = fresh();
 P.completeLesson('m1', 'l1'); P.completeLesson('m1', 'l3'); P.submitQuiz('m1', 4, 5); P.completeLesson('m3', 'l4');
 const code = P.exportCode();
-assert.ok(/^AIL3-([0-9A-F][0-5X]){5}[0-9A-Z]$/.test(code), 'code format: ' + code);
-assert.ok(code.length <= 22, 'code stays short');
+assert.ok(/^AIL4-([0-9A-F][0-5X]){6}[0-9A-Z]$/.test(code), 'code format: ' + code);
+assert.ok(code.length <= 24, 'code stays short');
 
 // round trip into a fresh browser
 const other = fresh();
@@ -88,8 +89,8 @@ assert.strictEqual(fresh().importCode(fresh().exportCode()) !== null, true, 'emp
 
 // bad input returns null and changes nothing
 const keep = fresh(); keep.completeLesson('m1', 'l1');
-['', 'hello', 'AIL2-F5F5F5K', 'AIL4-F5F5F5F5F5K', 'AIL3-F5F5F5F5K', code.slice(0, -1), code.slice(0, -1) + (code.slice(-1) === 'Z' ? 'Y' : 'Z'),
- 'AIL1-F9F5F5K', 'AIL1-F5F5F5F5K', 'AIL2-F5F5F5F5F5K', null, undefined, 42].forEach(function (bad) {
+['', 'hello', 'AIL2-F5F5F5K', 'AIL5-F5F5F5F5F5F5K', 'AIL4-F5F5F5F5F5K', code.slice(0, -1), code.slice(0, -1) + (code.slice(-1) === 'Z' ? 'Y' : 'Z'),
+ 'AIL1-F9F5F5K', 'AIL1-F5F5F5F5K', 'AIL2-F5F5F5F5F5K', 'AIL3-F5F5F5F5F5F5K', null, undefined, 42].forEach(function (bad) {
   assert.strictEqual(keep.importCode(bad), null, 'rejects ' + String(bad));
 });
 assert.strictEqual(keep.xp(keep.load()), 10, 'bad code left progress untouched');
@@ -105,5 +106,10 @@ const body2 = 'F4' + '30' + '0X' + '51';
 let sum2 = 0; for (let i = 0; i < body2.length; i++) sum2 += parseInt(body2[i] === 'X' ? '6' : body2[i], 36) * (i + 1);
 const old2 = fresh().importCode('AIL2-' + body2 + (sum2 % 36).toString(36).toUpperCase());
 assert.ok(old2, 'AIL2 code accepted'); assert.strictEqual(old2.quiz.m4, 1);
+
+const body3 = 'F4' + '30' + '0X' + '51' + '22';
+let sum3 = 0; for (let i = 0; i < body3.length; i++) sum3 += parseInt(body3[i] === 'X' ? '6' : body3[i], 36) * (i + 1);
+const old3 = fresh().importCode('AIL3-' + body3 + (sum3 % 36).toString(36).toUpperCase());
+assert.ok(old3, 'AIL3 code accepted'); assert.strictEqual(old3.quiz.m5, 2);
 
 console.log('progress: all tests passed');

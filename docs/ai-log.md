@@ -17,3 +17,4 @@
 - 2026-11-16: Codex reviewed docs/content-m5-draft.md (read-only); Claude fixed three overstatements it flagged (early-adopter limit, 'any tool', 'do not submit').
 - 2026-11-16: Freebuff (DeepSeek) built module5.html from docs/content-m5-draft.md (one prompt; Claude reviewed it and fixed one sentence). Claude wired Module 5 into js/progress.js (AIL3- codes; AIL1-/AIL2- still restore), js/dashboard.js, the nav, tests/progress.test.js and the four Anthropic sources on reference.html.
 - 2026-11-16: Claude Code drafted Module 6 (docs/content-m6-draft.md) from four official pages (GitHub Docs x2, Claude Platform Docs, MDN) read in full; draft only.
+- 2026-11-16: Freebuff (DeepSeek) built module6.html from docs/content-m6-draft.md (one prompt). Claude restored sentences it left out, wired Module 6 into js/progress.js (AIL4- codes; AIL1-3 still restore), js/dashboard.js, nav, tests and four sources on reference.html. Codex reviewed the draft read-only first.
