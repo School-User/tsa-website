@@ -10,3 +10,4 @@
 - 2026-11-15: Codex built module1.html and listed its sources; Claude verified the URLs and added them to reference.html.
 - 2026-11-16: Freebuff (DeepSeek) wrote docs/forms-guide.md — structure and fact-check sheet for the two required PDFs (no form text written for the user). Checked the site for media/frameworks/network calls and checked the 11 reference URLs: 7 returned 200, the 4 openai.com-family URLs could not be tested from this machine.
 - 2026-11-16: Freebuff (DeepSeek) wrote docs/handoff.md — current state, rules, verified facts, open work and the BrowserOS neo blocker, for whoever resumes.
+- 2026-11-16: Claude Code smoke-tested all 5 pages in headless Chromium (no console errors, progress tests pass) and published the repo to GitHub Pages at https://school-user.github.io/tsa-website/.
