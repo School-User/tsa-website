@@ -65,6 +65,8 @@ main > section.card { border-left: 6px solid var(--accent); }
 .btn.ghost { background: transparent; color: var(--accent); border-color: var(--line); }
 .btn.ghost:hover { background: var(--muted); filter: none; }
 .btn[data-lesson] { background: var(--good); color: #fff; }
+@media (prefers-color-scheme: dark) { .btn[data-lesson] { background: #1f8f55; color: #fff; } }
+.card li a, .card p a { overflow-wrap: anywhere; }
 .btn[data-lesson][disabled] { background: var(--good-bg); color: var(--good); opacity: 1; }
 .lead + .card, h1 + .card { margin-top: 1rem; }
 
