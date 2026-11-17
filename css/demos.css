@@ -1,4 +1,4 @@
-/* Styles for demos.html only. Colours come from style.css tokens, so the
+/* Styles for demos.html only. Colors come from style.css tokens, so the
    demos follow the light/dark theme without a second set of values. */
 
 .demo-privacy {
@@ -70,7 +70,7 @@ textarea.demo-input { resize: vertical; min-height: 6rem; line-height: 1.5; }
 }
 .chip--word { border-color: var(--accent); color: var(--accent); background: var(--surface); }
 .chip--piece { border-color: var(--u2); color: var(--u2); background: var(--surface); }
-.chip--punct { border-color: var(--gold); color: var(--gold); background: transparent; }
+.chip--punct { border-color: var(--gold); color: var(--gold-text); background: transparent; }
 
 .chip-key {
   list-style: none;

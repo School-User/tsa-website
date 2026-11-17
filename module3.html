@@ -103,9 +103,9 @@ const QUESTIONS = [
     "q": "A teacher permits AI-generated practice questions but requires students to write their own essay. Which action fits the rule?",
     "options": [
       "Submit an AI-written essay with your name on it.",
-      "Have AI rewrite the essay and hide its role.",
+      "Have AI rewrite the essay and then hide its role.",
       "Use AI practice questions, then write the essay yourself.",
-      "Ask AI to write the essay and disclose it afterward."
+      "Ask AI to write the whole essay and disclose it afterward."
     ],
     "answer": 2,
     "why": "The student uses AI for the permitted practice and completes the required writing independently."
@@ -113,21 +113,21 @@ const QUESTIONS = [
   {
     "q": "You want scheduling advice from a chatbot; which message best protects privacy?",
     "options": [
-      "“A student has soccer and homework after school; suggest a schedule.”",
+      "“A student has soccer and homework; suggest a schedule.”",
       "“Here is my classmate's name, address, and medical history.”",
-      "“Here is my password so you can see my calendar.”",
+      "“Here is my password so you can look at my calendar.”",
       "“Here are my friend's private messages and phone number.”"
     ],
     "answer": 0,
-    "why": "The first request describes the problem without sharing identifying or sensitive details."
+    "why": "The safe request describes the problem without sharing identifying or sensitive details."
   },
   {
     "q": "An image tool shows only men when asked for pictures of engineers. What is the best response?",
     "options": [
-      "Conclude that all engineers are men.",
+      "Conclude that all engineers must be men, based only on these images.",
       "Assume the images are a complete record of real engineers.",
-      "Ignore the pattern because computers cannot reflect bias.",
-      "Question the representation and consult reliable sources about engineers."
+      "Ignore the pattern, because computers cannot reflect bias.",
+      "Question the pattern and check reliable sources about engineers."
     ],
     "answer": 3,
     "why": "AI output can reflect biased patterns and should be checked against other information."
@@ -135,10 +135,10 @@ const QUESTIONS = [
   {
     "q": "Your teacher bans AI for an essay, but you plan to disclose that AI wrote it. Is this okay?",
     "options": [
-      "Yes, because disclosure cancels the ban.",
-      "No, because disclosure does not make a prohibited use permitted.",
-      "Yes, if the essay is accurate.",
-      "Yes, if the AI provides citations."
+      "Yes, because disclosing the tool cancels the teacher's ban.",
+      "No, because disclosure does not make a prohibited use allowed.",
+      "Yes, if the essay turns out to be accurate and well written.",
+      "Yes, if the AI also supplies reliable citations for its claims."
     ],
     "answer": 1,
     "why": "Honesty about AI use does not replace following the assignment's rules."
@@ -146,10 +146,10 @@ const QUESTIONS = [
   {
     "q": "Your teacher allows AI brainstorming and asks for a disclosure. You used ChatGPT to generate topic ideas and chose one yourself. Which note is most accurate?",
     "options": [
-      "“I did not use any tools.”",
-      "“ChatGPT researched and wrote the entire paper.”",
+      "“I did not use any tools at all to plan or write this paper.”",
+      "“ChatGPT researched the topic and wrote the entire paper for me.”",
       "“I used ChatGPT to brainstorm topics and chose one myself.”",
-      "“All sources suggested by ChatGPT are verified.”"
+      "“All the sources that ChatGPT suggested have been verified.”"
     ],
     "answer": 2,
     "why": "The note identifies the tool and describes the help actually used."

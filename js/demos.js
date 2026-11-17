@@ -1,7 +1,12 @@
 // Demos page: three small, offline illustrations of how AI handles text.
-// Everything runs in the browser. No network, no libraries, no storage.
+// Everything runs in the browser. No network, no libraries: only the demo ids
+// are saved, by js/progress.js, so the page can award 10 XP per demo.
 (function () {
   'use strict';
+
+  var Progress = window.Progress || null;
+  var DEMO_XP = Progress && Progress.DEMO_XP ? Progress.DEMO_XP : 10;
+  var awarded = {};
 
   function el(tag, className, text) {
     var node = document.createElement(tag);
@@ -9,6 +14,34 @@
     if (text != null) node.textContent = text;
     return node;
   }
+
+  // Redraw the demo XP panel in the same style as the home dashboard.
+  function renderXp() {
+    var levelEl = document.getElementById('demo-level');
+    if (!Progress || !levelEl) return;
+    var s = Progress.load();
+    var total = Progress.xp(s);
+    var into = total % 100;
+    var done = (s.demos || []).length;
+    levelEl.textContent = Progress.level(s);
+    document.getElementById('demo-xp').textContent = total;
+    document.getElementById('demo-next').textContent = (100 - into) + ' XP to next level';
+    var bar = document.getElementById('demo-xpbar');
+    bar.setAttribute('aria-valuenow', into);
+    bar.firstElementChild.style.width = into + '%';
+    document.getElementById('demo-xp-detail').textContent =
+      'Demos tried: ' + done + ' of 3 · ' + (done * DEMO_XP) + ' XP from demos.';
+  }
+
+  // First use of a demo earns its 10 XP once; later uses change nothing.
+  function award(demoId) {
+    if (!Progress || awarded[demoId]) return;
+    awarded[demoId] = true;
+    Progress.completeDemo(demoId);
+    renderXp();
+  }
+
+  renderXp();
 
   /* ---------------------------------------------------------------
      1. Tokenizer: rough rule-based split, not a real tokenizer.
@@ -55,7 +88,10 @@
       : tokens.length + (tokens.length === 1 ? ' token' : ' tokens') + ' so far.';
   }
 
-  tokenInput.addEventListener('input', renderTokens);
+  tokenInput.addEventListener('input', function () {
+    renderTokens();
+    award('tokens');
+  });
   renderTokens();
 
   /* ---------------------------------------------------------------
@@ -67,7 +103,7 @@
     'Teachers remind students to cite sources and to write their own work. ' +
     'When students ask a clear question, AI can help them learn faster. ' +
     'When students ask a vague question, AI gives a vague answer. ' +
-    'Teachers use AI to plan lessons, and students use AI to practise. ' +
+    'Teachers use AI to plan lessons, and students use AI to practice. ' +
     'AI is a tool for learning, not a replacement for thinking.';
 
   var model = Object.create(null);   // word -> { nextWord: count }
@@ -175,6 +211,7 @@
   }
 
   document.getElementById('generate').addEventListener('click', function () {
+    award('nextword');
     var typed = cleanWord(seedInput.value);
     var start = model[typed] ? typed : null;
     var note = '';
@@ -191,13 +228,17 @@
     generated.textContent = note + '“' + words.join(' ') + '”';
   });
 
-  seedInput.addEventListener('input', renderPredictions);
+  seedInput.addEventListener('input', function () {
+    renderPredictions();
+    award('nextword');
+  });
   renderPredictions();
 
   Array.prototype.forEach.call(document.querySelectorAll('[data-seed]'), function (button) {
     button.addEventListener('click', function () {
       seedInput.value = button.getAttribute('data-seed');
       renderPredictions();
+      award('nextword');
       seedInput.focus();
     });
   });
@@ -222,7 +263,10 @@
     part.field = document.getElementById(part.input);
     part.item = el('li');
     checklist.appendChild(part.item);
-    part.field.addEventListener('input', updatePrompt);
+    part.field.addEventListener('input', function () {
+      updatePrompt();
+      award('prompt');
+    });
   });
 
   function updatePrompt() {

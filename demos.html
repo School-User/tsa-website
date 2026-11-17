@@ -36,6 +36,17 @@
 
   <p class="demo-privacy">Nothing you type on this page leaves your browser. All three demos are plain JavaScript running on this page: there is no internet request, no account, and no API key, and your text is not saved.</p>
 
+  <section class="card" aria-labelledby="demo-xp-h">
+    <h2 id="demo-xp-h" style="margin-top:0">Your demo XP</h2>
+    <div class="stats">
+      <span>Level <strong id="demo-level">1</strong></span>
+      <span><strong id="demo-xp">0</strong> XP</span>
+      <span id="demo-next" class="muted"></span>
+    </div>
+    <div class="progress-bar" role="progressbar" aria-label="Progress to next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="demo-xpbar"><span style="width:0%"></span></div>
+    <p class="muted" id="demo-xp-detail">Demos tried: 0 of 3 · 0 XP from demos.</p>
+  </section>
+
   <section class="card" aria-labelledby="tok-h">
     <h2 id="tok-h">1 · How text becomes tokens</h2>
     <p>A language model does not read letters the way you do. Before it can work, text is cut into tokens: sometimes a whole word, sometimes a piece of a long word, and sometimes a punctuation mark. Each token is then turned into numbers the model can calculate with.</p>
@@ -48,7 +59,7 @@
     <p class="demo-status" id="token-count" aria-live="polite"></p>
     <ul class="chips" id="token-chips" aria-label="Token chips"></ul>
 
-    <ul class="chip-key" aria-label="Chip colour key">
+    <ul class="chip-key" aria-label="Chip color key">
       <li><span class="chip chip--word" aria-hidden="true">word</span> whole word</li>
       <li><span class="chip chip--piece" aria-hidden="true">piec</span> piece of a long word (up to 4 characters)</li>
       <li><span class="chip chip--punct" aria-hidden="true">,</span> punctuation</li>
@@ -75,7 +86,7 @@
     </div>
     <p class="demo-output" id="generated" aria-live="polite"></p>
 
-    <p class="demo-note">The "generate" button picks each next word by weighted random: a word seen twice as often in the paragraph is twice as likely to be chosen. If a run reaches the end of a sentence, it starts again from another word, shown as … . That is how a language model produces different answers to the same question, in a very small way.</p>
+    <p class="demo-note">The “generate” button picks each next word by weighted random: a word seen twice as often in the paragraph is twice as likely to be chosen. If a run reaches the end of a sentence, it starts again from another word, shown as … . That is how a language model produces different answers to the same question, in a very small way.</p>
   </section>
 
   <section class="card" aria-labelledby="prompt-h">

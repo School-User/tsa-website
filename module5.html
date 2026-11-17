@@ -43,8 +43,8 @@
 
   <section class="card" aria-labelledby="lesson-2">
     <h2 id="lesson-2">Learning to code with AI, not just getting code</h2>
-    <p>Anthropic <a href="https://www.anthropic.com/research/anthropic-education-report-how-university-students-use-claude">studied</a> how university students used Claude.ai. Its data likely captures early adopters, so it may not describe every student. In the study, computer science made up 38.6% of conversations, though it is only 5.4% of U.S. bachelor's degrees. Nearly half (about 47%) of conversations were "direct," meaning the student wanted a quick resolution.</p>
-    <p>The report also raises the concern of students outsourcing thinking to AI, and says even collaborative work "still offloads significant thinking to the AI."</p>
+    <p>Anthropic <a href="https://www.anthropic.com/research/anthropic-education-report-how-university-students-use-claude">studied</a> how university students used Claude.ai. Its data likely captures early adopters, so it may not describe every student. In the study, computer science made up 38.6% of conversations, though it is only 5.4% of U.S. bachelor's degrees. Nearly half (about 47%) of conversations were “direct,” meaning the student wanted a quick resolution.</p>
+    <p>The report also raises the concern of students outsourcing thinking to AI, and says even collaborative work “still offloads significant thinking to the AI.”</p>
     <p>Anthropic's <a href="https://www.anthropic.com/news/introducing-claude-for-education">Learning mode</a> is designed to guide students' reasoning rather than simply provide answers. If your tool and your teacher allow it, you can work the same way: ask for a hint, ask it to explain an error, and write the fix yourself.</p>
     <button class="btn" type="button" data-lesson="l2">Mark as read</button>
   </section>
@@ -60,7 +60,7 @@
     <h2 id="lesson-4">Your own commitment</h2>
     <p>Anthropic's <a href="https://www.anthropic.com/news/anthropic-higher-education-initiatives">AI Fluency for Students</a> ends with students writing their own personal commitment to responsible AI use. You can do the same.</p>
     <p>Write three or four sentences you would keep to: what you will use AI for, what you will always do yourself, how you will check its work, and how you will say when you used it.</p>
-    <p>Example: "I will use AI to explain ideas and check my grammar, never to write my graded work. I will test any code before I use it. I will tell my teacher when AI helped."</p>
+    <p>Example: “I will use AI to explain ideas and check my grammar, never to write my graded work. I will test any code before I use it. I will tell my teacher when AI helped.”</p>
     <p>Change it to fit your own class rules.</p>
     <button class="btn" type="button" data-lesson="l4">Mark as read</button>
   </section>
@@ -90,20 +90,20 @@ const QUESTIONS = [
     "q": "Anthropic's student study found that computer science made up what share of conversations?",
     "options": [
       "5.4%",
+      "100%",
       "38.6%",
-      "47%",
-      "100%"
+      "47%"
     ],
-    "answer": 1,
+    "answer": 2,
     "why": "Computer science was 38.6% of conversations, even though it is only 5.4% of U.S. bachelor's degrees."
   },
   {
     "q": "What is the main idea of Learning mode?",
     "options": [
-      "Give the final answer quickly",
-      "Guide reasoning with questions rather than simply give answers",
-      "Write the whole assignment",
-      "Hide the question"
+      "Give the final answer quickly so the student can move on.",
+      "Guide reasoning with questions rather than simply give answers.",
+      "Write the whole assignment for the student without any hints or help.",
+      "Hide the question so the student has to guess the topic."
     ],
     "answer": 1,
     "why": "Learning mode is designed to guide students' reasoning rather than simply provide answers."
@@ -111,21 +111,21 @@ const QUESTIONS = [
   {
     "q": "You get a function from an AI tool. What should you do before you use it?",
     "options": [
-      "Submit it",
-      "Run it, test it, and make sure you can explain it",
-      "Delete the comments",
-      "Ask the AI if it is right and stop"
+      "Submit it right away and check the results later on.",
+      "Delete the comments so the code looks cleaner.",
+      "Ask the AI if it is right, then stop there.",
+      "Run it, test it, and make sure you can explain it."
     ],
-    "answer": 1,
+    "answer": 3,
     "why": "Code can look right and still be wrong, so run it, test it with a known input, and be able to explain each line."
   },
   {
     "q": "Which is a personal commitment in the sense used by AI Fluency for Students?",
     "options": [
-      "A rule you wrote for yourself about when and how you will use AI",
-      "A school-wide ban",
-      "The AI tool's terms of service",
-      "A list of AI tools"
+      "A rule you wrote for yourself about when and how you will use AI.",
+      "A school-wide ban on AI tools in every classroom, lab, and library.",
+      "The AI tool's own terms of service written by its company.",
+      "A list of AI tools that your school recommends to students."
     ],
     "answer": 0,
     "why": "Students write their own commitment about how they will use AI responsibly."

@@ -113,6 +113,53 @@ const old3 = fresh().importCode('AIL3-' + body3 + (sum3 % 36).toString(36).toUpp
 assert.ok(old3, 'AIL3 code accepted'); assert.strictEqual(old3.quiz.m5, 2);
 
 
+// ---- demos: 10 XP once each ----
+P = fresh();
+let d = P.completeDemo('tokens');
+assert.strictEqual(P.xp(d), 10, 'first demo = 10 XP');
+d = P.completeDemo('tokens');
+assert.strictEqual(P.xp(d), 10, 'using the same demo again adds nothing');
+d = P.completeDemo('nextword');
+d = P.completeDemo('prompt');
+assert.strictEqual(P.xp(d), 30, 'three demos = 30 XP');
+assert.deepStrictEqual(d.demos, ['tokens', 'nextword', 'prompt']);
+assert.strictEqual(P.xp(P.completeDemo('unknown')), 30, 'unknown demo ignored');
+
+// progress codes still work with demos in state, and a restore keeps local demos
+const demoCode = P.exportCode();
+assert.ok(/^AIL4-([0-9A-F][0-5X]){6}[0-9A-Z]$/.test(demoCode), 'code format unchanged');
+const withDemos = fresh();
+withDemos.completeDemo('tokens');
+withDemos.importCode(demoCode);
+assert.deepStrictEqual(withDemos.load().demos, ['tokens'], 'restore keeps demos already on this device');
+
+// old saved data without a demos array still loads
+{
+  const st = memStorage();
+  st.setItem('aiPortal.v1', JSON.stringify({ lessons: { m1: ['l1'] }, quiz: { m1: 4 } }));
+  P = fresh(st);
+  s = P.load();
+  assert.strictEqual(P.xp(s), 50, 'old data without demos loads');
+  assert.deepStrictEqual(s.demos, [], 'missing demos becomes an empty array');
+}
+
+// ---- load() cleans stored data ----
+{
+  const st = memStorage();
+  st.setItem('aiPortal.v1', JSON.stringify({
+    lessons: { m1: ['l1', 'l1', 'l2', 7, null], m9: ['l1'] },
+    quiz: { m1: 9, m2: -3, m3: 4.9, m9: 5 },
+    demos: ['tokens', 'tokens', 'bogus', 5]
+  }));
+  P = fresh(st);
+  s = P.load();
+  assert.deepStrictEqual(s.lessons, { m1: ['l1', 'l2'] },
+    'string lesson ids kept once, unknown modules dropped');
+  assert.deepStrictEqual(s.quiz, { m1: 5, m2: 0, m3: 4 }, 'quiz scores clamped to 0-5');
+  assert.deepStrictEqual(s.demos, ['tokens'], 'known demo ids kept once');
+  assert.strictEqual(P.xp(s), 20 + 50 + 0 + 40 + 10, 'cleaned state gives sane XP');
+}
+
 // wrongly-typed stored data is discarded instead of giving NaN XP
 {
   const st = memStorage();

@@ -63,13 +63,13 @@
     <h2 id="lesson-1">Kinds of AI</h2>
     <p>IBM sorts AI by what it can do. <a href="https://www.ibm.com/think/topics/artificial-intelligence-types_msm_moved">Narrow AI</a> is designed for particular tasks. IBM says it is the only type of AI that exists today.</p>
     <p>General AI, which could use what it learned to do new tasks in new settings without being retrained, is still theoretical. IBM counts chatbots such as ChatGPT as narrow AI. These categories are a teaching simplification: models can have overlapping capabilities and work across many tasks.</p>
-    <p>When you read a headline about "super-smart AI", ask which kind it means. A tool that does one job well tells you little about whether any machine can do everything a person can.</p>
+    <p>When you read a headline about “super-smart AI,” ask which kind it means. A tool that does one job well tells you little about whether any machine can do everything a person can.</p>
     <button class="btn" type="button" data-lesson="l1">Mark as read</button>
   </section>
 
   <section class="card" aria-labelledby="lesson-2">
     <h2 id="lesson-2">Risks the experts list</h2>
-    <p>The National Institute of Standards and Technology (NIST) publishes a <a href="https://nvlpubs.nist.gov/nistpubs/AI/NIST.AI.600-1.pdf">list of risks</a> for generative AI. Several match earlier modules. NIST calls confidently stated but false content "confabulation", a close cousin of what this portal calls a hallucination.</p>
+    <p>The National Institute of Standards and Technology (NIST) publishes a <a href="https://nvlpubs.nist.gov/nistpubs/AI/NIST.AI.600-1.pdf">list of risks</a> for generative AI. Several match earlier modules. NIST calls confidently stated but false content “confabulation,” a close cousin of what this portal calls a hallucination.</p>
     <p>Data privacy risk is the leakage or unauthorized use of personal or sensitive information. Harmful bias or homogenization includes amplifying existing biases and outputs that all end up looking alike. Environmental impact comes from the large amount of computing used to train and run models.</p>
     <p>You do not need to memorize the list. The point is that experts treat these as real, named risks, so checking answers and protecting private information are not just school rules.</p>
     <button class="btn" type="button" data-lesson="l2">Mark as read</button>
@@ -104,21 +104,21 @@ const QUESTIONS = [
   {
     "q": "According to IBM, which kind of AI exists today?",
     "options": [
-      "General AI that can learn any task.",
+      "General AI that can learn any task it meets.",
       "Only narrow AI, built for a limited task.",
-      "Both general and narrow AI in equal amounts.",
-      "Neither kind exists yet."
+      "Both general and narrow AI, in equal amounts.",
+      "Neither kind of AI exists in the world yet."
     ],
     "answer": 1,
     "why": "IBM says narrow AI is the only type of AI that exists today; general AI is theoretical."
   },
   {
-    "q": "NIST uses the word \"confabulation\" for which problem?",
+    "q": "NIST uses the word “confabulation” for which problem?",
     "options": [
-      "Models using a lot of electricity.",
-      "Leaking personal information.",
+      "Models using a great deal of electricity.",
+      "Leaking someone's personal information.",
       "Confidently stated content that is false.",
-      "Outputs that all look the same."
+      "Outputs that all end up looking the same."
     ],
     "answer": 2,
     "why": "NIST defines confabulation as confidently stated but erroneous or false content."
@@ -127,9 +127,9 @@ const QUESTIONS = [
     "q": "What is few-shot learning in prompting?",
     "options": [
       "Including a few example inputs and desired outputs in the prompt.",
-      "Asking the same question a few times.",
-      "Training a new model from scratch.",
-      "Using only a few words in a prompt."
+      "Asking the same question several times and picking your favorite reply.",
+      "Training a brand-new model from scratch on your own data.",
+      "Keeping the prompt to only a few words to stay brief."
     ],
     "answer": 0,
     "why": "OpenAI describes it as steering a model by including a handful of input/output examples."
@@ -137,10 +137,10 @@ const QUESTIONS = [
   {
     "q": "Why does UNESCO say age limits deserve consideration for generative AI tools?",
     "options": [
-      "Because children cannot read the answers.",
-      "Because the tools are too slow for school.",
-      "Because most apps are made mainly for adults and can carry risks for children.",
-      "Because adults are not allowed to use them."
+      "Because children cannot read the long answers the tools produce.",
+      "Because the tools are too slow to be useful in a normal school lesson.",
+      "Because most apps are made for adults and can carry risks for children.",
+      "Because adults are not allowed to use these tools at all in most countries."
     ],
     "answer": 2,
     "why": "UNESCO notes that most applications are designed for adult users and can pose risks to children."
@@ -148,10 +148,10 @@ const QUESTIONS = [
   {
     "q": "Which situation is a data privacy risk as NIST describes it?",
     "options": [
-      "A chatbot gives a wrong date.",
-      "Personal or sensitive information leaks or is used without permission.",
-      "A model needs a long time to answer.",
-      "An image tool draws the same style every time."
+      "A chatbot gives a wrong date for a recent historical event.",
+      "Personal information leaks or is used without permission.",
+      "A model needs a very long time to answer a simple question.",
+      "An image tool draws the same style each time you ask it."
     ],
     "answer": 1,
     "why": "NIST describes data privacy risk as leakage or unauthorized use of personal or sensitive information."

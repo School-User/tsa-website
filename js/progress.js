@@ -5,17 +5,47 @@
   var PASS = 4;            // correct answers needed for a module badge
   var LESSON_XP = 10;      // per lesson
   var QUIZ_XP = 10;        // per correct quiz answer
+  var DEMO_XP = 10;        // per demo tried
   var MODULES = ['m1', 'm2', 'm3', 'm4', 'm5', 'm6'];
+  var DEMOS = ['tokens', 'nextword', 'prompt'];
   var memory = null;       // fallback when localStorage is blocked
 
-  function empty() { return { lessons: {}, quiz: {} }; }
+  function empty() { return { lessons: {}, quiz: {}, demos: [] }; }
 
+  // Older saved data has no demos array, so that is the only optional field.
   function valid(s) {
     return s && typeof s === 'object' &&
       s.lessons && typeof s.lessons === 'object' && !Array.isArray(s.lessons) &&
       s.quiz && typeof s.quiz === 'object' && !Array.isArray(s.quiz) &&
       Object.keys(s.lessons).every(function (k) { return Array.isArray(s.lessons[k]); }) &&
-      Object.keys(s.quiz).every(function (k) { return typeof s.quiz[k] === 'number' && isFinite(s.quiz[k]); });
+      Object.keys(s.quiz).every(function (k) { return typeof s.quiz[k] === 'number' && isFinite(s.quiz[k]); }) &&
+      (s.demos === undefined || Array.isArray(s.demos));
+  }
+
+  // Keep only known module ids, string lesson ids, whole quiz scores in 0-5
+  // and known demo ids, without duplicates.
+  function clean(s) {
+    var out = empty();
+    MODULES.forEach(function (m) {
+      var list = s.lessons[m];
+      if (!Array.isArray(list)) return;
+      out.lessons[m] = [];
+      list.forEach(function (id) {
+        if (typeof id !== 'string' || id === '' || out.lessons[m].indexOf(id) !== -1) return;
+        out.lessons[m].push(id);
+      });
+    });
+    MODULES.forEach(function (m) {
+      var score = s.quiz[m];
+      if (typeof score !== 'number' || !isFinite(score)) return;
+      out.quiz[m] = Math.max(0, Math.min(5, Math.floor(score)));
+    });
+    if (Array.isArray(s.demos)) {
+      s.demos.forEach(function (id) {
+        if (DEMOS.indexOf(id) !== -1 && out.demos.indexOf(id) === -1) out.demos.push(id);
+      });
+    }
+    return out;
   }
 
   function load() {
@@ -23,11 +53,11 @@
       var raw = root.localStorage.getItem(KEY);
       if (raw !== null) {
         var parsed = JSON.parse(raw);
-        if (valid(parsed)) return parsed;
-        return empty(); // corrupt or old data: start fresh
+        if (valid(parsed)) return clean(parsed);
+        return empty(); // corrupt data: start fresh
       }
     } catch (e) { /* storage blocked or bad JSON: fall through */ }
-    return memory ? JSON.parse(JSON.stringify(memory)) : empty();
+    return memory ? clean(JSON.parse(JSON.stringify(memory))) : empty();
   }
 
   function save(state) {
@@ -43,6 +73,14 @@
     return save(s);
   }
 
+  // A demo counts once, however often it is used afterwards.
+  function completeDemo(demoId) {
+    var s = load();
+    if (DEMOS.indexOf(demoId) === -1 || s.demos.indexOf(demoId) !== -1) return s;
+    s.demos.push(demoId);
+    return save(s);
+  }
+
   // Keeps the best score, so retaking a quiz can never farm extra XP.
   function submitQuiz(moduleId, correct, total) {
     var s = load();
@@ -55,6 +93,7 @@
     var total = 0, id;
     for (id in s.lessons) total += s.lessons[id].length * LESSON_XP;
     for (id in s.quiz) total += s.quiz[id] * QUIZ_XP;
+    total += (Array.isArray(s.demos) ? s.demos.length : 0) * DEMO_XP;
     return total;
   }
 
@@ -124,7 +163,8 @@
   }
 
   var api = { load: load, completeLesson: completeLesson, submitQuiz: submitQuiz,
-              xp: xp, level: level, badges: badges, reset: reset, PASS: PASS,
+              completeDemo: completeDemo, xp: xp, level: level, badges: badges,
+              reset: reset, PASS: PASS, DEMO_XP: DEMO_XP, DEMOS: DEMOS,
               exportCode: exportCode, importCode: importCode };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.Progress = api;

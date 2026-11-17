@@ -35,7 +35,7 @@
     return -1;
   }
 
-  // Build a question fieldset: legend, labelled radios, empty feedback.
+  // Build a question fieldset: legend, labeled radios, empty feedback.
   function buildQuestion(question, groupName) {
     var fieldset = document.createElement('fieldset');
     fieldset.className = 'quiz-q';
@@ -160,7 +160,7 @@
       if (correct >= pass) {
         result.appendChild(make('p', '', 'Badge earned!'));
       } else {
-        result.appendChild(make('p', '', 'Answer at least ' + pass + ' correctly to earn the badge.'));
+        result.appendChild(make('p', '', 'Pass mark is ' + pass + ' of ' + questions.length + ', try again'));
       }
 
       alertBox.textContent = '';

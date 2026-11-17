@@ -88,7 +88,7 @@
 
   <h2>Check your understanding</h2>
   <div id="quiz"></div>
-  <p><a class="btn ghost" href="module3.html">Next: Module 3</a></p>
+  <p><a class="btn ghost" href="module3.html">Next: Module 3</a> <a class="btn ghost" href="index.html">Back to dashboard</a></p>
 </main>
 
 <footer>Built by a student for the TSA Webmaster event. See the <a href="reference.html">Reference Page</a> for sources and AI-use disclosure.</footer>
@@ -99,10 +99,10 @@ const QUESTIONS = [
   {
     "q": "Which prompt gives the clearest instructions for a biology review?",
     "options": [
-      "“Biology.”",
-      "“I'm reviewing cells; compare the nucleus and membrane in two short paragraphs.”",
-      "“Tell me everything.”",
-      "“Write something interesting.”"
+      "“Tell me some interesting biology facts about cells and their parts.”",
+      "“For my cell review, compare the nucleus and membrane in two paragraphs.”",
+      "“Write anything you like about cells, in whatever format you happen to pick.”",
+      "“Explain biology in a long and detailed essay with cited sources.”"
     ],
     "answer": 1,
     "why": "It provides context, a specific task, and a requested format."
@@ -110,9 +110,9 @@ const QUESTIONS = [
   {
     "q": "An AI says, “The Declaration of Independence was signed in 1876,” but a reliable historical archive says 1776; what should you do?",
     "options": [
-      "Use 1876 because the AI sounded confident.",
-      "Average the two dates.",
-      "Ask the same AI repeatedly until it agrees.",
+      "Use 1876 because the AI sounded confident about it.",
+      "Average the two dates and report 1826 to be safe.",
+      "Ask the same AI again until it gives the date you want.",
       "Trust the verified archive and correct the date."
     ],
     "answer": 3,
@@ -122,9 +122,9 @@ const QUESTIONS = [
     "q": "An AI gives you a quotation and a link to an article; what is the best next step?",
     "options": [
       "Open the article and check the quotation and its context.",
-      "Assume the link proves the quotation is accurate.",
-      "Cite the article without reading it.",
-      "Remove the quotation marks and use the words anyway."
+      "Assume the link proves that the quotation is accurate and current.",
+      "Cite the article in your work without reading it first.",
+      "Remove the quotation marks and use the words as your own."
     ],
     "answer": 0,
     "why": "A link does not prove that a quotation is real or used in the right context."
@@ -132,10 +132,10 @@ const QUESTIONS = [
   {
     "q": "You are stuck on a practice problem and want to learn the process; what should you ask for?",
     "options": [
-      "A finished answer to copy without reading.",
-      "A longer answer with no explanation.",
-      "A hint, then try the next step yourself.",
-      "An unrelated image."
+      "A finished answer that you can copy without reading.",
+      "A longer answer that skips over the explanation.",
+      "A hint first, then try the next step yourself.",
+      "An unrelated picture that you can look at instead."
     ],
     "answer": 2,
     "why": "A hint lets you practice the reasoning while getting help when you need it."
@@ -143,9 +143,9 @@ const QUESTIONS = [
   {
     "q": "Which task suits a coding helper?",
     "options": [
-      "Guaranteeing that every program is secure.",
-      "Suggesting an explanation for an error in code.",
-      "Replacing all testing of a program.",
+      "Guaranteeing that every program is completely secure.",
+      "Suggesting an explanation for an error in your code.",
+      "Replacing all testing of a program before release.",
       "Proving a suggested solution is correct without review."
     ],
     "answer": 1,
