@@ -5,7 +5,7 @@
   var PASS = 4;            // correct answers needed for a module badge
   var LESSON_XP = 10;      // per lesson
   var QUIZ_XP = 10;        // per correct quiz answer
-  var MODULES = ['m1', 'm2', 'm3'];
+  var MODULES = ['m1', 'm2', 'm3', 'm4'];
   var memory = null;       // fallback when localStorage is blocked
 
   function empty() { return { lessons: {}, quiz: {} }; }
@@ -70,12 +70,13 @@
   }
 
   // ---- Progress code: move progress between devices with no account ----
-  // Format: AIL1- then, per module, one hex digit (which of the 4 lessons are
+  // Format: AIL2- then, per module, one hex digit (which of the 4 lessons are
   // read, as bits) and one quiz score (0-5, or X for "not taken"), then one
-  // checksum character that catches typos. Example: AIL1-F5F5F5K
+  // checksum character that catches typos. Example: AIL2-F5F5F5F5K
+  // Older AIL1- codes (modules 1-3 only) still restore.
   var LESSON_IDS = ['l1', 'l2', 'l3', 'l4'];
-  var PREFIX = 'AIL1-';
-  var CODE_RE = /^AIL1-([0-9A-F])([0-5X])([0-9A-F])([0-5X])([0-9A-F])([0-5X])([0-9A-Z])$/;
+  var PREFIX = 'AIL2-';
+  var CODE_MODULES = { 'AIL1-': ['m1', 'm2', 'm3'], 'AIL2-': MODULES };
 
   // Position-weighted sum, so swapped characters are caught too.
   function checksum(body) {
@@ -101,11 +102,14 @@
   // Returns the new state, or null if the code is not valid.
   function importCode(code) {
     if (typeof code !== 'string') return null;
-    var c = code.replace(/\s+/g, '').toUpperCase(), m = CODE_RE.exec(c);
-    if (!m || checksum(c.slice(PREFIX.length, -1)) !== c.slice(-1)) return null;
+    var c = code.replace(/\s+/g, '').toUpperCase();
+    var mods = CODE_MODULES[c.slice(0, PREFIX.length)];
+    var body = c.slice(PREFIX.length, -1);
+    if (!mods || !new RegExp('^([0-9A-F][0-5X]){' + mods.length + '}$').test(body) ||
+        checksum(body) !== c.slice(-1)) return null;
     var s = load();
-    MODULES.forEach(function (mod, i) {
-      var mask = parseInt(m[1 + 2 * i], 16), score = m[2 + 2 * i];
+    mods.forEach(function (mod, i) {
+      var mask = parseInt(body.charAt(2 * i), 16), score = body.charAt(2 * i + 1);
       var read = s.lessons[mod] || [];
       LESSON_IDS.forEach(function (id, bit) {
         if (mask & (1 << bit) && read.indexOf(id) === -1) read.push(id);

@@ -3,11 +3,12 @@
   var MODULES = [
     { id: 'm1', href: 'module1.html', title: 'What AI actually is', blurb: 'AI vs. machine learning vs. generative AI, how models learn, and where they fail.' },
     { id: 'm2', href: 'module2.html', title: 'Using AI tools well', blurb: 'Pick the right tool, write good prompts, study smarter, and check answers.' },
-    { id: 'm3', href: 'module3.html', title: 'Using AI ethically at school', blurb: 'Integrity, privacy, bias, and how to cite and disclose AI use.' }
+    { id: 'm3', href: 'module3.html', title: 'Using AI ethically at school', blurb: 'Integrity, privacy, bias, and how to cite and disclose AI use.' },
+    { id: 'm4', href: 'module4.html', title: 'Going deeper', blurb: 'Kinds of AI, risks experts list, prompting with examples, and why rules exist.' }
   ];
   var LESSONS_PER_MODULE = 4;
-  var BADGE_NAMES = { m1: 'AI Basics', m2: 'Tool Pro', m3: 'Ethical Thinker', 'reflective-learner': 'Reflective Learner' };
-  var BADGE_ICONS = { m1: '1', m2: '2', m3: '3', 'reflective-learner': '★' };
+  var BADGE_NAMES = { m1: 'AI Basics', m2: 'Tool Pro', m3: 'Ethical Thinker', m4: 'Deep Diver', 'reflective-learner': 'Reflective Learner' };
+  var BADGE_ICONS = { m1: '1', m2: '2', m3: '3', m4: '4', 'reflective-learner': '★' };
 
   function el(tag, attrs, text) {
     var e = document.createElement(tag);

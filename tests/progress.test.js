@@ -31,7 +31,8 @@ P = fresh();
 assert.deepStrictEqual(P.badges(P.submitQuiz('m1', 3, 5)), [], '3/5 does not pass');
 assert.deepStrictEqual(P.badges(P.submitQuiz('m1', 4, 5)), ['m1'], '4/5 passes');
 P.submitQuiz('m2', 5, 5);
-assert.deepStrictEqual(P.badges(P.submitQuiz('m3', 4, 5)), ['m1', 'm2', 'm3', 'reflective-learner']);
+assert.deepStrictEqual(P.badges(P.submitQuiz('m3', 4, 5)), ['m1', 'm2', 'm3']);
+assert.deepStrictEqual(P.badges(P.submitQuiz('m4', 4, 5)), ['m1', 'm2', 'm3', 'm4', 'reflective-learner']);
 
 // level boundaries
 P = fresh();
@@ -60,8 +61,8 @@ assert.strictEqual(P.xp(P.load()), 0);
 P = fresh();
 P.completeLesson('m1', 'l1'); P.completeLesson('m1', 'l3'); P.submitQuiz('m1', 4, 5); P.completeLesson('m3', 'l4');
 const code = P.exportCode();
-assert.ok(/^AIL1-[0-9A-F][0-5X][0-9A-F][0-5X][0-9A-F][0-5X][0-9A-Z]$/.test(code), 'code format: ' + code);
-assert.ok(code.length <= 16, 'code stays short');
+assert.ok(/^AIL2-([0-9A-F][0-5X]){4}[0-9A-Z]$/.test(code), 'code format: ' + code);
+assert.ok(code.length <= 20, 'code stays short');
 
 // round trip into a fresh browser
 const other = fresh();
@@ -86,10 +87,17 @@ assert.strictEqual(fresh().importCode(fresh().exportCode()) !== null, true, 'emp
 
 // bad input returns null and changes nothing
 const keep = fresh(); keep.completeLesson('m1', 'l1');
-['', 'hello', 'AIL2-F5F5F5K', code.slice(0, -1), code.slice(0, -1) + (code.slice(-1) === 'Z' ? 'Y' : 'Z'),
- 'AIL1-F9F5F5K', null, undefined, 42].forEach(function (bad) {
+['', 'hello', 'AIL2-F5F5F5K', 'AIL3-F5F5F5F5K', code.slice(0, -1), code.slice(0, -1) + (code.slice(-1) === 'Z' ? 'Y' : 'Z'),
+ 'AIL1-F9F5F5K', 'AIL1-F5F5F5F5K', null, undefined, 42].forEach(function (bad) {
   assert.strictEqual(keep.importCode(bad), null, 'rejects ' + String(bad));
 });
 assert.strictEqual(keep.xp(keep.load()), 10, 'bad code left progress untouched');
+
+// old 3-module codes still restore (build one by hand with the same checksum rule)
+const body1 = 'F4' + '30' + '0X';
+let sum1 = 0; for (let i = 0; i < body1.length; i++) sum1 += parseInt(body1[i] === 'X' ? '6' : body1[i], 36) * (i + 1);
+const old = fresh().importCode('AIL1-' + body1 + (sum1 % 36).toString(36).toUpperCase());
+assert.ok(old, 'AIL1 code accepted');
+assert.strictEqual(old.quiz.m1, 4); assert.strictEqual(old.quiz.m2, 0); assert.strictEqual(old.quiz.m3, undefined);
 
 console.log('progress: all tests passed');
