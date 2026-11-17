@@ -156,7 +156,7 @@
       result.textContent = '';
       result.appendChild(make('p', '', 'You got ' + correct + ' of ' + questions.length + '.'));
       result.appendChild(make('p', '',
-        'XP earned this attempt: ' + (correct * 10) + ' (10 per correct answer; your best score is kept).'));
+        'This attempt is worth ' + (correct * 10) + ' quiz XP at 10 per correct answer. Only your best score counts, so a retake adds XP only if it beats your earlier best.'));
       if (correct >= pass) {
         result.appendChild(make('p', '', 'Badge earned!'));
       } else {

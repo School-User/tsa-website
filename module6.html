@@ -29,22 +29,22 @@
 
   <section class="card" aria-labelledby="lesson-1">
     <h2 id="lesson-1">Asking for code clearly</h2>
-    <p>Good prompts for code follow the same rules as other prompts, only more exact. Say what you want, what language you are using, and what the result should do.</p>
+    <p>Good prompts for code follow the same rules as other prompts, only more precisely. Say what you want, what language you are using, and what the result should do.</p>
     <p><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">Anthropic suggests a test</a>: show your prompt to a colleague with little background on the task. If they would be confused, Anthropic says Claude will be too, and a clear prompt helps any tool.</p>
-    <p><a href="https://docs.github.com/en/copilot/get-started/best-practices">GitHub suggests</a> being specific about your requirements and breaking complex tasks into smaller pieces. Anthropic also notes that if you only ask "can you suggest some changes", Claude will sometimes give suggestions instead of making them, so say which you want. Examples help: Anthropic recommends including 3-5 examples for best results.</p>
+    <p><a href="https://docs.github.com/en/copilot/get-started/best-practices">GitHub suggests</a> being specific about your requirements and breaking complex tasks into smaller pieces. Anthropic also notes that if you only ask "can you suggest some changes", Claude will sometimes give suggestions instead of making them, so say which you want. Examples help: Anthropic recommends including 3–5 examples for best results.</p>
     <button class="btn" type="button" data-lesson="l1">Mark as read</button>
   </section>
 
   <section class="card" aria-labelledby="lesson-2">
     <h2 id="lesson-2">Understand it before you use it</h2>
     <p>GitHub's guidance says to understand suggested code before you implement it. If you do not understand a suggestion, you can ask the tool to explain the code.</p>
-    <p>If you cannot explain a line, you do not yet own it. Ask "what does this line do?", then explain it back in your own words.</p>
+    <p>If you cannot explain a line, you do not yet own it. Ask "what does this line do?" and explain it back in your own words.</p>
     <button class="btn" type="button" data-lesson="l2">Mark as read</button>
   </section>
 
   <section class="card" aria-labelledby="lesson-3">
     <h2 id="lesson-3">Finding bugs</h2>
-    <p><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Debugging_JavaScript">MDN says</a> errors can be roughly split into two types: syntax errors, where the code is written wrongly, and logic errors, where it runs but does the wrong thing. MDN explains that when a value is not what you expect, you can use console.log() to print it and see what is happening. Browser developer tools also let you add breakpoints, which stop the code at a point so you can look at its state, and their console reports errors in your code.</p>
+    <p><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Debugging_JavaScript">MDN says</a> errors can be roughly split into two types: syntax errors, where the code is written incorrectly, and logic errors, where it runs but does the wrong thing. MDN explains that when a value is not what you expect, you can use console.log() to print it and see what is happening. Browser developer tools also let you add breakpoints, which stop the code at a point so you can look at its state, and their console reports errors in your code.</p>
     <p>An AI tool can help you read an error message. Still run the fix yourself and confirm that the bug is gone.</p>
     <button class="btn" type="button" data-lesson="l3">Mark as read</button>
   </section>
@@ -52,7 +52,7 @@
   <section class="card" aria-labelledby="lesson-4">
     <h2 id="lesson-4">Tests and checks</h2>
     <p><a href="https://docs.github.com/en/copilot/tutorials/review-ai-generated-code">GitHub's tutorial on reviewing AI-generated code</a> says to run automated tests and static analysis tools first, and to make sure the code compiles and all tests pass. If your project has no tests yet, start with the simple checks below.</p>
-    <p>It warns to watch out for hallucinated or suspicious packages, meaning a library the AI names that may not exist, so verify packages yourself. It also says to watch for tests that were deleted or skipped instead of fixed, and to be skeptical of code that looks right but does not match your intent.</p>
+    <p>It warns you to watch out for hallucinated or suspicious packages—a library the AI names that may not exist—so verify packages yourself. It also says to watch for tests that were deleted or skipped instead of fixed, and to be skeptical of code that looks right but does not match your intent.</p>
     <p>For a small website like this one, a test can be as simple as opening the page and trying each button.</p>
     <button class="btn" type="button" data-lesson="l4">Mark as read</button>
   </section>

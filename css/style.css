@@ -4,7 +4,7 @@
   --bg: #f6f7fa; --surface: #ffffff; --fg: #21242c; --soft: #5f6675; --muted: #eef1f6; --line: #dfe3ea;
   --accent: #1b5fd1; --accent-dark: #1449a3; --on-accent: #ffffff; --good: #0a7a42; --good-bg: #e3f6ec;
   --bad: #b3261e; --bad-bg: #fdeceb; --gold: #b26b00; --radius: 1rem; --shadow: 0 1px 2px rgba(20,30,50,.08), 0 4px 14px rgba(20,30,50,.06);
-  --u1: #1b5fd1; --u2: #7a3fc4; --u3: #0b8a7e; --u4: #d9680b; --u5: #c4338a; --u6: #2f8f2f;
+  --u1: #1b5fd1; --u2: #7a3fc4; --u3: #08746a; --u4: #a94d00; --u5: #c4338a; --u6: #26772a;
 }
 @media (prefers-color-scheme: dark) {
   :root {
