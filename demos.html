@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>try{var t=localStorage.getItem("aiPortal.theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="js/theme.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Try AI yourself – AI Lab</title>
+<meta name="description" content="Three hands-on demos that run in your browser: see how text becomes tokens, how a tiny next-word model predicts, and how a clear prompt is built.">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/demos.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="bar">
+  <a class="brand" href="index.html">AI Lab</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="demos.html" aria-current="page">Demos</a></li>
+    <li><a href="reference.html">Reference</a></li>
+  </ul></nav>
+  <button type="button" class="theme-toggle" data-theme-toggle aria-label="Theme: Auto. Activate to switch to Light" aria-pressed="false">Theme: Auto</button>
+</div>
+<nav class="module-nav" aria-label="Modules"><ul>
+  <li><a href="module1.html"><span>1</span><span class="module-nav-label"> · What AI is</span></a></li>
+  <li><a href="module2.html"><span>2</span><span class="module-nav-label"> · Using AI tools</span></a></li>
+  <li><a href="module3.html"><span>3</span><span class="module-nav-label"> · Ethical AI</span></a></li>
+  <li><a href="module4.html"><span>4</span><span class="module-nav-label"> · Going deeper</span></a></li>
+  <li><a href="module5.html"><span>5</span><span class="module-nav-label"> · Building responsibly</span></a></li>
+  <li><a href="module6.html"><span>6</span><span class="module-nav-label"> · Coding with AI</span></a></li>
+</ul></nav></header>
+
+<main id="main">
+  <h1>Try AI yourself</h1>
+  <p class="lead">Three small demos you can play with right now: split text into tokens, predict the next word, and build a prompt that is easy for an AI to follow.</p>
+
+  <p class="demo-privacy">Nothing you type on this page leaves your browser. All three demos are plain JavaScript running on this page: there is no internet request, no account, and no API key, and your text is not saved.</p>
+
+  <section class="card" aria-labelledby="tok-h">
+    <h2 id="tok-h">1 · How text becomes tokens</h2>
+    <p>A language model does not read letters the way you do. Before it can work, text is cut into tokens: sometimes a whole word, sometimes a piece of a long word, and sometimes a punctuation mark. Each token is then turned into numbers the model can calculate with.</p>
+
+    <div class="demo-field">
+      <label for="token-input">Your text</label>
+      <textarea id="token-input" class="demo-input" rows="4" maxlength="2000" spellcheck="false">Students learn with AI, and AI learns from patterns.</textarea>
+    </div>
+
+    <p class="demo-status" id="token-count" aria-live="polite"></p>
+    <ul class="chips" id="token-chips" aria-label="Token chips"></ul>
+
+    <ul class="chip-key" aria-label="Chip colour key">
+      <li><span class="chip chip--word" aria-hidden="true">word</span> whole word</li>
+      <li><span class="chip chip--piece" aria-hidden="true">piec</span> piece of a long word (up to 4 characters)</li>
+      <li><span class="chip chip--punct" aria-hidden="true">,</span> punctuation</li>
+    </ul>
+
+    <p class="demo-note">This is a simplified illustration, not a real tokenizer. A real model uses a learned vocabulary of many thousands of pieces, and it also has its own rules for spaces, accents, and emoji, so your count here will not match a real model.</p>
+  </section>
+
+  <section class="card" aria-labelledby="pred-h">
+    <h2 id="pred-h">2 · Guess the next word</h2>
+    <p>Language models generate text by repeatedly predicting what is likely to come next, and the prediction is based on patterns in their training text. This demo is a tiny version: it counts which word follows each word in one short paragraph, then reuses those counts. It can only ever produce words it has already seen, which is exactly why a real model needs an enormous amount of text.</p>
+
+    <div class="demo-field">
+      <label for="seed-word">Type a word to start from</label>
+      <input id="seed-word" class="demo-input" type="text" value="students" autocomplete="off" spellcheck="false" aria-describedby="seed-hint">
+      <p class="demo-hint" id="seed-hint">Try <button class="linkish" type="button" data-seed="students">students</button>, <button class="linkish" type="button" data-seed="teachers">teachers</button>, <button class="linkish" type="button" data-seed="ai">ai</button>, or <button class="linkish" type="button" data-seed="ask">ask</button>.</p>
+    </div>
+
+    <h3>Top 3 next words</h3>
+    <div class="predictions" id="predictions" aria-live="polite"></div>
+
+    <div class="demo-actions">
+      <button class="btn" type="button" id="generate">Generate 8 words</button>
+    </div>
+    <p class="demo-output" id="generated" aria-live="polite"></p>
+
+    <p class="demo-note">The "generate" button picks each next word by weighted random: a word seen twice as often in the paragraph is twice as likely to be chosen. If a run reaches the end of a sentence, it starts again from another word, shown as … . That is how a language model produces different answers to the same question, in a very small way.</p>
+  </section>
+
+  <section class="card" aria-labelledby="prompt-h">
+    <h2 id="prompt-h">3 · Build a stronger prompt</h2>
+    <p>A prompt works better when it says who the AI should act as, what you actually want, the context it needs, and how the answer should be laid out. When a part is missing, the model has to guess, and it usually fills the gap with something generic. Fill in the fields below and watch the prompt and the checklist change.</p>
+
+    <div class="prompt-fields">
+      <div class="demo-field">
+        <label for="p-role">Role</label>
+        <p class="demo-hint" id="p-role-hint">Who should the AI act as?</p>
+        <input id="p-role" class="demo-input" type="text" placeholder="You are a patient science tutor for a Year 10 student." aria-describedby="p-role-hint">
+      </div>
+      <div class="demo-field">
+        <label for="p-task">Task</label>
+        <p class="demo-hint" id="p-task-hint">What do you want it to do?</p>
+        <input id="p-task" class="demo-input" type="text" placeholder="Explain photosynthesis in three short paragraphs." aria-describedby="p-task-hint">
+      </div>
+      <div class="demo-field">
+        <label for="p-context">Context</label>
+        <p class="demo-hint" id="p-context-hint">What should it know about your situation?</p>
+        <input id="p-context" class="demo-input" type="text" placeholder="I have a test on Friday and the chemical equation confuses me." aria-describedby="p-context-hint">
+      </div>
+      <div class="demo-field">
+        <label for="p-format">Format</label>
+        <p class="demo-hint" id="p-format-hint">What should the answer look like?</p>
+        <input id="p-format" class="demo-input" type="text" placeholder="Three paragraphs, then a two-line summary." aria-describedby="p-format-hint">
+      </div>
+    </div>
+
+    <h3>Your prompt</h3>
+    <pre class="prompt-preview is-empty" id="prompt-preview">Your prompt will appear here as you fill in the fields.</pre>
+    <p class="demo-status" id="prompt-status" aria-live="polite"></p>
+    <ul class="checklist" id="prompt-checklist" aria-label="Prompt parts checklist"></ul>
+
+    <h3>Weak prompt vs strong prompt</h3>
+    <div class="examples">
+      <div class="example example--weak">
+        <h4>Weak prompt</h4>
+        <p class="example-text">Write about photosynthesis.</p>
+        <p>The AI has to guess the audience, the length, and the purpose. The answer may be too long, too simple, or aimed at the wrong reader.</p>
+      </div>
+      <div class="example example--strong">
+        <h4>Strong prompt</h4>
+        <p class="example-text">Role: You are a patient science tutor for a Year 10 student.
+Task: Explain photosynthesis in three short paragraphs.
+Context: I have a test on Friday and the chemical equation confuses me.
+Format: Three paragraphs, then a two-line summary.</p>
+        <p>Every part is stated, so the AI can aim the explanation at the right reader and stop at the right length.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Built by a student for the TSA Webmaster event. See the <a href="reference.html">Reference Page</a> for sources and AI-use disclosure.</footer>
+<script src="js/progress.js"></script>
+<script src="js/demos.js"></script>
+</body>
+</html>

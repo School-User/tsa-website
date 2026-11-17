@@ -29,12 +29,20 @@
     bar.firstElementChild.style.width = into + '%';
 
     var list = document.getElementById('modules');
+    var pills = document.getElementById('module-pills');
     list.textContent = '';
-    MODULES.forEach(function (m) {
+    pills.textContent = '';
+    MODULES.forEach(function (m, index) {
       var read = (s.lessons[m.id] || []).length, score = s.quiz[m.id];
-      var card = el('li', { 'class': 'card' });
+      var card = el('li', { 'class': 'card', id: 'module-card-' + m.id });
       // Mastery: lessons read are half, passing the quiz is the other half.
       var passed = score >= Progress.PASS;
+      var progressLabel = read >= LESSONS_PER_MODULE && passed ? 'Done' :
+        (read || score !== undefined) ? 'In progress' : 'Not started';
+      var pill = el('li');
+      pill.appendChild(el('a', { href: '#module-card-' + m.id },
+        'Module ' + (index + 1) + ' · ' + progressLabel));
+      pills.appendChild(pill);
       var pct = Math.round((read / LESSONS_PER_MODULE) * 50 + (passed ? 50 : 0));
       var label = pct === 100 ? 'Mastered' : passed ? 'Proficient' : (read >= 2 || score !== undefined) ? 'Familiar' : read ? 'Attempted' : 'Not started';
       card.appendChild(el('p', { 'class': 'mastery' }, label));
