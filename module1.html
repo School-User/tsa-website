@@ -27,6 +27,28 @@
   <h1>What AI actually is</h1>
   <p class="lead">Explore what AI is, how it learns and produces text, and why its answers need checking.</p>
 
+  <figure class="diagram">
+    <svg viewBox="0 0 480 120" role="img" aria-label="Training data is fed into a model, which learns patterns and produces a prediction.">
+      <title>Training data flows into a model, which produces a prediction</title>
+      <defs>
+        <marker id="m1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/>
+        </marker>
+      </defs>
+      <rect x="6" y="28" width="132" height="64" rx="10" stroke-width="2" style="fill: var(--muted); stroke: var(--line)"/>
+      <text x="72" y="52" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">Training data</text>
+      <text x="72" y="72" text-anchor="middle" font-size="12" style="fill: var(--soft)">labeled examples</text>
+      <line x1="142" y1="60" x2="172" y2="60" stroke="currentColor" stroke-width="2" marker-end="url(#m1-arrow)"/>
+      <rect x="180" y="28" width="120" height="64" rx="10" stroke-width="2" style="fill: var(--muted); stroke: var(--accent)"/>
+      <text x="240" y="52" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">Model</text>
+      <text x="240" y="72" text-anchor="middle" font-size="12" style="fill: var(--soft)">learns patterns</text>
+      <line x1="304" y1="60" x2="334" y2="60" stroke="currentColor" stroke-width="2" marker-end="url(#m1-arrow)"/>
+      <rect x="342" y="28" width="132" height="64" rx="10" stroke-width="2" style="fill: var(--muted); stroke: var(--line)"/>
+      <text x="408" y="52" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">Prediction</text>
+      <text x="408" y="72" text-anchor="middle" font-size="12" style="fill: var(--soft)">a best guess</text>
+    </svg>
+  </figure>
+
   <section class="card" aria-labelledby="lesson-1">
     <h2 id="lesson-1">AI, machine learning, and generative AI</h2>
     <p>Artificial intelligence, or AI, is a broad area of computing that aims to perform tasks associated with human abilities, such as recognizing speech or finding a path. For example, a computer opponent in a chess game can use AI to choose moves. Not every AI system learns from examples; some use rules or search through possible choices.</p>

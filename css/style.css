@@ -107,3 +107,7 @@ footer { border-top: 1px solid var(--line); background: var(--surface); text-ali
 .map th, .map td { text-align: left; padding: .5rem .6rem; border-top: 1px solid var(--line); vertical-align: top; }
 .map thead th { border-top: 0; font-size: .9rem; color: var(--soft); }
 .map caption { text-align: left; padding-bottom: .25rem; }
+
+/* hand-written inline SVG diagrams: theme colors, responsive, max 480px */
+.diagram { max-width: 480px; margin: 1rem 0 1.25rem; }
+.diagram svg { display: block; width: 100%; height: auto; }

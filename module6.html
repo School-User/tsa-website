@@ -27,6 +27,33 @@
   <h1>Coding with AI, hands on</h1>
   <p class="lead">Practise asking for code clearly, understanding it before you use it, finding bugs, and testing what AI writes.</p>
 
+  <figure class="diagram">
+    <svg viewBox="0 0 480 180" role="img" aria-label="A four-step cycle: write a prompt, run the code, read the error, and fix the code.">
+      <title>Write a prompt, run it, read the error, fix it, and repeat</title>
+      <defs>
+        <marker id="m6-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/>
+        </marker>
+      </defs>
+      <rect x="4" y="8" width="172" height="56" rx="10" stroke-width="2" style="fill: var(--muted); stroke: var(--accent)"/>
+      <text x="90" y="32" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">Write prompt</text>
+      <text x="90" y="50" text-anchor="middle" font-size="12" style="fill: var(--soft)">say what you need</text>
+      <line x1="180" y1="36" x2="296" y2="36" stroke="currentColor" stroke-width="2" marker-end="url(#m6-arrow)"/>
+      <rect x="304" y="8" width="172" height="56" rx="10" stroke-width="2" style="fill: var(--muted); stroke: var(--line)"/>
+      <text x="390" y="32" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">Run the code</text>
+      <text x="390" y="50" text-anchor="middle" font-size="12" style="fill: var(--soft)">see what happens</text>
+      <line x1="390" y1="68" x2="390" y2="96" stroke="currentColor" stroke-width="2" marker-end="url(#m6-arrow)"/>
+      <rect x="304" y="104" width="172" height="56" rx="10" stroke-width="2" style="fill: var(--muted); stroke: var(--line)"/>
+      <text x="390" y="128" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">Read the error</text>
+      <text x="390" y="146" text-anchor="middle" font-size="12" style="fill: var(--soft)">message and line</text>
+      <line x1="300" y1="132" x2="184" y2="132" stroke="currentColor" stroke-width="2" marker-end="url(#m6-arrow)"/>
+      <rect x="4" y="104" width="172" height="56" rx="10" stroke-width="2" style="fill: var(--muted); stroke: var(--line)"/>
+      <text x="90" y="128" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">Fix the code</text>
+      <text x="90" y="146" text-anchor="middle" font-size="12" style="fill: var(--soft)">one change at a time</text>
+      <line x1="90" y1="102" x2="90" y2="72" stroke="currentColor" stroke-width="2" marker-end="url(#m6-arrow)"/>
+    </svg>
+  </figure>
+
   <section class="card" aria-labelledby="lesson-1">
     <h2 id="lesson-1">Asking for code clearly</h2>
     <p>Good prompts for code follow the same rules as other prompts, only more precisely. Say what you want, what language you are using, and what the result should do.</p>

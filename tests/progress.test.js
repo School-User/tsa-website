@@ -112,4 +112,12 @@ let sum3 = 0; for (let i = 0; i < body3.length; i++) sum3 += parseInt(body3[i] =
 const old3 = fresh().importCode('AIL3-' + body3 + (sum3 % 36).toString(36).toUpperCase());
 assert.ok(old3, 'AIL3 code accepted'); assert.strictEqual(old3.quiz.m5, 2);
 
+
+// wrongly-typed stored data is discarded instead of giving NaN XP
+{
+  const st = memStorage();
+  st.setItem('aiPortal.v1', JSON.stringify({ lessons: { m1: 'abc' }, quiz: { m1: 'x' } }));
+  P = fresh(st);
+  assert.strictEqual(P.xp(P.load ? P.load() : { lessons: {}, quiz: {} }), 0, 'bad types give 0 XP, not NaN');
+}
 console.log('progress: all tests passed');

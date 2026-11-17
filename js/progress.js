@@ -13,7 +13,9 @@
   function valid(s) {
     return s && typeof s === 'object' &&
       s.lessons && typeof s.lessons === 'object' && !Array.isArray(s.lessons) &&
-      s.quiz && typeof s.quiz === 'object' && !Array.isArray(s.quiz);
+      s.quiz && typeof s.quiz === 'object' && !Array.isArray(s.quiz) &&
+      Object.keys(s.lessons).every(function (k) { return Array.isArray(s.lessons[k]); }) &&
+      Object.keys(s.quiz).every(function (k) { return typeof s.quiz[k] === 'number' && isFinite(s.quiz[k]); });
   }
 
   function load() {
