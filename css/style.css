@@ -102,7 +102,7 @@ main > section.card { border-left: 6px solid var(--accent); }
 .quiz-result:empty { display: none; }
 [role="alert"] { color: var(--bad); font-weight: 600; }
 
-.code { font: 700 1.1rem ui-monospace, monospace; letter-spacing: .05em; margin: 0 .5rem; }
+.code { user-select: all; -webkit-user-select: all; font: 700 1.1rem ui-monospace, monospace; letter-spacing: .05em; margin: 0 .5rem; }
 .field { padding: .6rem .85rem; font: inherit; color: var(--fg); background: var(--surface);
   border: 2px solid var(--line); border-radius: .75rem; width: min(16rem, 100%); }
 

@@ -63,7 +63,7 @@ assert.strictEqual(P.xp(P.load()), 0);
 P = fresh();
 P.completeLesson('m1', 'l1'); P.completeLesson('m1', 'l3'); P.submitQuiz('m1', 4, 5); P.completeLesson('m3', 'l4');
 const code = P.exportCode();
-assert.ok(/^AIL4-([0-9A-F][0-5X]){6}[0-9A-Z]$/.test(code), 'code format: ' + code);
+assert.ok(/^AIL5-([0-9A-F][0-5X]){6}[0-7][0-9A-Z]$/.test(code), 'code format: ' + code);
 assert.ok(code.length <= 24, 'code stays short');
 
 // round trip into a fresh browser
@@ -127,11 +127,17 @@ assert.strictEqual(P.xp(P.completeDemo('unknown')), 30, 'unknown demo ignored');
 
 // progress codes still work with demos in state, and a restore keeps local demos
 const demoCode = P.exportCode();
-assert.ok(/^AIL4-([0-9A-F][0-5X]){6}[0-9A-Z]$/.test(demoCode), 'code format unchanged');
+assert.ok(/^AIL5-([0-9A-F][0-5X]){6}[0-7][0-9A-Z]$/.test(demoCode), 'code format unchanged');
 const withDemos = fresh();
 withDemos.completeDemo('tokens');
 withDemos.importCode(demoCode);
-assert.deepStrictEqual(withDemos.load().demos, ['tokens'], 'restore keeps demos already on this device');
+assert.deepStrictEqual(withDemos.load().demos, ['tokens', 'nextword', 'prompt'], 'restore brings the demos across and keeps local ones');
+assert.strictEqual(withDemos.exportCode(), demoCode, 'demo round trip is identical');
+
+// phone-friendly input: smart dash, no dash, text around the code
+const phone = fresh();
+assert.ok(phone.importCode('My code: ' + demoCode.replace('-', '\u2013') + ' thanks'), 'smart dash and surrounding text ok');
+assert.ok(fresh().importCode(demoCode.replace('-', '')), 'missing dash ok');
 
 // old saved data without a demos array still loads
 {

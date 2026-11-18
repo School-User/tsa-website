@@ -31,3 +31,4 @@
 - 2026-11-17: Claude Code checked the Anthropic education report (it gives both 36.8% and 38.6% for computer science) and changed module5.html to say 'more than a third' and note both figures; added a named-tools paragraph (ChatGPT study mode, Claude Learning mode, GitHub Copilot) to module2.html lesson 1, each claim checked against its source page.
 - 2026-11-17 | Claude Code | QA pass (tests, links, mobile screenshots) and handoff.md status update
 - 2026-11-17 | Claude Code | rebuilt Student-Copyright-Checklist.pdf with Q2 = YES (own graphics), copyrighted? = NO
+- 2026-11-17 | Claude Code | Switch-devices fix: progress code AIL5 now carries demos, forgiving paste (smart dash, text around code), clearer restore message, clipboard fallback, phone input attrs; tests updated

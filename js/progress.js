@@ -111,14 +111,15 @@
   }
 
   // ---- Progress code: move progress between devices with no account ----
-  // Format: AIL4- then, per module, one hex digit (which of the 4 lessons are
+  // Format: AIL5- then, per module, one hex digit (which of the 4 lessons are
   // read, as bits) and one quiz score (0-5, or X for "not taken"), then one
-  // checksum character that catches typos. Example: AIL4-F5F5F5F5F5F5K
-  // Older AIL1- (3), AIL2- (4) and AIL3- (5 module) codes still restore.
+  // checksum character that catches typos. AIL5 adds one digit for the demos
+  // tried (bits). Example: AIL5-F5F5F5F5F5F57K
+  // Older AIL1- to AIL4- codes (fewer modules, no demos) still restore.
   var LESSON_IDS = ['l1', 'l2', 'l3', 'l4'];
-  var PREFIX = 'AIL4-';
+  var PREFIX = 'AIL5-';
   var CODE_MODULES = { 'AIL1-': ['m1', 'm2', 'm3'], 'AIL2-': ['m1', 'm2', 'm3', 'm4'],
-    'AIL3-': ['m1', 'm2', 'm3', 'm4', 'm5'], 'AIL4-': MODULES };
+    'AIL3-': ['m1', 'm2', 'm3', 'm4', 'm5'], 'AIL4-': MODULES, 'AIL5-': MODULES };
 
   // Position-weighted sum, so swapped characters are caught too.
   function checksum(body) {
@@ -136,7 +137,7 @@
       LESSON_IDS.forEach(function (id, i) { if (read.indexOf(id) !== -1) mask |= 1 << i; });
       var score = s.quiz[m] === undefined ? 'X' : String(Math.min(5, s.quiz[m]));
       return mask.toString(16).toUpperCase() + score;
-    }).join('');
+    }).join('') + DEMOS.reduce(function (m, d, i) { return s.demos.indexOf(d) !== -1 ? m | 1 << i : m; }, 0).toString(16).toUpperCase();
     return PREFIX + body + checksum(body);
   }
 
@@ -144,10 +145,15 @@
   // Returns the new state, or null if the code is not valid.
   function importCode(code) {
     if (typeof code !== 'string') return null;
-    var c = code.replace(/\s+/g, '').toUpperCase();
-    var mods = CODE_MODULES[c.slice(0, PREFIX.length)];
-    var body = c.slice(PREFIX.length, -1);
-    if (!mods || !new RegExp('^([0-9A-F][0-5X]){' + mods.length + '}$').test(body) ||
+    // Forgiving: any case, stray spaces, text around it, phone "smart" dashes.
+    var c = code.toUpperCase().replace(/[\u2010-\u2015\u2212]/g, '-');
+    var found = c.match(/AIL[1-5]-?[0-9A-Z]+/) || c.replace(/\s+/g, '').match(/AIL[1-5]-?[0-9A-Z]+/);
+    if (!found) return null;
+    c = found[0].replace(/^(AIL\d)-?/, '$1-');
+    var mods = CODE_MODULES[c.slice(0, 5)];
+    var hasDemos = c.slice(0, 5) === 'AIL5-';
+    var body = c.slice(5, -1);
+    if (!mods || !new RegExp('^([0-9A-F][0-5X]){' + mods.length + '}' + (hasDemos ? '[0-7]' : '') + '$').test(body) ||
         checksum(body) !== c.slice(-1)) return null;
     var s = load();
     mods.forEach(function (mod, i) {
@@ -159,6 +165,11 @@
       if (read.length) s.lessons[mod] = read;
       if (score !== 'X' && !(s.quiz[mod] >= Number(score))) s.quiz[mod] = Number(score);
     });
+    if (hasDemos) {
+      var dm = parseInt(body.charAt(body.length - 1), 16);
+      s.demos = s.demos || [];
+      DEMOS.forEach(function (d, i) { if (dm & (1 << i) && s.demos.indexOf(d) === -1) s.demos.push(d); });
+    }
     return save(s);
   }
 

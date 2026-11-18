@@ -81,18 +81,38 @@
     msg.textContent = '';
   });
 
+  // Clipboard API needs https and permission; fall back to a hidden textarea.
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (ok, no) {
+      var t = document.createElement('textarea');
+      t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+      document.body.appendChild(t); t.select();
+      var good = false;
+      try { good = document.execCommand('copy'); } catch (e) { /* fall through */ }
+      document.body.removeChild(t);
+      good ? ok() : no();
+    });
+  }
+
   copyBtn.addEventListener('click', function () {
-    var done = function () { msg.textContent = 'Copied. Paste it on your other device.'; };
-    var fail = function () { msg.textContent = 'Could not copy automatically. Select the code and copy it by hand.'; };
-    if (navigator.clipboard) navigator.clipboard.writeText(codeOut.textContent).then(done, fail); else fail();
+    copyText(codeOut.textContent).then(
+      function () { msg.textContent = 'Copied. Paste it on your other device.'; },
+      function () { msg.textContent = 'Could not copy automatically. Tap the code to select it, then copy it by hand.'; });
   });
 
   document.getElementById('restore').addEventListener('click', function () {
     var input = document.getElementById('code-in');
+    var before = Progress.xp(Progress.load());
     if (Progress.importCode(input.value)) {
+      var gained = Progress.xp(Progress.load()) - before;
       input.value = '';
       render();
-      msg.textContent = 'Progress restored.';
+      msg.textContent = gained > 0
+        ? 'Progress restored. Added ' + gained + ' XP from that code.'
+        : 'That code is valid, but this device already has all of that progress, so nothing changed. Restore on the OTHER device, the one that is missing progress.';
     } else {
       msg.textContent = 'That code does not look right. Check for typos and try again.';
     }
