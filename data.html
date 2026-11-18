@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>try{var t=localStorage.getItem("aiPortal.theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
+<script src="js/theme.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Data – AI Lab</title>
+<meta name="description" content="See, download or delete everything AI Lab saves about you.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="bar">
+  <a class="brand" href="index.html">AI Lab</a>
+  <nav aria-label="Main"><ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="demos.html">Demos</a></li>
+    <li><a href="data.html" aria-current="page">My data</a></li>
+    <li><a href="reference.html">Reference</a></li>
+  </ul></nav>
+  <button type="button" class="theme-toggle" data-theme-toggle aria-label="Theme: Auto. Activate to switch to Light" aria-pressed="false">Theme: Auto</button>
+</div></header>
+
+<main id="main">
+  <h1>My data</h1>
+  <section class="card">
+    <p>AI Lab has no accounts, no sign-in and no server. Everything it remembers is saved only in this browser, and you control all of it here.</p>
+    <p><strong>Saved now:</strong> <span id="summary"></span></p>
+    <p>Progress code: <output class="code" id="code"></output></p>
+  </section>
+  <section class="card">
+    <h2 style="margin-top:0">Download</h2>
+    <p>Get a zip file with your progress and a code that restores it on any device.</p>
+    <p><button class="btn" id="download" type="button">Download my data (.zip)</button></p>
+  </section>
+  <section class="card">
+    <h2 style="margin-top:0">Start over</h2>
+    <p>Deletes XP, badges, lesson checkmarks, quiz scores and demos. Your theme choice stays.</p>
+    <p><button class="btn ghost" id="restart" type="button">Delete my progress</button></p>
+  </section>
+  <section class="card">
+    <h2 style="margin-top:0">Delete everything</h2>
+    <p>Removes all data this site saved in this browser. There is no account to close, so this is the full delete. Download first if you may want it back.</p>
+    <p><button class="btn ghost" id="wipe" type="button">Delete all my data</button></p>
+  </section>
+  <p id="msg" role="status"></p>
+</main>
+<footer>Built by a student for the TSA Webmaster event. See the <a href="reference.html">Reference Page</a> for sources and AI-use disclosure.</footer>
+<script src="js/progress.js"></script>
+<script src="js/data.js"></script>
+</body>
+</html>

@@ -32,3 +32,4 @@
 - 2026-11-17 | Claude Code | QA pass (tests, links, mobile screenshots) and handoff.md status update
 - 2026-11-17 | Claude Code | rebuilt Student-Copyright-Checklist.pdf with Q2 = YES (own graphics), copyrighted? = NO
 - 2026-11-17 | Claude Code | Switch-devices fix: progress code AIL5 now carries demos, forgiving paste (smart dash, text around code), clearer restore message, clipboard fallback, phone input attrs; tests updated
+- 2026-11-17 | Claude Code | data.html + js/data.js: My data page (download zip, delete progress, delete all); nav link on all pages
