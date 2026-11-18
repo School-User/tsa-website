@@ -91,9 +91,11 @@ main > section.card { border-left: 6px solid var(--accent); }
 
 /* quiz (markup produced by js/quiz.js) */
 .quiz-q { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); margin: 0 0 1rem; padding: 1rem 1.25rem; box-shadow: var(--shadow); }
-.quiz-q legend { font-weight: 700; padding: 0 .35rem; }
+.quiz-q legend { font-weight: 700; float: left; width: 100%; padding: 0; margin: 0 0 .75rem; line-height: 1.4; }
+.quiz-q legend + * { clear: both; }
 .quiz-options { list-style: none; padding: 0; margin: .5rem 0; display: grid; gap: .5rem; }
-.quiz-options label { display: block; padding: .65rem .9rem; cursor: pointer; border: 2px solid var(--line); border-radius: .75rem; }
+.quiz-options label { display: flex; gap: .6rem; align-items: flex-start; padding: .65rem .9rem; cursor: pointer; border: 2px solid var(--line); border-radius: .75rem; }
+.quiz-options input { margin: .5rem 0 0; flex: none; }
 .quiz-options label:hover { border-color: var(--accent); background: var(--muted); }
 .quiz-options label:has(input:checked) { border-color: var(--accent); background: var(--muted); font-weight: 600; }
 .quiz-feedback { margin: .5rem 0 0; padding: .6rem .9rem; border-radius: .75rem; font-weight: 600; }
