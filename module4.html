@@ -19,7 +19,7 @@
     <li><a href="data.html">My data</a></li>
     <li><a href="reference.html">Reference</a></li>
   </ul></nav>
-  <button type="button" class="theme-toggle" data-theme-toggle aria-label="Theme: Auto. Activate to switch to Light" aria-pressed="false">Theme: Auto</button>
+  <button type="button" class="theme-toggle" data-theme-toggle aria-label="Theme: Auto. Activate to switch to Light" aria-pressed="false">◐ Auto</button>
 </div>
 <nav class="module-nav" aria-label="Modules"><ul>
   <li><a href="module1.html"><span>1</span><span class="module-nav-label"> · What AI is</span></a></li>
@@ -33,6 +33,27 @@
 <main id="main">
   <h1>Going deeper</h1>
   <p class="lead">Look at kinds of AI, the risks experts name, a prompting trick, and why rules for AI in school exist.</p>
+  <figure class="diagram">
+    <svg viewBox="0 0 480 120" role="img" aria-label="Sample flashcards in the prompt show the model a pattern: pair each term with a definition, then use that format for more flashcards.">
+      <title>Prompting with flashcard examples</title>
+      <defs>
+        <marker id="m4-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0 0 L10 5 L0 10 Z" fill="currentColor"/>
+        </marker>
+      </defs>
+      <rect x="4" y="28" width="136" height="64" rx="10" stroke-width="2" style="fill: var(--muted); stroke: var(--accent)"/>
+      <text x="72" y="52" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">Prompt examples</text>
+      <text x="72" y="72" text-anchor="middle" font-size="12" style="fill: var(--soft)">sample flashcards</text>
+      <line x1="144" y1="60" x2="164" y2="60" stroke="currentColor" stroke-width="2" marker-end="url(#m4-arrow)"/>
+      <rect x="172" y="28" width="136" height="64" rx="10" stroke-width="2" style="fill: var(--muted); stroke: var(--line)"/>
+      <text x="240" y="52" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">Pattern</text>
+      <text x="240" y="72" text-anchor="middle" font-size="12" style="fill: var(--soft)">term + definition</text>
+      <line x1="312" y1="60" x2="332" y2="60" stroke="currentColor" stroke-width="2" marker-end="url(#m4-arrow)"/>
+      <rect x="340" y="28" width="136" height="64" rx="10" stroke-width="2" style="fill: var(--muted); stroke: var(--line)"/>
+      <text x="408" y="52" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">New answer</text>
+      <text x="408" y="72" text-anchor="middle" font-size="12" style="fill: var(--soft)">more flashcards</text>
+    </svg>
+  </figure>
 
   <section class="card" aria-labelledby="lesson-1">
     <h2 id="lesson-1">Kinds of AI</h2>

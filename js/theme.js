@@ -16,7 +16,9 @@
     var next = modes[(modes.indexOf(mode) + 1) % modes.length];
     if (mode === 'auto') document.documentElement.removeAttribute('data-theme');
     else document.documentElement.setAttribute('data-theme', mode);
-    button.textContent = 'Theme: ' + label;
+    // A small symbol shows the current choice: ◐ follows the device, ☀ light, ☾ dark.
+    var icon = { auto: '◐', light: '☀', dark: '☾' }[mode];
+    button.textContent = icon + ' ' + label;
     button.setAttribute('aria-label', 'Theme: ' + label + '. Activate to switch to ' + next.charAt(0).toUpperCase() + next.slice(1));
     button.setAttribute('aria-pressed', mode === 'auto' ? 'false' : 'true');
   }
