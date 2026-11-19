@@ -4,12 +4,34 @@
 .activity legend { font-weight: 700; padding: 0; }
 .activity .quiz-feedback:empty { margin: 0; padding: 0; }
 
+.key {
+  border-left: 4px solid var(--unit, var(--accent));
+  background: var(--muted);
+  padding: .75rem 1rem;
+  border-radius: .5rem;
+}
+
 .activity-example {
   background: var(--muted);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: .75rem;
   margin: .5rem 0 .75rem;
+}
+
+ul.activity-example { padding-inline-start: 2rem; }
+
+/* Stack each example and its select, leaving room for long text on phones. */
+.activity-selects label { display: grid; justify-items: start; }
+.activity textarea.field {
+  display: block;
+  width: 100%;
+  margin: .5rem 0 .75rem;
+  resize: vertical;
+}
+:root[data-theme="dark"] .activity select { color-scheme: dark; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .activity select { color-scheme: dark; }
 }
 
 .activity-example .btn {
@@ -45,3 +67,6 @@
 /* code reads as code, not as a text box */
 .activity pre.codeblock { background: #0f172a; color: #e2e8f0; border-radius: .75rem; padding: 1rem 1.25rem; overflow-x: auto;
   font: .9rem/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-variant-ligatures: none; white-space: pre; }
+@media (max-width: 560px) {
+  .activity pre.codeblock { white-space: pre-wrap; overflow-wrap: anywhere; }
+}

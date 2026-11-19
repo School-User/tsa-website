@@ -8,6 +8,8 @@
 <title>Module 4: Going deeper – AI Lab</title>
 <meta name="description" content="Go deeper with kinds of AI, risks experts list, prompting with examples, and why rules exist.">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/activities.css">
+<script src="js/activities.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -60,6 +62,7 @@
     <p>IBM sorts AI by what it can do. <a href="https://www.ibm.com/think/topics/artificial-intelligence-types">Narrow AI</a> is designed for particular tasks. IBM says narrow AI is the only type of AI that exists today.</p>
     <p>General AI, which could use what it learned to do new tasks in new settings without being retrained, is still theoretical. IBM counts chatbots such as ChatGPT as narrow AI. These categories are a teaching simplification: models can have overlapping capabilities and work across many tasks.</p>
     <p>When you read a headline about “super-smart AI,” ask which kind it means. A tool that does one job well tells you little about whether any machine can do everything a person can.</p>
+    <p class="key"><strong>Key idea:</strong> Today’s AI tools are built for particular tasks, and general AI is still theoretical.</p>
     <button class="btn" type="button" data-lesson="l1">Mark as read</button>
   </section>
 
@@ -68,6 +71,7 @@
     <p>The National Institute of Standards and Technology (NIST) publishes a <a href="https://nvlpubs.nist.gov/nistpubs/AI/NIST.AI.600-1.pdf">list of risks</a> for generative AI. Several match earlier modules. NIST calls confidently stated but false content “confabulation,” a close cousin of what this portal calls a hallucination.</p>
     <p>Data privacy risk is the leakage or unauthorized use of personal or sensitive information. Harmful bias or homogenization includes amplifying existing biases and producing outputs that all end up looking alike. Environmental impact comes from the large amount of computing used to train and run models.</p>
     <p>You do not need to memorize the list. The point is that experts treat these as real, named risks, so checking answers and protecting private information matter outside school, too.</p>
+    <p class="key"><strong>Key idea:</strong> False claims, privacy leaks, bias, and environmental costs are risks of generative AI.</p>
     <button class="btn" type="button" data-lesson="l2">Mark as read</button>
   </section>
 
@@ -76,7 +80,26 @@
     <p>Module 2 showed that clear instructions help. OpenAI's <a href="https://developers.openai.com/api/docs/guides/prompt-engineering">prompt engineering guide</a> adds another idea: few-shot learning, which means putting a handful of example inputs and the answers you want into the prompt. The model picks up the pattern from the examples.</p>
     <p>The guide suggests showing a range of different inputs. For example, give two sample flashcards, each with a term and a one-line definition, then ask for ten more in the same style.</p>
     <p>Examples can steer both the style and content, but they do not guarantee the facts. Check what comes back the way you would check any AI answer.</p>
+    <p class="key"><strong>Key idea:</strong> Show the AI a few examples of the pattern you want, then check the new answers it gives you.</p>
     <button class="btn" type="button" data-lesson="l3">Mark as read</button>
+  </section>
+
+  <section class="card activity" id="flashcard-practice" aria-labelledby="flashcard-title">
+    <h2 id="flashcard-title">Write a prompt with examples</h2>
+    <ul class="activity-example">
+      <li><strong>Narrow AI</strong> — AI designed for particular tasks.</li>
+      <li><strong>Data privacy risk</strong> — The leak or unauthorized use of personal or sensitive information.</li>
+    </ul>
+    <fieldset>
+      <legend>Which prompt uses these two flashcards as examples for new cards?</legend>
+      <div class="quiz-options">
+        <label><input type="radio" name="flashcard-prompt" value="copy"> Repeat the two cards above with the same terms and definitions.</label>
+        <label><input type="radio" name="flashcard-prompt" value="pattern"> Using both cards above as examples, make ten new AI flashcards with a term and a one-line definition on each card.</label>
+        <label><input type="radio" name="flashcard-prompt" value="topics"> Use the two terms above as topics and write a short paragraph about each.</label>
+      </div>
+    </fieldset>
+    <button class="btn" type="button">Check</button>
+    <p class="quiz-feedback" aria-live="polite" aria-atomic="true"></p>
   </section>
 
   <section class="card" aria-labelledby="lesson-4">
@@ -84,6 +107,7 @@
     <p>In its <a href="https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research">guidance on generative AI in education</a>, UNESCO points out that, at the time of the guidance, most countries had no national rules for generative AI, which left users' data privacy unprotected. It proposes that governments require privacy protection and consider an age limit for using these tools.</p>
     <p>UNESCO also notes that most generative AI applications are designed mainly for adult users and can carry risks for children. This is one reason schools write their own rules about which tools students may use.</p>
     <p>The practical step is the same as in Module 3: read your school's and your teacher's rules, and ask if you are unsure.</p>
+    <p class="key"><strong>Key idea:</strong> School rules about AI help protect students, so read the rules and ask if you are unsure.</p>
     <button class="btn" type="button" data-lesson="l4">Mark as read</button>
   </section>
 
@@ -100,12 +124,12 @@ const QUESTIONS = [
   {
     "q": "According to IBM, which kind of AI exists today?",
     "options": [
-      "General AI that can learn any task it meets.",
-      "Only narrow AI, built for a limited task.",
-      "Both general and narrow AI, in equal amounts.",
-      "Neither kind of AI exists in the world yet."
+      "Only general AI, because chatbots can answer questions on many topics.",
+      "Both narrow and general AI, because some tools handle many tasks.",
+      "Narrow AI for single tasks and general AI for any tool that handles several tasks.",
+      "Only narrow AI, built for a limited task."
     ],
-    "answer": 1,
+    "answer": 3,
     "why": "IBM says narrow AI is the only type of AI that exists today; general AI is theoretical."
   },
   {
@@ -124,8 +148,8 @@ const QUESTIONS = [
     "options": [
       "Including a few example inputs and desired outputs in the prompt.",
       "Asking the same question several times and picking your favorite reply.",
-      "Training a brand-new model from scratch on your own data.",
-      "Keeping the prompt to only a few words to stay brief."
+      "Listing a few example inputs without showing the desired outputs.",
+      "Giving several instructions about the answer format without including examples."
     ],
     "answer": 0,
     "why": "OpenAI describes it as steering a model by including a handful of input/output examples."
@@ -133,23 +157,23 @@ const QUESTIONS = [
   {
     "q": "Why does UNESCO say age limits deserve consideration for generative AI tools?",
     "options": [
-      "Because children cannot read the long answers the tools produce.",
-      "Because the tools are too slow to be useful in a normal school lesson.",
+      "Because age is a better guide than school rules for every use of AI.",
       "Because most apps are made for adults and can carry risks for children.",
-      "Because adults are not allowed to use these tools at all in most countries."
+      "Because younger students are more likely to need shorter answers.",
+      "Because the main concern is whether children can write clear prompts."
     ],
-    "answer": 2,
+    "answer": 1,
     "why": "UNESCO notes that most applications are designed for adult users and can pose risks to children."
   },
   {
     "q": "Which situation is a data privacy risk as NIST describes it?",
     "options": [
       "A chatbot gives a wrong date for a recent historical event.",
-      "Personal information leaks or is used without permission.",
-      "A model needs a very long time to answer a simple question.",
-      "An image tool draws the same style each time you ask it."
+      "A model uses a large amount of computing to generate answers.",
+      "An image tool repeatedly represents a group in a stereotyped way.",
+      "Personal information leaks or is used without permission."
     ],
-    "answer": 1,
+    "answer": 3,
     "why": "NIST describes data privacy risk as leakage or unauthorized use of personal or sensitive information."
   }
 ];

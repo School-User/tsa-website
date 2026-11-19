@@ -8,6 +8,8 @@
 <title>Module 5: Building with AI responsibly – AI Lab</title>
 <meta name="description" content="Build with AI responsibly: the 4D framework, learning to code with AI, checking AI-written code, and your own commitment.">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/activities.css">
+<script src="js/activities.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -66,7 +68,71 @@
     <p>Anthropic teaches a framework called <a href="https://academy.claude.com/courses/ai-fluency-framework-foundations/the-4d-framework">AI Fluency</a> with four skills, called the 4Ds. Delegation is deciding what work to do with AI and what to do yourself.</p>
     <p>Description is communicating clearly with AI. Discernment is evaluating AI outputs with a critical eye. Diligence is making sure you use AI responsibly.</p>
     <p>Earlier modules already used these habits: choosing a tool (Delegation), writing a prompt (Description), checking answers (Discernment), and disclosing use (Diligence).</p>
+    <p class="key"><strong>Key idea:</strong> The 4Ds help you decide what to hand off, explain what you need, judge the result, and use AI responsibly.</p>
     <button class="btn" type="button" data-lesson="l1">Mark as read</button>
+  </section>
+
+  <section class="card activity" id="skills-practice" aria-labelledby="skills-title">
+    <h2 id="skills-title">Map the 4Ds</h2>
+    <p class="activity-example">Match each action to the skill it shows most clearly.</p>
+    <fieldset>
+      <legend>Which of the 4Ds fits each scenario?</legend>
+      <div class="quiz-options activity-selects">
+        <div>
+          <label>
+            <span>You ask for a hint and decide to write the code yourself.</span>
+            <select class="field" data-answer="Delegation" data-reason="You decide which work to give AI and which to do yourself." aria-describedby="skills-feedback-1">
+              <option value="">Choose one</option>
+              <option>Delegation</option>
+              <option>Description</option>
+              <option>Discernment</option>
+              <option>Diligence</option>
+            </select>
+          </label>
+          <p class="quiz-feedback" id="skills-feedback-1" aria-live="polite" aria-atomic="true"></p>
+        </div>
+        <div>
+          <label>
+            <span>You tell the AI what the code should do and give it an example input.</span>
+            <select class="field" data-answer="Description" data-reason="You communicate the task clearly to the AI." aria-describedby="skills-feedback-2">
+              <option value="">Choose one</option>
+              <option>Delegation</option>
+              <option>Description</option>
+              <option>Discernment</option>
+              <option>Diligence</option>
+            </select>
+          </label>
+          <p class="quiz-feedback" id="skills-feedback-2" aria-live="polite" aria-atomic="true"></p>
+        </div>
+        <div>
+          <label>
+            <span>You spot that suggested code gives the wrong answer on a known input.</span>
+            <select class="field" data-answer="Discernment" data-reason="You judge the output by checking what the code actually does." aria-describedby="skills-feedback-3">
+              <option value="">Choose one</option>
+              <option>Delegation</option>
+              <option>Description</option>
+              <option>Discernment</option>
+              <option>Diligence</option>
+            </select>
+          </label>
+          <p class="quiz-feedback" id="skills-feedback-3" aria-live="polite" aria-atomic="true"></p>
+        </div>
+        <div>
+          <label>
+            <span>You tell your teacher how AI helped you, as the assignment requires.</span>
+            <select class="field" data-answer="Diligence" data-reason="You use AI responsibly by disclosing how it helped." aria-describedby="skills-feedback-4">
+              <option value="">Choose one</option>
+              <option>Delegation</option>
+              <option>Description</option>
+              <option>Discernment</option>
+              <option>Diligence</option>
+            </select>
+          </label>
+          <p class="quiz-feedback" id="skills-feedback-4" aria-live="polite" aria-atomic="true"></p>
+        </div>
+      </div>
+    </fieldset>
+    <button class="btn" type="button">Check</button>
   </section>
 
   <section class="card" aria-labelledby="lesson-2">
@@ -74,6 +140,7 @@
     <p>Anthropic <a href="https://www.anthropic.com/research/anthropic-education-report-how-university-students-use-claude">studied</a> how university students used Claude.ai. Its sample likely overrepresents early adopters, so it may not describe every student. In the study, computer science made up more than a third of conversations, though it is only 5.4% of U.S. bachelor's degrees. Nearly half (about 47%) of conversations were “direct,” meaning the student wanted a quick resolution.</p>
     <p>The report also raises the concern that students outsource thinking to AI, and says even collaborative work “still offloads significant thinking to the AI.”</p>
     <p>Anthropic's <a href="https://www.anthropic.com/news/introducing-claude-for-education">Learning mode</a> is designed to guide students' reasoning rather than simply provide answers. If your tool and your teacher allow it, you can work the same way: ask for a hint, ask it to explain an error, and write the fix yourself.</p>
+    <p class="key"><strong>Key idea:</strong> Ask AI for hints or explanations so you can work through the fix yourself.</p>
     <button class="btn" type="button" data-lesson="l2">Mark as read</button>
   </section>
 
@@ -81,6 +148,7 @@
     <h2 id="lesson-3">Checking AI-written code</h2>
     <p>Discernment applies to code too. Code from AI can look right and still be wrong. Run it. Test it with an input where you know the answer.</p>
     <p>Read each line and make sure you can say what it does; if you cannot explain it, do not rely on it, and follow your teacher's rules about what you may submit. Treat error messages as clues and look up anything unfamiliar in the official documentation for that language.</p>
+    <p class="key"><strong>Key idea:</strong> Test AI-written code with an input you know the answer to and make sure you can explain each line.</p>
     <button class="btn" type="button" data-lesson="l3">Mark as read</button>
   </section>
 
@@ -90,6 +158,7 @@
     <p>Write three or four sentences you will keep to: what you will use AI for, what you will always do yourself, how you will check its work, and how you will disclose when you used it.</p>
     <p>Example: “I will use AI to explain ideas and check my grammar, never to write my graded work. I will test any code before I use it. I will tell my teacher when AI helped.”</p>
     <p>Change it to fit your own class rules.</p>
+    <p class="key"><strong>Key idea:</strong> Write down how you will use AI, do your own work, check results, and disclose help.</p>
     <button class="btn" type="button" data-lesson="l4">Mark as read</button>
   </section>
 
@@ -118,20 +187,20 @@ const QUESTIONS = [
     "q": "According to Anthropic's student study, what share of conversations was about computer science?",
     "options": [
       "5.4%",
-      "100%",
+      "25%",
       "38.6%",
       "47%"
     ],
     "answer": 2,
-    "why": "The report gives 38.6% (and 36.8% in another table): more than a third of conversations, even though it is only 5.4% of U.S. bachelor's degrees."
+    "why": "Computer science made up more than a third of conversations. The 5.4% figure refers to the share of U.S. bachelor’s degrees, and 47% is the share of conversations seeking a quick resolution."
   },
   {
     "q": "What is the main idea of Learning mode?",
     "options": [
       "Give the final answer quickly so the student can move on.",
       "Guide reasoning with questions rather than simply give answers.",
-      "Write the whole assignment for the student without any hints or help.",
-      "Hide the question so the student has to guess the topic."
+      "Give the solution first and ask the student to explain it afterward.",
+      "Give a worked example in place of having the student try the problem."
     ],
     "answer": 1,
     "why": "Learning mode is designed to guide students' reasoning rather than simply provide answers."
@@ -139,9 +208,9 @@ const QUESTIONS = [
   {
     "q": "You get a function from an AI tool. What should you do before you use it?",
     "options": [
-      "Submit it right away and check the results later on.",
-      "Delete the comments so the code looks cleaner.",
-      "Ask the AI if it is right, then stop there.",
+      "Read the code once and use it if it looks like it fits.",
+      "Run it once and assume it works if there is no error.",
+      "Ask the AI to verify the function and rely on its review.",
       "Run it, test it, and make sure you can explain it."
     ],
     "answer": 3,
@@ -151,9 +220,9 @@ const QUESTIONS = [
     "q": "Which is a personal commitment in the sense used by AI Fluency for Students?",
     "options": [
       "A rule you wrote for yourself about when and how you will use AI.",
-      "A school-wide ban on AI tools in every classroom, lab, and library.",
-      "The AI tool's own terms of service written by its company.",
-      "A list of AI tools that your school recommends to students."
+      "A copy of your teacher’s rules for the current assignment.",
+      "A description of how you used AI on one past assignment.",
+      "A list of tasks that AI tools are able to do."
     ],
     "answer": 0,
     "why": "Students write their own commitment about how they will use AI responsibly."

@@ -8,6 +8,8 @@
 <title>Module 2: Using AI tools well – AI Lab</title>
 <meta name="description" content="Learn to choose AI tools, write useful prompts, study effectively, and check AI answers.">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/activities.css">
+<script src="js/activities.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -60,17 +62,41 @@
     <p>A coding helper can suggest computer code, explain what code does, or help find a bug, which is a mistake in a program. A study helper can create practice questions, offer hints, or explain a topic in another way. Some tools combine several of these abilities, so the categories can overlap.</p>
     <p>Real examples: <a href="https://help.openai.com/en/articles/11780217-using-study-mode-in-chatgpt">ChatGPT's study mode</a> is described as asking questions, guiding your thinking, and checking your understanding, instead of only giving a final answer. Anthropic describes <a href="https://www.anthropic.com/news/introducing-claude-for-education">Learning mode in Claude</a> as guiding students' reasoning rather than providing answers. <a href="https://docs.github.com/en/copilot/get-started/best-practices">GitHub Copilot</a> is a coding tool, and GitHub publishes best practices for using it. Features change, so check each tool's own page and your class rules.</p>
     <p>Choose a tool based on your goal and whether your teacher permits it. Each tool can produce mistakes: a picture may contain impossible details, and suggested code may not work. Review the result yourself. For study features and their limits, see <a href="https://help.openai.com/en/articles/11780217-using-study-mode-in-chatgpt">OpenAI's study mode guide</a>.</p>
+    <p class="key"><strong>Key idea:</strong> Choose a tool that fits your goal and your class rules, then review what it gives you.</p>
     <button class="btn" type="button" data-lesson="l1">Mark as read</button>
   </section>
 
   <section class="card" aria-labelledby="lesson-2">
     <h2 id="lesson-2">Writing a good prompt</h2>
-    <p>A prompt is the instruction or question you give an AI tool. A useful prompt tells the tool what you need without sharing private information. Three helpful ingredients are context, task, and format. Many prompts also give the tool a role, such as “act as a patient tutor,” which the Demos page adds as an optional fourth part. Context gives background, such as your course and what you already know. The task says what you want the tool to do. The format describes the shape of the answer, such as a short list or a table.</p>
+    <p>A prompt is the instruction or question you give an AI tool. A useful prompt tells the tool what you need without sharing private information. A good prompt has four parts: role, task, context, and format. The role says who the AI should act as, such as “act as a patient tutor.” The task says what you want the tool to do. Context gives background, such as your course and what you already know. The format describes the shape of the answer, such as a short list or a table.</p>
     <p>Before: “Tell me about cells.”</p>
-    <p>After: “I'm studying ninth-grade biology and know that cells have different parts. Explain how the nucleus and cell membrane differ, using two short paragraphs and one everyday comparison.”</p>
+    <p>After: <span id="strong-prompt">“Act as a patient tutor. I'm studying ninth-grade biology and know that cells have different parts. Explain how the nucleus and cell membrane differ, using two short paragraphs and one everyday comparison.”</span></p>
     <p>The second prompt gives the tool a clearer target. You can also say what to leave out or ask it to use simpler language. If the response misses your goal, follow up: “Give a different comparison” or “Quiz me instead.” A detailed prompt can improve usefulness, but it cannot guarantee accuracy. <a href="https://developers.openai.com/api/docs/guides/prompt-engineering">OpenAI's prompt engineering guide</a> discusses giving clear instructions.</p>
     <p class="try"><strong>Try it:</strong> <a href="demos.html#prompt-h">build a prompt with all four parts</a> and see the checklist fill in.</p>
+    <p class="key"><strong>Key idea:</strong> A clear prompt says who the AI should act as, what to do, what background matters, and how to present the answer.</p>
     <button class="btn" type="button" data-lesson="l2">Mark as read</button>
+  </section>
+
+  <section class="card activity" id="prompt-practice" aria-labelledby="prompt-title">
+    <h2 id="prompt-title">Fix a weak prompt</h2>
+    <p class="activity-example">“Tell me about cells.”</p>
+    <fieldset>
+      <legend>Which parts are missing or too vague?</legend>
+      <div class="quiz-options">
+        <label><input type="checkbox" name="prompt-part" value="Role"> Role</label>
+        <label><input type="checkbox" name="prompt-part" value="Task"> Task</label>
+        <label><input type="checkbox" name="prompt-part" value="Context"> Context</label>
+        <label><input type="checkbox" name="prompt-part" value="Format"> Format</label>
+      </div>
+    </fieldset>
+    <label for="prompt-rewrite"><strong>Rewrite the prompt using all four parts.</strong></label>
+    <textarea class="field" id="prompt-rewrite" rows="4"></textarea>
+    <button class="btn" type="button">Check</button>
+    <p class="quiz-feedback" aria-live="polite" aria-atomic="true"></p>
+    <div id="prompt-example" hidden>
+      <h3>Strong prompt from the lesson</h3>
+      <p class="activity-example"></p>
+    </div>
   </section>
 
   <section class="card" aria-labelledby="lesson-3">
@@ -78,6 +104,7 @@
     <p>Think of an AI study helper as a practice partner, not an answer key. If your teacher allows it, ask for a short summary of a topic, then compare it with your notes or textbook. You might request five practice questions, answer them yourself, and ask for feedback. Try explaining your answer aloud before looking at the tool's explanation; that helps you see what you can explain independently.</p>
     <p>For a difficult idea, ask for a simpler explanation or an everyday comparison. For example, “Explain how supply and demand affect price using a school bake sale.” Then check whether the comparison fits the lesson: even a clear example can leave out important details. You can also ask for a hint instead of a complete solution.</p>
     <p><a href="https://help.openai.com/en/articles/11780217-using-study-mode-in-chatgpt">OpenAI's study mode guide</a> says its study tool can quiz students and give guidance, but can also make mistakes. Keep your teacher and course materials as guides, and follow your school's rules about what you may share and submit.</p>
+    <p class="key"><strong>Key idea:</strong> Use AI for practice, hints, and feedback while doing the reasoning yourself.</p>
     <button class="btn" type="button" data-lesson="l3">Mark as read</button>
   </section>
 
@@ -86,6 +113,7 @@
     <p>An AI answer can sound confident and still be wrong. A made-up or incorrect claim produced by an AI tool is often called a hallucination. It might include an invented quotation, a wrong date, or a source that does not exist. OpenAI describes this problem in <a href="https://openai.com/index/why-language-models-hallucinate/">“Why Language Models Hallucinate.”</a></p>
     <p>Check important claims against reliable, independent sources. For a historical date, consult a museum, a textbook, or an archive; for a scientific claim, try a relevant scientific organization or government agency. Use sources suited to the topic and note who published them and when. Do not rely on another AI answer as your only check.</p>
     <p>If the AI supplies a link or citation, open it. Confirm that the source exists, that it actually supports the claim or quotation, and that it is used in the right context. <a href="https://style.mla.org/citing-generative-ai-updated-revised/">The MLA Style Center</a> warns that AI can invent sources or summarize them incorrectly. If you cannot verify a detail, leave it out or label it unverified and ask your teacher for help.</p>
+    <p class="key"><strong>Key idea:</strong> Use reliable, independent sources to check important claims and confirm that citations support them.</p>
     <button class="btn" type="button" data-lesson="l4">Mark as read</button>
   </section>
 
@@ -103,55 +131,55 @@ const QUESTIONS = [
     "q": "Which prompt gives the clearest instructions for a biology review?",
     "options": [
       "“Tell me some interesting biology facts about cells and their parts.”",
+      "“Act as a biology tutor and tell me about cells.”",
       "“For my cell review, compare the nucleus and membrane in two paragraphs.”",
-      "“Write anything you like about cells, in whatever format you happen to pick.”",
-      "“Explain biology in a long and detailed essay with cited sources.”"
+      "“I’m reviewing cells for a quiz. Could you give me a summary?”"
     ],
-    "answer": 1,
-    "why": "It provides context, a specific task, and a requested format."
+    "answer": 2,
+    "why": "It gives context, a specific task, and a format. To include all four parts, add a role such as “act as a patient tutor.”"
   },
   {
     "q": "An AI says, “The Declaration of Independence was signed in 1876,” but a reliable historical archive says 1776; what should you do?",
     "options": [
-      "Use 1876 because the AI sounded confident about it.",
-      "Average the two dates and report 1826 to be safe.",
-      "Ask the same AI again until it gives the date you want.",
-      "Trust the verified archive and correct the date."
+      "Trust the verified archive and correct the date.",
+      "Use 1876 if the AI repeats it after you ask for a double-check.",
+      "Use 1876 if the AI lists a source, even if you haven’t opened it.",
+      "Leave the date out because the two answers disagree."
     ],
-    "answer": 3,
+    "answer": 0,
     "why": "A relevant, reliable source can expose an incorrect AI claim."
   },
   {
     "q": "An AI gives you a quotation and a link to an article; what is the best next step?",
     "options": [
-      "Open the article and check the quotation and its context.",
-      "Assume the link proves that the quotation is accurate and current.",
-      "Cite the article in your work without reading it first.",
-      "Remove the quotation marks and use the words as your own."
+      "Use the quotation if the link opens to a real article.",
+      "Check that the article covers the same topic, then use the quotation.",
+      "Use the quotation if the AI can explain what it means.",
+      "Open the article and check the quotation and its context."
     ],
-    "answer": 0,
+    "answer": 3,
     "why": "A link does not prove that a quotation is real or used in the right context."
   },
   {
     "q": "You are stuck on a practice problem and want to learn the process; what should you ask for?",
     "options": [
-      "A finished answer that you can copy without reading.",
-      "A longer answer that skips over the explanation.",
+      "A full worked solution to read before trying anything.",
       "A hint first, then try the next step yourself.",
-      "An unrelated picture that you can look at instead."
+      "A summary of the topic without help on the step that’s blocking you.",
+      "The final answer so you can work backward from it."
     ],
-    "answer": 2,
+    "answer": 1,
     "why": "A hint lets you practice the reasoning while getting help when you need it."
   },
   {
     "q": "Which task suits a coding helper?",
     "options": [
-      "Guaranteeing that every program is completely secure.",
       "Suggesting an explanation for an error in your code.",
-      "Replacing all testing of a program before release.",
-      "Proving a suggested solution is correct without review."
+      "Confirming a fix by reading the suggested code alone.",
+      "Replacing your own test run with a walkthrough of the code.",
+      "Deciding whether code is ready to use based on how clear its comments are."
     ],
-    "answer": 1,
+    "answer": 0,
     "why": "A coding helper can suggest explanations, but its suggestions still need review and testing."
   }
 ];

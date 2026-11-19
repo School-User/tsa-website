@@ -65,6 +65,7 @@
     <p>Academic integrity means being honest about your work and following the rules for an assignment. Getting help is not automatically cheating: a teacher might allow you to ask an AI tool for a practice question or a hint, then solve the assigned problem yourself. But submitting AI-written work as if you wrote it can misrepresent who did the work and may violate the assignment rules.</p>
     <p>Rules vary by class and task. For example, <a href="https://apcentral.collegeboard.org/help-center/what-acceptable-use-ai">College Board's AP Capstone guidance</a> permits certain uses, such as exploring topics or checking grammar, while setting limits on writing and rewriting. Do not assume that permission in one class applies everywhere. Read the instructions and ask your teacher if you are unsure.</p>
     <p>When help is permitted, use it to support your thinking. Take notes, make your own decisions, and be ready to explain your work. Keep drafts or a record of your process if your teacher requests them. Acknowledging AI use does not make a prohibited use acceptable.</p>
+    <p class="key"><strong>Key idea:</strong> Follow the assignment rules and use permitted help to support your own work.</p>
     <button class="btn" type="button" data-lesson="l1">Mark as read</button>
   </section>
 
@@ -73,6 +74,7 @@
     <p>Before you paste anything into a chatbot, pause and consider whose information it contains. Do not share passwords, account numbers, home addresses, phone numbers, medical details, or other sensitive information about yourself or someone else. Avoid classmates' names and private stories, too. Even a school assignment may contain personal details that its author did not expect you to share.</p>
     <p>Instead, describe the problem without identifying anyone: “A student is having trouble organizing a schedule” is safer than including a name and personal history. Remove identifying details from examples, and ask your teacher before uploading class materials. Some details can still identify a person even after a name is removed, so check the whole passage.</p>
     <p>Services can handle and store data in different ways. <a href="https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research">UNESCO's guidance</a> stresses protecting learners' data privacy; read the tool's privacy information and follow school rules before using it. If you accidentally share sensitive information, tell a trusted adult or teacher promptly and follow their guidance.</p>
+    <p class="key"><strong>Key idea:</strong> Before sharing a prompt, remove details that could identify someone or expose private information.</p>
     <button class="btn" type="button" data-lesson="l2">Mark as read</button>
   </section>
 
@@ -115,6 +117,7 @@
     <p>Bias is an unfair pattern in how people or groups are represented or treated. An AI tool can repeat or amplify bias found in the information used to build it or in the way it is designed and used. <a href="https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research">UNESCO's guidance on AI in education</a> discusses risks involving bias and representation.</p>
     <p>For example, imagine asking an image tool to show scientists and receiving pictures of people who all look alike. That result does not prove what scientists look like; it may leave many people out. Similarly, a chatbot might describe a group using a stereotype, a fixed and oversimplified idea about its members.</p>
     <p>When you notice a possible problem, question the output and compare it with reliable sources and a range of perspectives. You can revise the prompt to request broader representation, but a new answer still needs review. Avoid using an AI response alone to judge a person's abilities or make a decision about them. Ask a teacher for help evaluating questionable content.</p>
+    <p class="key"><strong>Key idea:</strong> Question stereotypes and gaps in AI output, then compare it with reliable sources and different perspectives.</p>
     <button class="btn" type="button" data-lesson="l3">Mark as read</button>
   </section>
 
@@ -123,6 +126,7 @@
     <p>Citing identifies a source you used; disclosing explains how you used a tool. Both help a reader understand your work. Start with your teacher's instructions: some assignments prohibit AI, while others allow it with a citation or a note. A disclosure cannot give you permission to use AI when the assignment forbids it.</p>
     <p>If your teacher allows AI for brainstorming, a disclosure could say: “I used ChatGPT to brainstorm possible topics, then chose my topic and wrote this essay myself.” Adjust the sentence to describe what you actually did and to name the tool you used. If required, include details such as the prompt, model, date, or a shareable conversation link, provided it contains no private information.</p>
     <p><a href="https://style.mla.org/citing-generative-ai-updated-revised/">The MLA Style Center</a> provides guidance for citing generated content and recommends saying so when AI did a meaningful part of the work. Check the required citation style and your teacher's directions. Verify sources the AI suggests, read them yourself, and cite the sources you actually use.</p>
+    <p class="key"><strong>Key idea:</strong> Follow class rules, cite the sources you actually use, and explain how AI helped when disclosure is required.</p>
     <button class="btn" type="button" data-lesson="l4">Mark as read</button>
   </section>
 
@@ -139,10 +143,10 @@ const QUESTIONS = [
   {
     "q": "A teacher permits AI-generated practice questions but requires students to write their own essay. Which action fits the rule?",
     "options": [
-      "Submit an AI-written essay with your name on it.",
-      "Have AI rewrite the essay and then hide that AI helped.",
+      "Use AI to turn your outline into the essay, then review it.",
+      "Write a draft and have AI rewrite the final version.",
       "Use AI practice questions, then write the essay yourself.",
-      "Ask AI to write the whole essay and disclose it afterward."
+      "Ask AI to write the essay and disclose it afterward."
     ],
     "answer": 2,
     "why": "The student uses AI for the permitted practice and completes the required writing independently."
@@ -151,9 +155,9 @@ const QUESTIONS = [
     "q": "You want scheduling advice from a chatbot; which message best protects privacy?",
     "options": [
       "“A student has soccer and homework; suggest a schedule.”",
-      "“Here is my classmate's name, address, and medical history.”",
-      "“Here is my password so you can look at my calendar.”",
-      "“Here are my friend's private messages and phone number.”"
+      "“A student at my school has soccer and homework. Here’s their full name so you can personalize it.”",
+      "“I took the name off my classmate’s schedule, but left their phone number.”",
+      "“Here’s a screenshot of my friend’s private messages about their schedule.”"
     ],
     "answer": 0,
     "why": "The safe request describes the problem without sharing identifying or sensitive details."
@@ -161,9 +165,9 @@ const QUESTIONS = [
   {
     "q": "An image tool shows only men when asked for pictures of engineers. What is the best response?",
     "options": [
-      "Conclude that all engineers must be men, based only on these images.",
-      "Assume the images are a complete record of real engineers.",
-      "Ignore the pattern, because computers cannot reflect bias.",
+      "Ask the same tool for more images and trust the pattern if it repeats.",
+      "Assume the pattern is representative because the request was neutral.",
+      "Adjust the prompt to show a broader range and use the new result without reviewing it.",
       "Question the pattern and check reliable sources about engineers."
     ],
     "answer": 3,
@@ -172,10 +176,10 @@ const QUESTIONS = [
   {
     "q": "Your teacher bans AI for an essay, but you plan to disclose that AI wrote it. Is this okay?",
     "options": [
-      "Yes, because disclosing the tool cancels the teacher's ban.",
+      "Yes, if you wrote the outline before asking AI to draft the essay.",
       "No, because disclosure does not make a prohibited use allowed.",
-      "Yes, if the essay turns out to be accurate and well written.",
-      "Yes, if the AI also supplies reliable citations for its claims."
+      "Yes, if you rewrite the generated essay in your own words.",
+      "Yes, if you include the prompt and model name in the disclosure."
     ],
     "answer": 1,
     "why": "Honesty about AI use does not replace following the assignment's rules."
@@ -183,10 +187,10 @@ const QUESTIONS = [
   {
     "q": "Your teacher allows AI brainstorming and asks for a disclosure. You used ChatGPT to generate topic ideas and chose one yourself. Which note is most accurate?",
     "options": [
-      "“I did not use any tools at all to plan or write this paper.”",
-      "“ChatGPT researched the topic and wrote the entire paper for me.”",
+      "“I used ChatGPT to check my grammar after writing.”",
+      "“I used ChatGPT to select my final topic.”",
       "“I used ChatGPT to brainstorm topics and chose one myself.”",
-      "“All the sources that ChatGPT suggested have been verified.”"
+      "“I used an AI tool while working on this paper.”"
     ],
     "answer": 2,
     "why": "The note identifies the tool and describes the help actually used."

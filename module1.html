@@ -8,6 +8,8 @@
 <title>Module 1: What AI actually is – AI Lab</title>
 <meta name="description" content="Learn what AI is, how models learn and chatbots generate text, and why AI can make mistakes.">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/activities.css">
+<script src="js/activities.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -61,7 +63,91 @@
     <p>Artificial intelligence, or AI, is a broad area of computing that aims to perform tasks associated with human abilities, such as recognizing speech or finding a path. For example, a computer opponent in a chess game can use AI to choose moves. Not every AI system learns from examples; some use rules or search through possible choices.</p>
     <p>Machine learning is one approach to AI in which computers learn patterns from examples instead of having a person write every rule. An email filter trained on examples of unwanted messages is one everyday use. Generative AI is AI that creates content, such as text or images. An image generator making a picture from your description is an example.</p>
     <p>These ideas overlap: many generative AI tools use machine learning, and machine learning is part of the broader AI field. <a href="https://www.ibm.com/think/topics/artificial-intelligence-types">IBM's guide to types of AI</a> describes these approaches and examples.</p>
+    <p class="key"><strong>Key idea:</strong> Some systems follow rules, machine learning learns from examples, and generative AI creates content.</p>
     <button class="btn" type="button" data-lesson="l1">Mark as read</button>
+  </section>
+
+  <section class="card activity" id="sort-practice" aria-labelledby="sort-title">
+    <h2 id="sort-title">Sort the examples</h2>
+    <p class="activity-example">Choose Generative AI when the tool creates new text or images, even if it also learned from examples.</p>
+    <fieldset>
+      <legend>What best describes each example?</legend>
+      <div class="quiz-options activity-selects">
+        <div>
+          <label>
+            <span>A spam filter trained on labeled emails</span>
+            <select class="field" data-answer="Machine learning" data-reason="It learned patterns from examples of emails." aria-describedby="sort-feedback-1">
+              <option value="">Choose one</option>
+              <option>Rule-based</option>
+              <option>Machine learning</option>
+              <option>Generative AI</option>
+            </select>
+          </label>
+          <p class="quiz-feedback" id="sort-feedback-1" aria-live="polite" aria-atomic="true"></p>
+        </div>
+        <div>
+          <label>
+            <span>A calculator adding two numbers</span>
+            <select class="field" data-answer="Rule-based" data-reason="It follows a fixed rule for addition." aria-describedby="sort-feedback-2">
+              <option value="">Choose one</option>
+              <option>Rule-based</option>
+              <option>Machine learning</option>
+              <option>Generative AI</option>
+            </select>
+          </label>
+          <p class="quiz-feedback" id="sort-feedback-2" aria-live="polite" aria-atomic="true"></p>
+        </div>
+        <div>
+          <label>
+            <span>A chatbot writing a poem</span>
+            <select class="field" data-answer="Generative AI" data-reason="It creates new text." aria-describedby="sort-feedback-3">
+              <option value="">Choose one</option>
+              <option>Rule-based</option>
+              <option>Machine learning</option>
+              <option>Generative AI</option>
+            </select>
+          </label>
+          <p class="quiz-feedback" id="sort-feedback-3" aria-live="polite" aria-atomic="true"></p>
+        </div>
+        <div>
+          <label>
+            <span>A thermostat that turns on the heat below a set temperature</span>
+            <select class="field" data-answer="Rule-based" data-reason="It follows a fixed rule about when to turn on." aria-describedby="sort-feedback-4">
+              <option value="">Choose one</option>
+              <option>Rule-based</option>
+              <option>Machine learning</option>
+              <option>Generative AI</option>
+            </select>
+          </label>
+          <p class="quiz-feedback" id="sort-feedback-4" aria-live="polite" aria-atomic="true"></p>
+        </div>
+        <div>
+          <label>
+            <span>An image tool making a picture from your description</span>
+            <select class="field" data-answer="Generative AI" data-reason="It creates a new image from your instructions." aria-describedby="sort-feedback-5">
+              <option value="">Choose one</option>
+              <option>Rule-based</option>
+              <option>Machine learning</option>
+              <option>Generative AI</option>
+            </select>
+          </label>
+          <p class="quiz-feedback" id="sort-feedback-5" aria-live="polite" aria-atomic="true"></p>
+        </div>
+        <div>
+          <label>
+            <span>A photo app that learned from pictures to recognize faces</span>
+            <select class="field" data-answer="Machine learning" data-reason="It learned patterns from pictures to recognize faces." aria-describedby="sort-feedback-6">
+              <option value="">Choose one</option>
+              <option>Rule-based</option>
+              <option>Machine learning</option>
+              <option>Generative AI</option>
+            </select>
+          </label>
+          <p class="quiz-feedback" id="sort-feedback-6" aria-live="polite" aria-atomic="true"></p>
+        </div>
+      </div>
+    </fieldset>
+    <button class="btn" type="button">Check</button>
   </section>
 
   <section class="card" aria-labelledby="lesson-2">
@@ -69,6 +155,7 @@
     <p>A model is a computer system built to perform a task, such as recognizing an object in a picture. Training is the process of adjusting a model using examples. The examples are called training data; they might include pictures, text, or other information. <a href="https://www.ibm.com/think/topics/training-data">IBM's explanation of training data</a> describes how models use it to learn patterns and make predictions.</p>
     <p>Imagine learning to recognize dogs by looking at many photos labeled “dog” or “not dog.” A model can be trained on labeled photos and adjust its internal settings when its guesses are wrong. Over time, it may pick up patterns that help it classify a new photo. A prediction is its best estimate for a particular task, not a promise that the answer is right.</p>
     <p>The comparison has limits: a model does not learn exactly as a person does. If the photos are limited or misleading, the model may make mistakes on unfamiliar pictures.</p>
+    <p class="key"><strong>Key idea:</strong> Training uses examples to teach a model patterns it can use to make predictions.</p>
     <button class="btn" type="button" data-lesson="l2">Mark as read</button>
   </section>
 
@@ -78,6 +165,7 @@
     <p>Those pieces are called tokens. As <a href="https://help.openai.com/en/articles/4936856-understanding-and-counting-tokens">OpenAI's token guide</a> explains, a token may be a whole word, part of a word, or a punctuation mark. “Predicting the next word” is a useful shortcut, but predicting the next token is more precise. The model repeatedly selects a next token based on the text available to it, building a response.</p>
     <p>A fluent reply can feel like a conversation with a person. But the chatbot generates responses using learned patterns and computation, so do not assume it understands or feels things the way a person does. Treat its confidence or friendly tone as no guarantee that it is right.</p>
     <p class="try"><strong>Try it:</strong> <a href="demos.html#tok-h">split your own sentence into tokens</a>, then <a href="demos.html#pred-h">watch a tiny model guess the next word</a>.</p>
+    <p class="key"><strong>Key idea:</strong> A language model builds a reply one token at a time using patterns it learned from text.</p>
     <button class="btn" type="button" data-lesson="l3">Mark as read</button>
   </section>
 
@@ -86,6 +174,7 @@
     <p>AI can make mistakes even when an answer sounds sure. A hallucination is a false or invented detail generated by an AI system, such as a quotation that nobody said. <a href="https://openai.com/index/why-language-models-hallucinate/">OpenAI's explanation of hallucinations</a> describes how language models can produce plausible but incorrect statements.</p>
     <p>Another problem is bias: an unfair pattern in how people or groups are represented or treated. For example, an image generator might show only one kind of person when asked to picture a scientist. The <a href="https://nvlpubs.nist.gov/nistpubs/AI/NIST.AI.600-1.pdf">National Institute of Standards and Technology's guidance on generative AI</a> discusses the risk of amplifying existing biases.</p>
     <p>Information can also be out of date if the model's training data does not include a recent event. Some tools can look up newer information, but that does not guarantee a correct answer. Check important claims, dates, and quotations against reliable, current sources, and examine whether those sources actually support the response.</p>
+    <p class="key"><strong>Key idea:</strong> AI can sound confident while giving false, biased, or outdated information, so check important claims.</p>
     <button class="btn" type="button" data-lesson="l4">Mark as read</button>
   </section>
 
@@ -102,10 +191,10 @@ const QUESTIONS = [
   {
     "q": "How are AI, machine learning, and generative AI related?",
     "options": [
-      "They are three separate fields that never overlap in practice.",
+      "AI is one kind of machine learning, and generative AI is a separate field.",
       "Machine learning is an approach to AI, and many generative tools use it.",
-      "Generative AI came first, and machine learning was built from it afterwards.",
-      "Only machine learning counts as AI; the other two labels do not."
+      "Generative AI and machine learning are two names for the same thing.",
+      "Only machine learning counts as AI; rule-based approaches do not."
     ],
     "answer": 1,
     "why": "Machine learning is part of AI, and many generative tools are built using it."
@@ -126,8 +215,8 @@ const QUESTIONS = [
     "options": [
       "An estimate based on patterns learned during training.",
       "Proof that the photo contains a dog.",
-      "A memory of having met that animal before.",
-      "A guarantee that every future prediction will be right."
+      "A match to one exact photo it saw during training.",
+      "A decision based on a rule someone wrote for detecting dogs."
     ],
     "answer": 0,
     "why": "The model makes an estimate from learned patterns, and that estimate can be wrong."
@@ -135,10 +224,10 @@ const QUESTIONS = [
   {
     "q": "What is a token in a language model?",
     "options": [
-      "A guarantee that every part of the response is factually true.",
-      "A feeling that the chatbot reports about the conversation.",
+      "A whole word, with punctuation left out.",
+      "A complete message in the conversation.",
       "A piece of text: a word, part of a word, or punctuation.",
-      "A physical coin that you pay to send one message."
+      "A sentence the model generates all at once."
     ],
     "answer": 2,
     "why": "A token is a unit of text processed by the model and is not always a whole word."
@@ -146,10 +235,10 @@ const QUESTIONS = [
   {
     "q": "A chatbot confidently gives a date for a recent event and an unfamiliar citation; what should you do?",
     "options": [
-      "Assume both are correct because the answer sounds confident.",
+      "Use both if the date and citation seem to fit together.",
       "Check the date and citation in reliable, current sources.",
-      "Treat every citation as invented without checking.",
-      "Assume the chatbot has feelings and therefore cannot lie."
+      "Ask a second chatbot and use both if it agrees.",
+      "Check that the citation exists, then accept the date without reading the source."
     ],
     "answer": 1,
     "why": "AI can invent details or use outdated information, so important claims and citations need checking."

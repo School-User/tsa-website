@@ -37,7 +37,7 @@
     $('summary').textContent = Progress.xp(s) + ' XP, ' + count(lessons, 'lesson', 'lessons') + ' read, ' +
       count(Object.keys(s.quiz).length, 'quiz', 'quizzes') + ' taken, ' + count(s.demos.length, 'demo', 'demos') + ' tried.';
     // A brand-new visitor has nothing to move yet, so no code is shown.
-    $('code').textContent = Progress.xp(s) > 0 || Object.keys(s.quiz).length ? Progress.exportCode() : 'none yet (start a lesson first)';
+    $('code').textContent = Progress.xp(s) > 0 || Object.keys(s.quiz).length ? Progress.exportCode() : 'none yet';
   }
 
   $('download').addEventListener('click', function () {
