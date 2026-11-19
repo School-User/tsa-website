@@ -66,16 +66,23 @@
   <section class="card" aria-labelledby="lesson-1">
     <h2 id="lesson-1">Asking for code clearly</h2>
     <p>Good prompts for code follow the same rules as other prompts, but they need to be more precise. Say what you want, what language you are using, and what the result should do.</p>
-    <p><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">Anthropic suggests a test</a>: show your prompt to a colleague or classmate with little background on the task. If they would be confused, Anthropic says Claude will be too, and a clear prompt helps any tool.</p>
-    <p><a href="https://docs.github.com/en/copilot/get-started/best-practices">GitHub suggests</a> being specific about your requirements and breaking complex tasks into smaller pieces. Anthropic also notes that if you only ask “can you suggest some changes,” Claude will sometimes give suggestions instead of making them, so say which you want. Examples help: Anthropic recommends including 3–5 examples for best results.</p>
+    <p>Try the quick test from <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">Claude's prompting guide</a>. Show your prompt to a classmate who is new to the task. If they find it confusing, the guide says Claude will too. A clear prompt helps any tool.</p>
+    <p><a href="https://docs.github.com/en/copilot/get-started/best-practices">GitHub's guide</a> recommends saying exactly what you need and breaking complex tasks into smaller steps. If you ask Claude to suggest changes, it may give you a list of ideas. If you want edits, ask for edits. Claude's guide also recommends giving three to five examples for best results.</p>
     <p class="key"><strong>Key idea:</strong> When asking for code, name the language and explain exactly what you want the code to do.</p>
     <button class="btn" type="button" data-lesson="l1">Mark as read</button>
   </section>
 
   <section class="card" aria-labelledby="lesson-2">
     <h2 id="lesson-2">Understand it before you use it</h2>
-    <p>GitHub's guidance says to understand suggested code before you implement it. If you do not understand a suggestion, you can ask the tool to explain the code.</p>
-    <p>If you cannot explain a line, you do not yet own it. Ask “What does this line do?” and explain it in your own words.</p>
+    <p><a href="https://docs.github.com/en/copilot/get-started/best-practices">GitHub's guide</a> recommends asking about code you do not understand and testing suggested code before you use it.</p>
+    <p>A student asks an AI to write a JavaScript function that turns minutes into seconds. The AI suggests this code:</p>
+    <pre class="codeblock" tabindex="0" role="region" aria-label="JavaScript example: minutes to seconds"><code>function toSeconds(minutes) {
+  return minutes * 60;
+}
+console.log(toSeconds(2));
+console.log(toSeconds(3));</code></pre>
+    <p>The student asks, “What does line 2 do?” The AI explains that line 2 multiplies the number of minutes by 60 and gives back the result.</p>
+    <p>To check, the student works out that 2 minutes is 120 seconds and 3 minutes is 180 seconds. They run the code in the browser's JavaScript console and see <code>120</code> and <code>180</code>, just as they expected.</p>
     <p class="key"><strong>Key idea:</strong> Make sure you can explain suggested code in your own words before using it.</p>
     <button class="btn" type="button" data-lesson="l2">Mark as read</button>
   </section>
@@ -142,7 +149,7 @@ const QUESTIONS = [
       "Show the prompt to someone new to the task and see if they are confused."
     ],
     "answer": 3,
-    "why": "Anthropic's test is to show the prompt to someone with little background: if they would be confused, Claude will be too."
+    "why": "A classmate who is new to the task can tell you which parts of the prompt might confuse Claude."
   },
   {
     "q": "You ask an AI “can you suggest some changes” to your code. What might happen according to Anthropic's guide?",
@@ -153,7 +160,7 @@ const QUESTIONS = [
       "It will treat the request as asking only for an explanation of the existing code."
     ],
     "answer": 0,
-    "why": "Anthropic notes it may give suggestions instead of implementing them, so say which you want."
+    "why": "Claude may give you a list of suggestions. Ask for edits if you want it to make changes."
   },
   {
     "q": "A function runs without errors but gives the wrong answer. What kind of error is this?",

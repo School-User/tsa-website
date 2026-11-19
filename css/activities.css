@@ -65,10 +65,10 @@ ul.activity-example { padding-inline-start: 2rem; }
 /* a selected private detail looks redacted */
 .activity-example .btn[aria-pressed="true"] { background: var(--bad-bg); color: var(--bad); border-color: var(--bad); text-decoration: line-through; }
 /* code reads as code, not as a text box */
-.activity pre.codeblock { background: #0f172a; color: #e2e8f0; border-radius: .75rem; padding: 1rem 1.25rem; overflow-x: auto;
+pre.codeblock { background: #0f172a; color: #e2e8f0; border-radius: .75rem; padding: 1rem 1.25rem; overflow-x: auto;
   font: .9rem/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-variant-ligatures: none; white-space: pre; }
 @media (max-width: 560px) {
-  .activity pre.codeblock { white-space: pre-wrap; overflow-wrap: anywhere; }
+  pre.codeblock { white-space: pre-wrap; overflow-wrap: anywhere; }
 }
 .practice-xp { display: inline-block; margin: .75rem 0 0; padding: .3rem .8rem; border-radius: 99px; font-weight: 700; font-size: .9rem;
   color: var(--gold-text); background: color-mix(in srgb, var(--gold) 16%, var(--surface)); border: 1px solid var(--gold); }
