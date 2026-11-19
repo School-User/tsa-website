@@ -68,6 +68,10 @@
       if (!upNext && !(read >= LESSONS_PER_MODULE && passed)) upNext = { m: m, n: index + 1, started: read > 0 || score !== undefined };
       var pct = Math.round((read / LESSONS_PER_MODULE) * 50 + (passed ? 50 : 0));
       var label = pct === 100 ? 'Mastered' : passed ? 'Proficient' : (read >= 2 || score !== undefined) ? 'Familiar' : read ? 'Attempted' : 'Not started';
+      // The module's icon (the same drawing as its badge), in the module colour.
+      var icon = el('div', { 'class': 'module-icon', 'aria-hidden': 'true' });
+      icon.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + BADGE_ICONS[m.id] + '</svg>';
+      card.appendChild(icon);
       card.appendChild(el('p', { 'class': 'mastery' }, label));
       card.appendChild(el('h3', {}, m.title));
       card.appendChild(el('p', {}, m.blurb));
