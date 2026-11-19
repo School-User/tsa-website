@@ -184,25 +184,31 @@
         progress.submitQuiz(moduleId, correct, questions.length);
       }
 
+      // The badge depends on the best score saved so far, not only on this try.
+      var best = correct;
+      try { best = Math.max(correct, progress.load().quiz[moduleId] || 0); } catch (e) { /* no saved progress */ }
+      var passed = best >= pass;
+
       result.textContent = '';
-      result.className = 'quiz-result ' + (correct >= pass ? 'passed' : 'failed');
+      result.className = 'quiz-result ' + (passed ? 'passed' : 'failed');
       result.appendChild(make('p', 'quiz-score', correct + ' of ' + questions.length + ' correct'));
       result.appendChild(make('p', '', correct >= pass
         ? 'Passed. You earned this module’s badge.'
-        : 'Not passed yet. The passing score is ' + pass + ' of ' + questions.length + '. Check the feedback above, then retry.'));
+        : passed
+          ? 'Your best score is still ' + best + ' of ' + questions.length + ', so you keep the badge.'
+          : 'Not passed yet. The passing score is ' + pass + ' of ' + questions.length + '. Check the feedback above, then retry.'));
       result.appendChild(make('p', 'muted',
         'This score is worth ' + (correct * 10) + ' quiz XP (10 per correct answer). Only your best score counts, so a retake adds XP only if it beats your earlier best.'));
-      result.appendChild(nextStep(correct >= pass));
-      // Screen-reader and keyboard users land on the score, not at the top of the quiz.
-      result.setAttribute('tabindex', '-1');
-      result.focus();
+      result.appendChild(nextStep(passed));
 
       alertBox.textContent = '';
       show(alertBox, false);
       show(submit, false);
       show(retry, true);
       lock(true);
-      retry.focus();
+      // Screen-reader and keyboard users land on the score, not at the top of the quiz.
+      result.setAttribute('tabindex', '-1');
+      result.focus();
     }
 
     // Block grading until every question is answered.

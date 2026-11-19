@@ -106,7 +106,8 @@
   // XP only for real text of your own: at least three tokens.
   tokenInput.addEventListener('input', function () {
     renderTokens();
-    var words = roughTokens(tokenInput.value).filter(function (t) { return t.kind !== 'punct'; });
+    // Count real words (letters or digits between spaces), not tokens: one long word is not enough.
+    var words = tokenInput.value.match(/[\p{L}\p{N}']+/gu) || [];
     if (words.length >= 3) award('tokens');
   });
   renderTokens();

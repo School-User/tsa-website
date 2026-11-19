@@ -1,5 +1,6 @@
 // Draws the home-page dashboard from saved progress (js/progress.js).
 (function () {
+  'use strict';
   var MODULES = [
     { id: 'm1', href: 'module1.html', title: 'What AI actually is', blurb: 'AI vs. machine learning vs. generative AI, how models learn, and where they fail.' },
     { id: 'm2', href: 'module2.html', title: 'Using AI tools well', blurb: 'Pick the right tool, write good prompts, study smarter, and check answers.' },
@@ -35,7 +36,9 @@
     document.getElementById('xp').textContent = xp;
     // Every lesson, every quiz answer and every demo: the most XP there is.
     var maxXp = MODULES.length * (LESSONS_PER_MODULE + 5) * 10 + Progress.DEMOS.length * Progress.DEMO_XP;
-    document.getElementById('next').textContent = xp >= maxXp ? 'All XP earned. Great work!' : (100 - into) + ' XP to next level';
+    var isMax = xp >= maxXp;
+    if (isMax) into = 100; // a full bar, not the leftover of the last level
+    document.getElementById('next').textContent = isMax ? 'All XP earned. Great work!' : (100 - into) + ' XP to next level';
     var bar = document.getElementById('xpbar');
     bar.setAttribute('aria-valuenow', into);
     bar.firstElementChild.style.width = into + '%';
@@ -43,16 +46,16 @@
     var core = document.getElementById('modules');
     var extra = document.getElementById('modules-extra');
     var resume = document.getElementById('resume');
-    var next = null; // first module that is not finished, for the Start/Continue button
+    var upNext = null; // first module that is not finished, for the Start/Continue button
     core.textContent = '';
     extra.textContent = '';
     MODULES.forEach(function (m, index) {
       var read = (s.lessons[m.id] || []).length, score = s.quiz[m.id];
       // Modules 1-3 are the core brief (concepts, tools, ethics); 4-6 are extensions.
-      var card = el('li', { 'class': 'card', id: 'module-card-' + m.id, style: '--unit: var(--u' + (index + 1) + ')' });
+      var card = el('li', { 'class': 'card', style: '--unit: var(--u' + (index + 1) + ')' });
       // Mastery: lessons read are half, passing the quiz is the other half.
       var passed = score >= Progress.PASS;
-      if (!next && !(read >= LESSONS_PER_MODULE && passed)) next = { m: m, n: index + 1, started: read || score !== undefined };
+      if (!upNext && !(read >= LESSONS_PER_MODULE && passed)) upNext = { m: m, n: index + 1, started: read > 0 || score !== undefined };
       var pct = Math.round((read / LESSONS_PER_MODULE) * 50 + (passed ? 50 : 0));
       var label = pct === 100 ? 'Mastered' : passed ? 'Proficient' : (read >= 2 || score !== undefined) ? 'Familiar' : read ? 'Attempted' : 'Not started';
       card.appendChild(el('p', { 'class': 'mastery' }, label));
@@ -70,8 +73,8 @@
       (index < 3 ? core : extra).appendChild(card);
     });
 
-    if (!next) { resume.textContent = 'Review Module 1'; resume.href = MODULES[0].href; }
-    else { resume.textContent = (next.started ? 'Continue' : 'Start') + ' Module ' + next.n; resume.href = next.m.href + resumeAt(s, next.m.id); }
+    if (!upNext) { resume.textContent = 'Review Module 1'; resume.href = MODULES[0].href; }
+    else { resume.textContent = (upNext.started ? 'Continue' : 'Start') + ' Module ' + upNext.n; resume.href = upNext.m.href + resumeAt(s, upNext.m.id); }
 
     var earned = Progress.badges(s), shelf = document.getElementById('badges');
     shelf.textContent = '';
@@ -102,6 +105,11 @@
     if (navigator.clipboard && window.isSecureContext) {
       return navigator.clipboard.writeText(text);
     }
+    return fallbackCopy(text);
+  }
+
+  // The older way: select the text in a hidden textarea and run the copy command.
+  function fallbackCopy(text) {
     return new Promise(function (ok, no) {
       var t = document.createElement('textarea');
       t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
@@ -114,9 +122,12 @@
   }
 
   copyBtn.addEventListener('click', function () {
-    copyText(codeOut.textContent).then(
-      function () { msg.textContent = 'Copied. Paste it on your other device.'; },
-      function () { msg.textContent = 'Could not copy automatically. Select the code and copy it yourself.'; });
+    var done = function () { msg.textContent = 'Copied. Paste it on your other device.'; };
+    var failed = function () { msg.textContent = 'Could not copy automatically. Select the code and copy it yourself.'; };
+    // If the modern clipboard refuses (permission), try the old textarea way before giving up.
+    copyText(codeOut.textContent).then(done, function () {
+      fallbackCopy(codeOut.textContent).then(done, failed);
+    });
   });
 
   document.getElementById('restore').addEventListener('click', function () {

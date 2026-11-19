@@ -3,9 +3,8 @@
   'use strict';
   // On phones the module pills scroll sideways: bring the current module into view.
   var current = document.querySelector('.module-nav [aria-current]');
-  if (current && current.parentNode.parentNode.scrollWidth > current.parentNode.parentNode.clientWidth) {
-    current.parentNode.parentNode.scrollLeft = current.offsetLeft - 16;
-  }
+  var row = current && current.closest('ul');
+  if (row && row.scrollWidth > row.clientWidth) row.scrollLeft = current.offsetLeft - row.offsetLeft;
   var button = document.querySelector('[data-theme-toggle]');
   if (!button) return;
   var modes = ['auto', 'light', 'dark'];
@@ -20,7 +19,6 @@
     var icon = { auto: '◐', light: '☀', dark: '☾' }[mode];
     button.textContent = icon + ' ' + label;
     button.setAttribute('aria-label', 'Theme: ' + label + '. Activate to switch to ' + next.charAt(0).toUpperCase() + next.slice(1));
-    button.setAttribute('aria-pressed', mode === 'auto' ? 'false' : 'true');
   }
   button.addEventListener('click', function () {
     mode = modes[(modes.indexOf(mode) + 1) % modes.length];

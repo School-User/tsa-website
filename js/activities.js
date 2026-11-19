@@ -4,10 +4,14 @@
   function feedback(element, message, correct) {
     element.className = 'quiz-feedback ' + (correct ? 'right' : 'wrong');
     // Bold the opening sentence or test result.
-    var cut = message.search(/[.·] /) + 1 || message.length;
+    // The bold part ends after the first "." or "·" that has a space after it.
+    var cut = message.search(/[.·] /);
+    if (cut === -1) cut = message.length; else cut = cut + 1;
     var lead = document.createElement('strong');
     lead.textContent = message.slice(0, cut);
-    element.replaceChildren(lead, message.slice(cut));
+    element.textContent = '';
+    element.appendChild(lead);
+    element.appendChild(document.createTextNode(message.slice(cut)));
   }
 
   // Both sorting cards keep each answer and reason beside its select in HTML.
@@ -113,7 +117,7 @@
       feedback(detailFeedback, correct
         ? 'You found the name, email, phone number, and medical detail. Try step 2.'
         : notes.join(' '), correct);
-      if (correct) choice.hidden = false;
+      choice.hidden = !correct; // hide step 2 again if step 1 is no longer right
     }
 
     function checkChoice() {
@@ -127,7 +131,7 @@
         ? 'The draft still has contact information and a medical detail. Try again.'
         : 'Remove private information and follow class rules before disclosing AI use. Try again.';
       feedback(choiceFeedback, correct ? 'Correct. See the safer prompt and example disclosure below.' : tryAgain, correct);
-      if (correct) card.querySelector('#privacy-example').hidden = false;
+      card.querySelector('#privacy-example').hidden = !correct;
     }
 
     for (var i = 0; i < parts.length; i++) {

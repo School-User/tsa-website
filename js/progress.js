@@ -1,6 +1,7 @@
 // Shared progress state for every page. XP is never stored; it is
 // calculated from what the student has completed, so it can't drift.
 (function (root) {
+  'use strict';
   var KEY = 'aiPortal.v1';
   var PASS = 4;            // correct answers needed for a module badge
   var LESSON_XP = 10;      // per lesson

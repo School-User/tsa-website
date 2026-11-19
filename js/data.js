@@ -1,6 +1,7 @@
 // "My data" page: see, download (zip), reset or delete everything this site stores.
 // There are no accounts: all data is in this browser only (localStorage).
 (function () {
+  'use strict';
   var KEYS = ['aiPortal.v1', 'aiPortal.theme'];
   var $ = function (id) { return document.getElementById(id); };
 
