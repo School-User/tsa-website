@@ -160,3 +160,8 @@ section.card:has([data-lesson]) > h2::before { counter-increment: lesson; conten
   .bar > nav ul { justify-content: space-between; }
   .module-nav ul { flex-wrap: nowrap; overflow-x: auto; padding-bottom: .2rem; }
 }
+.quiz-result.passed { border-left-color: var(--good); }
+.quiz-result.failed { border-left-color: var(--bad); }
+.quiz-score { font-size: 1.5rem; font-weight: 800; margin: 0 0 .25rem; }
+.quiz-result p { margin: .4rem 0; }
+.quiz-next .btn { margin-top: .25rem; }

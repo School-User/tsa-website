@@ -136,6 +136,24 @@
       inputs.forEach(function (input) { input.disabled = disabled; });
     }
 
+    // What to do after a quiz: read the lessons still unread, or go to the
+    // next module once this one is mastered (all lessons read + quiz passed).
+    function nextStep(passed) {
+      var progress = store(), read = 0, total = document.querySelectorAll('button[data-lesson]').length;
+      try { read = (progress.load().lessons[moduleId] || []).length; } catch (e) { /* no saved progress */ }
+      var n = parseInt(moduleId.slice(1), 10);
+      var p = make('p', 'quiz-next');
+      if (passed && read < total) {
+        p.textContent = 'Next: mark the other ' + (total - read) + ' lesson' + (total - read === 1 ? '' : 's') + ' as read to master this module.';
+        return p;
+      }
+      var link = make('a', passed ? 'btn' : 'btn ghost', passed ? (n < 6 ? 'Next: Module ' + (n + 1) : 'Back to your dashboard') : 'Back to your dashboard');
+      link.href = passed && n < 6 ? 'module' + (n + 1) + '.html' : 'index.html';
+      if (passed) p.appendChild(make('span', '', 'Module mastered. '));
+      p.appendChild(link);
+      return p;
+    }
+
     // Score the quiz, reveal feedback, and store the best score.
     function grade() {
       var correct = 0;
@@ -154,14 +172,14 @@
       }
 
       result.textContent = '';
-      result.appendChild(make('p', '', 'You got ' + correct + ' of ' + questions.length + '.'));
-      result.appendChild(make('p', '',
+      result.className = 'quiz-result ' + (correct >= pass ? 'passed' : 'failed');
+      result.appendChild(make('p', 'quiz-score', correct + ' of ' + questions.length + ' correct'));
+      result.appendChild(make('p', '', correct >= pass
+        ? 'Passed. You earned this module\'s badge.'
+        : 'Not passed yet. The pass mark is ' + pass + ' of ' + questions.length + '. Check the feedback above, then retry.'));
+      result.appendChild(make('p', 'muted',
         'This attempt is worth ' + (correct * 10) + ' quiz XP at 10 per correct answer. Only your best score counts, so a retake adds XP only if it beats your earlier best.'));
-      if (correct >= pass) {
-        result.appendChild(make('p', '', 'Badge earned!'));
-      } else {
-        result.appendChild(make('p', '', 'Pass mark is ' + pass + ' of ' + questions.length + ', try again'));
-      }
+      result.appendChild(nextStep(correct >= pass));
 
       alertBox.textContent = '';
       show(alertBox, false);
