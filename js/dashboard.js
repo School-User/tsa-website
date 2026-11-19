@@ -4,7 +4,7 @@
     { id: 'm1', href: 'module1.html', title: 'What AI actually is', blurb: 'AI vs. machine learning vs. generative AI, how models learn, and where they fail.' },
     { id: 'm2', href: 'module2.html', title: 'Using AI tools well', blurb: 'Pick the right tool, write good prompts, study smarter, and check answers.' },
     { id: 'm3', href: 'module3.html', title: 'Using AI ethically at school', blurb: 'Integrity, privacy, bias, and how to cite and disclose AI use.' },
-    { id: 'm4', href: 'module4.html', title: 'Going deeper', blurb: 'Kinds of AI, risks experts list, prompting with examples, and why rules exist.' },
+    { id: 'm4', href: 'module4.html', title: 'Going deeper', blurb: 'Kinds of AI, risks experts name, prompting with examples, and why rules exist.' },
     { id: 'm5', href: 'module5.html', title: 'Building with AI responsibly', blurb: 'The 4Ds, learning to code with AI, checking AI-written code, and your own commitment.' },
     { id: 'm6', href: 'module6.html', title: 'Coding with AI: hands-on', blurb: 'Ask for code clearly, understand it, find bugs, and run tests and checks.' }
   ];
@@ -119,21 +119,29 @@
 
   document.getElementById('restore').addEventListener('click', function () {
     var input = document.getElementById('code-in');
+    msg.classList.remove('err');
     var before = Progress.xp(Progress.load());
+    var beforeState = JSON.stringify(Progress.load());
     if (Progress.importCode(input.value)) {
       var gained = Progress.xp(Progress.load()) - before;
+      // A quiz scored 0 adds no XP but is still new progress, so compare the whole state too.
+      var changed = JSON.stringify(Progress.load()) !== beforeState;
       input.value = '';
       render();
-      msg.textContent = gained > 0
-        ? 'Progress restored. Added ' + gained + ' XP from that code.'
+      msg.textContent = gained > 0 ? 'Progress restored. Added ' + gained + ' XP from that code.'
+        : changed ? 'Progress restored.'
         : 'That code is valid, but this device already has all of that progress, so nothing changed. Restore it on the other device, the one that is missing progress.';
     } else {
       msg.textContent = 'That code does not look right. Check for typos and try again.';
+      msg.classList.add('err');
     }
   });
 
   document.getElementById('reset').addEventListener('click', function () {
-    if (window.confirm('Reset all progress? This clears XP, badges, lessons, quiz scores, and demos.')) { Progress.reset(); render(); }
+    if (window.confirm('Reset all progress? This clears XP, badges, lessons, quiz scores, and demos.')) {
+      Progress.reset(); render();
+      codeOut.textContent = ''; copyBtn.hidden = true; // the old code no longer matches
+    }
   });
   render();
 })();

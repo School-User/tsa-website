@@ -66,7 +66,7 @@
   <section class="card" aria-labelledby="lesson-1">
     <h2 id="lesson-1">Asking for code clearly</h2>
     <p>Good prompts for code follow the same rules as other prompts, but they need to be more precise. Say what you want, what language you are using, and what the result should do.</p>
-    <p><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">Anthropic suggests a test</a>: show your prompt to a colleague with little background on the task. If they would be confused, Anthropic says Claude will be too, and a clear prompt helps any tool.</p>
+    <p><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">Anthropic suggests a test</a>: show your prompt to a colleague or classmate with little background on the task. If they would be confused, Anthropic says Claude will be too, and a clear prompt helps any tool.</p>
     <p><a href="https://docs.github.com/en/copilot/get-started/best-practices">GitHub suggests</a> being specific about your requirements and breaking complex tasks into smaller pieces. Anthropic also notes that if you only ask “can you suggest some changes,” Claude will sometimes give suggestions instead of making them, so say which you want. Examples help: Anthropic recommends including 3–5 examples for best results.</p>
     <button class="btn" type="button" data-lesson="l1">Mark as read</button>
   </section>
@@ -88,15 +88,15 @@
   <section class="card" aria-labelledby="lesson-4">
     <h2 id="lesson-4">Tests and checks</h2>
     <p><a href="https://docs.github.com/en/copilot/tutorials/review-ai-generated-code">GitHub's tutorial on reviewing AI-generated code</a> says to run automated tests and use static analysis tools first, and to make sure the code compiles and all tests pass. If your project has no tests yet, start with the simple checks below.</p>
-    <p>It warns you to watch out for made-up or suspicious packages (libraries the AI names that may not exist), so verify each package yourself. It also says to watch for tests that were deleted or skipped instead of fixed, and to be skeptical of code that looks right but does not match your intent.</p>
+    <p>GitHub also warns you to watch out for made-up or suspicious packages (libraries the AI names that may not exist), so verify each package yourself. It also says to watch for tests that were deleted or skipped instead of fixed, and to be skeptical of code that looks right but does not match your intent.</p>
     <p>For a small website like this one, a test can be as simple as opening the page and trying each button.</p>
     <button class="btn" type="button" data-lesson="l4">Mark as read</button>
   </section>
 
   <section class="card activity" id="bug-practice" aria-labelledby="bug-title">
-    <h2 id="bug-title">Practice: find the bug</h2>
+    <h2 id="bug-title">Find the bug</h2>
     <p>An AI assistant wrote this function to average a nonempty list of scores. Read it before running the tests, as you would with any AI-written code.</p>
-    <pre class="field"><code id="bug-code"></code></pre>
+    <pre class="codeblock" tabindex="0" role="region" aria-label="The AI-written function"><code id="bug-code"></code></pre>
     <fieldset>
       <legend>Which test do you predict will fail?</legend>
       <div class="quiz-options">
@@ -113,7 +113,7 @@
       <ol id="original-results"></ol>
       <p>This is a logic error. The function runs, but it always divides by 3. Divide by <code>scores.length</code> to use the actual number of scores.</p>
       <h3>Fixed version</h3>
-      <pre class="field"><code id="fixed-code"></code></pre>
+      <pre class="codeblock" tabindex="0" role="region" aria-label="The fixed function"><code id="fixed-code"></code></pre>
       <p class="muted">The same tests run again with the fix.</p>
       <ol id="fixed-results"></ol>
     </div>

@@ -1,6 +1,11 @@
 // Apply and remember the visitor's light, dark or system theme preference.
 (function () {
   'use strict';
+  // On phones the module pills scroll sideways: bring the current module into view.
+  var current = document.querySelector('.module-nav [aria-current]');
+  if (current && current.parentNode.parentNode.scrollWidth > current.parentNode.parentNode.clientWidth) {
+    current.parentNode.parentNode.scrollLeft = current.offsetLeft - 16;
+  }
   var button = document.querySelector('[data-theme-toggle]');
   if (!button) return;
   var modes = ['auto', 'light', 'dark'];

@@ -36,12 +36,13 @@
   }
 
   // Build a question fieldset: legend, labeled radios, empty feedback.
-  function buildQuestion(question, groupName) {
+  function buildQuestion(question, groupName, number, total) {
     var fieldset = document.createElement('fieldset');
     fieldset.className = 'quiz-q';
 
     var legend = document.createElement('legend');
-    legend.textContent = question.q;
+    legend.appendChild(make('span', 'q-num', 'Question ' + number + ' of ' + total));
+    legend.appendChild(document.createTextNode(question.q));
     fieldset.appendChild(legend);
 
     var list = make('div', 'quiz-options');
@@ -81,7 +82,11 @@
       }
     }
     text += question.why || '';
-    feedback.textContent = text;
+    // "Correct." or "Not quite." in bold, the explanation in normal text.
+    var lead = chosen === question.answer ? 'Correct.' : 'Not quite.';
+    feedback.textContent = '';
+    feedback.appendChild(make('strong', '', lead));
+    feedback.appendChild(document.createTextNode(text.slice(lead.length)));
     feedback.className = 'quiz-feedback ' + (chosen === question.answer ? 'right' : 'wrong');
     show(feedback, true);
   }
@@ -94,12 +99,14 @@
 
     var quiz = make('div', 'quiz');
     var quizId = 'quiz-' + (++mountCount);
+    var passMark = store() && store().PASS !== undefined ? store().PASS : 4;
+    quiz.appendChild(make('p', 'quiz-intro', questions.length + ' questions · score ' + passMark + ' to pass and earn the badge · your best score counts'));
     var fieldsets = [];
     var feedbacks = [];
     var inputs = [];
 
     questions.forEach(function (question, index) {
-      var fieldset = buildQuestion(question, quizId + '-q' + index);
+      var fieldset = buildQuestion(question, quizId + '-q' + index, index + 1, questions.length);
       quiz.appendChild(fieldset);
       fieldsets.push(fieldset);
       feedbacks.push(fieldset.querySelector('.quiz-feedback'));

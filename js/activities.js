@@ -1,7 +1,11 @@
 (() => {
   function feedback(element, message, correct) {
     element.className = 'quiz-feedback ' + (correct ? 'right' : 'wrong');
-    element.textContent = message;
+    // Bold the first sentence ("Correct.", "Pass", ...), normal text for the rest.
+    const cut = message.search(/[.·] /) + 1 || message.length;
+    const lead = document.createElement('strong');
+    lead.textContent = message.slice(0, cut);
+    element.replaceChildren(lead, message.slice(cut));
   }
 
   function initPrivacy(card) {

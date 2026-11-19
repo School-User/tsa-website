@@ -32,8 +32,10 @@
   function show() {
     var s = Progress.load();
     var lessons = Object.keys(s.lessons).reduce(function (n, m) { return n + s.lessons[m].length; }, 0);
-    $('summary').textContent = Progress.xp(s) + ' XP, ' + lessons + ' lessons, ' +
-      Object.keys(s.quiz).length + ' quizzes, ' + s.demos.length + ' demos.';
+    // "1 lesson" but "2 lessons".
+    var count = function (n, one, many) { return n + ' ' + (n === 1 ? one : many); };
+    $('summary').textContent = Progress.xp(s) + ' XP, ' + count(lessons, 'lesson', 'lessons') + ' read, ' +
+      count(Object.keys(s.quiz).length, 'quiz', 'quizzes') + ' taken, ' + count(s.demos.length, 'demo', 'demos') + ' tried.';
     $('code').textContent = Progress.exportCode();
   }
 

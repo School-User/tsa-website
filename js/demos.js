@@ -98,9 +98,10 @@
       : tokens.length + (tokens.length === 1 ? ' token' : ' tokens') + ' so far.';
   }
 
+  // XP only for real text of your own: at least three tokens.
   tokenInput.addEventListener('input', function () {
     renderTokens();
-    award('tokens');
+    if (roughTokens(tokenInput.value).length >= 3) award('tokens');
   });
   renderTokens();
 
@@ -166,7 +167,9 @@
       return;
     }
 
-    var max = rows[0].count;
+    // Chance = how often this word followed, out of everything that followed.
+    var next = model[word], total = 0;
+    for (var w in next) total += next[w];
     rows.forEach(function (row) {
       var line = el('div', 'pred');
       line.appendChild(el('span', 'pred-word', row.word));
@@ -174,12 +177,12 @@
       var bar = el('span', 'pred-bar');
       bar.setAttribute('aria-hidden', 'true');
       var fill = el('span');
-      fill.style.width = Math.round((row.count / max) * 100) + '%';
+      fill.style.width = Math.round((row.count / total) * 100) + '%';
       bar.appendChild(fill);
       line.appendChild(bar);
 
       line.appendChild(el('span', 'pred-count',
-        row.count + (row.count === 1 ? ' time' : ' times')));
+        Math.round((row.count / total) * 100) + '% · ' + row.count + (row.count === 1 ? ' time' : ' times')));
       predictions.appendChild(line);
     });
   }
@@ -238,9 +241,9 @@
     generated.textContent = note + '“' + words.join(' ') + '”';
   });
 
+  // Typing a start word only previews; XP comes from pressing Generate.
   seedInput.addEventListener('input', function () {
     renderPredictions();
-    award('nextword');
   });
   renderPredictions();
 
@@ -273,9 +276,11 @@
     part.field = document.getElementById(part.input);
     part.item = el('li');
     checklist.appendChild(part.item);
+    // XP once every part of the prompt has some text in it.
     part.field.addEventListener('input', function () {
       updatePrompt();
-      award('prompt');
+      var filled = PARTS.filter(function (p) { return p.field && p.field.value.trim(); }).length;
+      if (filled === PARTS.length) award('prompt');
     });
   });
 
@@ -296,7 +301,7 @@
       }
     });
 
-    preview.textContent = lines.length ? lines.join('\n\n') : EMPTY_PREVIEW;
+    preview.textContent = lines.length ? lines.join('\n') : EMPTY_PREVIEW;
     preview.classList.toggle('is-empty', lines.length === 0);
 
     var filled = PARTS.length - missing.length;
