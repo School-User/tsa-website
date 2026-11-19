@@ -256,3 +256,7 @@ input[type="radio"], input[type="checkbox"] { accent-color: var(--unit, var(--ac
 .quiz-q legend .q-num { display: block; font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--soft); margin-bottom: .2rem; }
 .quiz-intro { color: var(--soft); margin: -.4rem 0 1rem; }
 .quiz-result + .btn, .quiz-result ~ .btn { margin-top: 1rem; }
+/* phones: fade the right edge of the module pills so it's clear the row scrolls */
+@media (max-width: 560px) {
+  .module-nav ul { -webkit-mask-image: linear-gradient(to right, #000 85%, transparent); mask-image: linear-gradient(to right, #000 85%, transparent); padding-right: 2rem; }
+}

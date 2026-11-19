@@ -53,7 +53,8 @@
   // and anything still long is cut into PIECE_MAX-letter chunks.
   var WORD_MAX = 6;
   var PIECE_MAX = 5;
-  var ENDINGS = ['ation', 'ing', 'ers', 'est', 'ed', 'er', 'ly', 's'];
+  var ENDINGS = ['ation', 'ing', 'ers', 'est', 'ed', 'er', 'ly', "'s", "'", 's'];
+  var PREFIXES = ['un', 're', 'dis'];
 
   function splitWord(word) {
     if (word.length <= WORD_MAX) return [{ text: word, kind: 'word' }];
@@ -63,7 +64,11 @@
       if (cut >= 3 && word.toLowerCase().slice(cut) === ENDINGS[e] && !/(ss|is|us)$/i.test(word)) { stem = word.slice(0, cut); end = word.slice(cut); break; }
     }
     var out = [];
-    if (stem.length <= WORD_MAX + 1) out.push({ text: stem, kind: 'piece' });
+    // A long stem may also lose a common start (un|believab|ly).
+    for (var p = 0; p < PREFIXES.length && stem.length > WORD_MAX + 1; p++) {
+      if (stem.toLowerCase().indexOf(PREFIXES[p]) === 0) { out.push({ text: stem.slice(0, PREFIXES[p].length), kind: 'piece' }); stem = stem.slice(PREFIXES[p].length); }
+    }
+    if (stem.length <= WORD_MAX + 2) out.push({ text: stem, kind: 'piece' });
     else for (var i = 0; i < stem.length; i += PIECE_MAX) out.push({ text: stem.slice(i, i + PIECE_MAX), kind: 'piece' });
     if (end) out.push({ text: end, kind: 'piece' });
     return out;
