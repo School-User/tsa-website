@@ -60,7 +60,7 @@
     if (!window.confirm('Delete everything this site stored in this browser, including your theme choice?')) return;
     Progress.reset();
     KEYS.forEach(function (k) { try { localStorage.removeItem(k); } catch (e) { /* blocked */ } });
-    document.documentElement.removeAttribute('data-theme');
+    window.dispatchEvent(new Event('aiportal:theme-reset'));
     show(); $('msg').textContent = 'All of your data on this site was deleted from this browser.';
   });
   show();

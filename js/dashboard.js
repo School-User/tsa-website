@@ -20,6 +20,15 @@
     return e;
   }
 
+  // Where Continue should land: the first lesson not yet read (#lesson-2),
+  // the quiz once all four are read, or the top of a module not started.
+  function resumeAt(s, id) {
+    var read = s.lessons[id] || [];
+    if (!read.length && s.quiz[id] === undefined) return '';
+    for (var n = 1; n <= LESSONS_PER_MODULE; n++) if (read.indexOf('l' + n) === -1) return '#lesson-' + n;
+    return s.quiz[id] >= Progress.PASS ? '' : '#quiz';
+  }
+
   function render() {
     var s = Progress.load(), xp = Progress.xp(s), into = xp % 100;
     document.getElementById('level').textContent = Progress.level(s);
@@ -54,12 +63,13 @@
       var status = 'Lessons read: ' + read + ' of ' + LESSONS_PER_MODULE + ' · ' +
         (score === undefined ? 'Quiz not taken' : 'Best quiz: ' + score + ' of 5');
       card.appendChild(el('p', { 'class': 'status' }, status));
-      card.appendChild(el('a', { 'class': 'btn', href: m.href }, read || score !== undefined ? 'Continue' : 'Start'));
+      var verb = pct === 100 ? 'Review' : read || score !== undefined ? 'Continue' : 'Start';
+      card.appendChild(el('a', { 'class': 'btn', href: m.href + resumeAt(s, m.id), 'aria-label': verb + ' Module ' + (index + 1) + ': ' + m.title }, verb));
       (index < 3 ? core : extra).appendChild(card);
     });
 
     if (!next) { resume.textContent = 'Review Module 1'; resume.href = MODULES[0].href; }
-    else { resume.textContent = (next.started ? 'Continue' : 'Start') + ' Module ' + next.n; resume.href = next.m.href; }
+    else { resume.textContent = (next.started ? 'Continue' : 'Start') + ' Module ' + next.n; resume.href = next.m.href + resumeAt(s, next.m.id); }
 
     var earned = Progress.badges(s), shelf = document.getElementById('badges');
     shelf.textContent = '';

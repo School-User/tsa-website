@@ -73,7 +73,7 @@
   <section class="card" aria-labelledby="pred-h">
     <h2 id="pred-h">2 · Guess the next word</h2>
     <p class="try">From <a href="module1.html#lesson-3">Module 1, Lesson 3: How chatbots work</a>.</p>
-    <p>Language models generate text by repeatedly predicting what is likely to come next, and the prediction is based on patterns in their training text. This demo is a tiny version: it counts which word follows each word in one short paragraph, then reuses those counts. It can only ever produce words it has already seen, which is exactly why a real model needs an enormous amount of text.</p>
+    <p>Language models generate text by repeatedly predicting what is likely to come next, and the prediction is based on patterns in their training text. This demo is a tiny version: it counts which word follows each word in one short paragraph, then reuses those counts. It can only ever produce words it has already seen. Real models learn from vastly more text, so they can continue far more kinds of sentences.</p>
 
     <div class="demo-field">
       <label for="seed-word">Type a word to start from</label>
@@ -89,7 +89,7 @@
     </div>
     <p class="demo-output" id="generated" aria-live="polite"></p>
 
-    <p class="demo-note">The “generate” button picks each next word by weighted random: a word seen twice as often in the paragraph is twice as likely to be chosen. If a run reaches the end of a sentence, it starts again from another word, shown as … . That is how a language model produces different answers to the same question, in a very small way.</p>
+    <p class="demo-note">The “generate” button picks each next word at random, weighted by the counts: a word that followed the current word twice as often in the paragraph is twice as likely to be chosen. If a run reaches the end of a sentence, it starts again from another word, shown as … . That is how a language model produces different answers to the same question, in a very small way.</p>
   </section>
 
   <section class="card" aria-labelledby="prompt-h">

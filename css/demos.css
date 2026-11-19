@@ -20,7 +20,7 @@
   font: inherit;
   color: var(--fg);
   background: var(--surface);
-  border: 2px solid var(--line);
+  border: 2px solid var(--field-line, var(--line));
   border-radius: .75rem;
 }
 textarea.demo-input { resize: vertical; min-height: 6rem; line-height: 1.5; }

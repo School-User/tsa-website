@@ -23,5 +23,7 @@
     } catch (e) { /* Theme still works for this page when storage is blocked. */ }
     render();
   });
+  // "Delete everything" on My data resets the theme to Auto without a reload.
+  window.addEventListener('aiportal:theme-reset', function () { mode = 'auto'; render(); });
   render();
 })();

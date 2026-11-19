@@ -47,7 +47,7 @@
      1. Tokenizer: rough rule-based split, not a real tokenizer.
      --------------------------------------------------------------- */
 
-  var TOKEN_RE = /[A-Za-z0-9'\u2019]+|[^\sA-Za-z0-9'\u2019]/g;
+  var TOKEN_RE = /[\p{L}\p{N}'\u2019]+|\p{Extended_Pictographic}\uFE0F?|[^\s\p{L}\p{N}'\u2019]/gu;
   // Words up to WORD_MAX letters stay whole. Longer words lose a common
   // ending first (learn|ing, pattern|s), the way real tokenizers often split,
   // and anything still long is cut into PIECE_MAX-letter chunks.
@@ -73,7 +73,7 @@
     var raw = text.match(TOKEN_RE) || [];
     var tokens = [];
     raw.forEach(function (piece) {
-      if (/^[A-Za-z0-9'\u2019]+$/.test(piece)) tokens.push.apply(tokens, splitWord(piece));
+      if (/^[\p{L}\p{N}'\u2019]+$/u.test(piece)) tokens.push.apply(tokens, splitWord(piece));
       else tokens.push({ text: piece, kind: 'punct' });
     });
     return tokens;

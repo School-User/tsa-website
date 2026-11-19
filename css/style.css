@@ -213,3 +213,11 @@ section.card:has([data-lesson]) > h2::before { color: var(--unit, var(--soft)); 
 /* logo: a speech bubble (AI chat) with a small spark, drawn in CSS */
 .brand::before { width: 1.6rem; height: 1.35rem; border-radius: .5rem .5rem .5rem .1rem; position: relative;
   background: radial-gradient(circle at 70% 35%, var(--on-accent) 0 .14rem, transparent .16rem), linear-gradient(135deg, var(--u1), var(--u2)); }
+.xp-rules { font-size: .88rem; color: var(--soft); margin: 0 0 .5rem; }
+.xp-rules strong { color: var(--fg); }
+
+/* form controls need 3:1 against the page (WCAG non-text contrast) */
+:root { --field-line: #858e9e; }
+:root[data-theme="dark"] { --field-line: #6f7a8e; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme]) { --field-line: #6f7a8e; } }
+.field, .quiz-options label { border-color: var(--field-line); }
