@@ -51,15 +51,12 @@ h2 { margin: 2rem 0 .75rem; font-size: 1.4rem; line-height: 1.3; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.5rem;
   margin: 0 0 1.25rem; box-shadow: var(--shadow); }
 .card > h2:first-child, .card > h3:first-child { margin-top: 0; }
-main > section.card { border-left: 6px solid var(--accent); }
 .grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); padding: 0; list-style: none; margin: 0; }
-.grid > .card { margin: 0; border-left: 1px solid var(--line); border-top: 6px solid var(--unit, var(--accent)); display: flex; flex-direction: column; gap: .25rem; }
+.grid > .card { margin: 0; border-left: 1px solid var(--line); border-top: 4px solid var(--unit, var(--accent)); display: flex; flex-direction: column; gap: .25rem; }
 .grid > .card h3 { margin: 0; font-size: 1.15rem; }
 .grid > .card p { margin: .25rem 0; color: var(--soft); font-size: .98rem; }
-.grid > .card .btn { margin-top: auto; align-self: flex-start; background: var(--unit, var(--accent)); }
-.grid > .card:nth-child(1) { --unit: var(--u1); } .grid > .card:nth-child(2) { --unit: var(--u2); }
-.grid > .card:nth-child(3) { --unit: var(--u3); } .grid > .card:nth-child(4) { --unit: var(--u4); }
-.grid > .card:nth-child(5) { --unit: var(--u5); } .grid > .card:nth-child(6) { --unit: var(--u6); }
+.grid > .card .btn { margin-top: auto; align-self: flex-start; background: var(--unit, var(--accent)); padding: .45rem 1.1rem; font-size: .95rem; }
+.grid > .card .status { font-size: .88rem; }
 .mastery { font-weight: 700; font-size: .85rem; letter-spacing: .04em; text-transform: uppercase; color: var(--unit, var(--accent)); margin: 0 !important; }
 .grid > .card .progress-bar > span { background: var(--unit, var(--accent)); }
 
@@ -70,7 +67,8 @@ main > section.card { border-left: 6px solid var(--accent); }
 .btn[disabled] { opacity: .65; cursor: default; }
 .btn.ghost { background: transparent; color: var(--accent); border-color: var(--line); }
 .btn.ghost:hover { background: var(--muted); filter: none; }
-.btn[data-lesson] { background: var(--good); color: var(--lesson-text); }
+.btn[data-lesson] { background: transparent; color: var(--good); border-color: var(--good); padding: .45rem 1.1rem; font-size: .95rem; }
+.btn[data-lesson]:hover { background: var(--good-bg); filter: none; }
 .card li a, .card p a { overflow-wrap: anywhere; }
 .btn[data-lesson][disabled] { background: var(--good-bg); color: var(--good); opacity: 1; }
 .lead + .card, h1 + .card { margin-top: 1rem; }
@@ -135,4 +133,30 @@ footer { border-top: 1px solid var(--line); background: var(--surface); text-ali
   .bar nav a { padding: .3rem .5rem; }
   .module-nav-label { display: none; }
   .module-nav a { min-width: 2.5rem; text-align: center; }
+}
+
+/* ---- 2026-11-18 cleanup ---- */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.25rem 0 1.5rem; }
+.section-note { color: var(--soft); margin: -.4rem 0 1rem; }
+.link-btn { background: none; border: 0; padding: 0; font: inherit; font-size: .9rem; color: var(--soft); text-decoration: underline; cursor: pointer; }
+.link-btn:hover { color: var(--accent); }
+
+/* lessons: a small "Lesson N" label above each lesson heading (CSS counter, no markup change) */
+main { counter-reset: lesson; }
+section.card:has([data-lesson]) > h2::before { counter-increment: lesson; content: "Lesson " counter(lesson); display: block;
+  font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--soft); margin-bottom: .15rem; }
+
+/* reference page: forms as two clear rows, sources as a hanging-indent MLA list */
+.forms { list-style: none; padding: 0; margin: 0; display: grid; gap: .5rem; }
+.forms a { display: block; padding: .7rem 1rem; border: 1px solid var(--line); border-radius: .75rem; font-weight: 600; text-decoration: none; }
+.forms a:hover { background: var(--muted); }
+.sources ul { list-style: none; padding: 0; }
+.sources li { padding-left: 2em; text-indent: -2em; margin-bottom: .6rem; }
+
+/* phone: brand and theme toggle share the first row, nav gets its own row */
+@media (max-width: 560px) {
+  .bar > nav { order: 3; width: 100%; }
+  .bar > nav ul { justify-content: space-between; }
+  .module-nav ul { flex-wrap: nowrap; overflow-x: auto; padding-bottom: .2rem; }
 }

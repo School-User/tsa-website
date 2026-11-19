@@ -25,6 +25,10 @@
 <main id="main">
   <h1>Learn AI the smart way</h1>
   <p class="lead">Six short modules for grades 9–12. Read the lessons, pass the quizzes, earn XP and badges, and learn how to use AI well and honestly at school.</p>
+  <p class="hero-actions">
+    <a class="btn" id="resume" href="module1.html">Start Module 1</a>
+    <a class="btn ghost" href="demos.html">Try the demos</a>
+  </p>
 
   <section class="card" aria-labelledby="yp">
     <h2 id="yp" style="margin-top:0">Your progress</h2>
@@ -36,9 +40,13 @@
     <div class="progress-bar" role="progressbar" aria-label="Progress to next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="xpbar"><span style="width:0%"></span></div>
   </section>
 
-  <h2>Modules</h2>
-  <nav aria-label="Jump to a module"><ul class="module-pills" id="module-pills"></ul></nav>
+  <h2>Core modules</h2>
+  <p class="section-note">Concepts, tools and ethics: start here.</p>
   <ul class="grid" id="modules"></ul>
+
+  <h2>Go further</h2>
+  <p class="section-note">Three extension modules once you have the basics.</p>
+  <ul class="grid" id="modules-extra"></ul>
 
   <h2>Badges</h2>
   <ul class="badges" id="badges"></ul>
@@ -76,7 +84,7 @@
     <p id="code-msg" role="status"></p>
   </section>
 
-  <p><button class="btn ghost" id="reset" type="button">Reset my progress</button></p>
+  <p><button class="link-btn" id="reset" type="button">Reset my progress</button></p>
   <noscript><p>This site saves your progress in your browser, so it needs JavaScript turned on to track XP and badges. The lessons are still readable without it.</p></noscript>
 </main>
 

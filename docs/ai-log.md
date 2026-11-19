@@ -34,3 +34,4 @@
 - 2026-11-17 | Claude Code | Switch-devices fix: progress code AIL5 now carries demos, forgiving paste (smart dash, text around code), clearer restore message, clipboard fallback, phone input attrs; tests updated
 - 2026-11-17 | Claude Code | data.html + js/data.js: My data page (download zip, delete progress, delete all); nav link on all pages
 - 2026-11-17 | Claude Code | quiz CSS: question text no longer overlaps card border, wrapped answers align beside radio
+- 2026-11-18 | Claude Code | cleanup pass: hero Start/Continue button, modules grouped Core (1-3) and Go further (4-6), duplicate module pills removed from home, badge state text screen-reader only, lighter lesson cards with CSS 'Lesson N' labels and outlined Mark-as-read, Required forms moved to top of Reference with hanging-indent MLA list, two-row phone header

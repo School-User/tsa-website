@@ -28,21 +28,19 @@
     bar.setAttribute('aria-valuenow', into);
     bar.firstElementChild.style.width = into + '%';
 
-    var list = document.getElementById('modules');
-    var pills = document.getElementById('module-pills');
-    list.textContent = '';
-    pills.textContent = '';
+    var core = document.getElementById('modules');
+    var extra = document.getElementById('modules-extra');
+    var resume = document.getElementById('resume');
+    var next = null; // first module that is not finished, for the Start/Continue button
+    core.textContent = '';
+    extra.textContent = '';
     MODULES.forEach(function (m, index) {
       var read = (s.lessons[m.id] || []).length, score = s.quiz[m.id];
-      var card = el('li', { 'class': 'card', id: 'module-card-' + m.id });
+      // Modules 1-3 are the core brief (concepts, tools, ethics); 4-6 are extensions.
+      var card = el('li', { 'class': 'card', id: 'module-card-' + m.id, style: '--unit: var(--u' + (index + 1) + ')' });
       // Mastery: lessons read are half, passing the quiz is the other half.
       var passed = score >= Progress.PASS;
-      var progressLabel = read >= LESSONS_PER_MODULE && passed ? 'Done' :
-        (read || score !== undefined) ? 'In progress' : 'Not started';
-      var pill = el('li');
-      pill.appendChild(el('a', { href: '#module-card-' + m.id },
-        'Module ' + (index + 1) + ' · ' + progressLabel));
-      pills.appendChild(pill);
+      if (!next && !(read >= LESSONS_PER_MODULE && passed)) next = { m: m, n: index + 1, started: read || score !== undefined };
       var pct = Math.round((read / LESSONS_PER_MODULE) * 50 + (passed ? 50 : 0));
       var label = pct === 100 ? 'Mastered' : passed ? 'Proficient' : (read >= 2 || score !== undefined) ? 'Familiar' : read ? 'Attempted' : 'Not started';
       card.appendChild(el('p', { 'class': 'mastery' }, label));
@@ -54,10 +52,13 @@
       card.appendChild(bar);
       var status = 'Lessons read: ' + read + ' of ' + LESSONS_PER_MODULE + ' · ' +
         (score === undefined ? 'Quiz not taken' : 'Best quiz: ' + score + ' of 5');
-      card.appendChild(el('p', {}, status));
+      card.appendChild(el('p', { 'class': 'status' }, status));
       card.appendChild(el('a', { 'class': 'btn', href: m.href }, read || score !== undefined ? 'Continue' : 'Start'));
-      list.appendChild(card);
+      (index < 3 ? core : extra).appendChild(card);
     });
+
+    if (!next) { resume.textContent = 'Review Module 1'; resume.href = MODULES[0].href; }
+    else { resume.textContent = (next.started ? 'Continue' : 'Start') + ' Module ' + next.n; resume.href = next.m.href; }
 
     var earned = Progress.badges(s), shelf = document.getElementById('badges');
     shelf.textContent = '';
@@ -65,7 +66,8 @@
       var has = earned.indexOf(id) !== -1;
       var li = el('li', { 'class': 'badge' + (has ? '' : ' locked') });
       li.appendChild(el('div', { 'class': 'medal', 'aria-hidden': 'true' }, BADGE_ICONS[id]));
-      li.appendChild(el('span', {}, BADGE_NAMES[id] + (has ? ' (earned)' : ' (locked)')));
+      li.appendChild(el('span', {}, BADGE_NAMES[id]));
+      li.appendChild(el('span', { 'class': 'sr-only' }, has ? ' (earned)' : ' (locked)'));
       shelf.appendChild(li);
     });
   }
