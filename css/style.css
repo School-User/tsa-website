@@ -165,3 +165,6 @@ section.card:has([data-lesson]) > h2::before { counter-increment: lesson; conten
 .quiz-score { font-size: 1.5rem; font-weight: 800; margin: 0 0 .25rem; }
 .quiz-result p { margin: .4rem 0; }
 .quiz-next .btn { margin-top: .25rem; }
+.try { background: var(--muted); border-radius: .75rem; padding: .55rem .9rem; font-size: .95rem; }
+h2 + .try { margin-top: -.25rem; }
+[id] { scroll-margin-top: 1rem; }

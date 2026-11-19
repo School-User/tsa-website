@@ -36,3 +36,4 @@
 - 2026-11-17 | Claude Code | quiz CSS: question text no longer overlaps card border, wrapped answers align beside radio
 - 2026-11-18 | Claude Code | cleanup pass: hero Start/Continue button, modules grouped Core (1-3) and Go further (4-6), duplicate module pills removed from home, badge state text screen-reader only, lighter lesson cards with CSS 'Lesson N' labels and outlined Mark-as-read, Required forms moved to top of Reference with hanging-indent MLA list, two-row phone header
 - 2026-11-18 | Claude Code | quiz results: big score line, pass/fail colour, next step (unread lessons, next module or dashboard) in js/quiz.js
+- 2026-11-18 | Claude Code | 'Try it' links from Module 1 Lesson 3 and Module 2 Lesson 2 to the matching demos, with links back from each demo
