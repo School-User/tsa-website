@@ -24,7 +24,7 @@
   border-radius: .75rem;
 }
 textarea.demo-input { resize: vertical; min-height: 6rem; line-height: 1.5; }
-.demo-input::placeholder { color: var(--soft); opacity: .8; }
+.demo-input::placeholder { color: var(--soft); opacity: 1; }
 .demo-input:focus { border-color: var(--accent); }
 .demo-hint { margin: 0; color: var(--soft); font-size: .9rem; }
 .demo-status { margin: .5rem 0; font-weight: 600; font-size: .95rem; }
@@ -89,14 +89,14 @@ textarea.demo-input { resize: vertical; min-height: 6rem; line-height: 1.5; }
 .predictions { display: grid; gap: .5rem; margin: .5rem 0 1rem; min-height: 2.5rem; }
 .pred {
   display: grid;
-  grid-template-columns: minmax(5rem, 9rem) 1fr auto;
+  grid-template-columns: minmax(5rem, 9rem) 1fr 7.5rem;
   align-items: center;
   gap: .75rem;
 }
 .pred-word { font-weight: 700; overflow-wrap: anywhere; }
 .pred-bar { height: .85rem; background: var(--muted); border-radius: 99px; overflow: hidden; }
 .pred-bar > span { display: block; height: 100%; background: var(--accent); border-radius: 99px; }
-.pred-count { color: var(--soft); font-size: .88rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pred-count { text-align: right; color: var(--soft); font-size: .88rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
 
 .demo-output {
   margin: .8rem 0 0;
@@ -173,3 +173,6 @@ textarea.demo-input { resize: vertical; min-height: 6rem; line-height: 1.5; }
   .pred-bar { grid-column: 1 / -1; grid-row: 2; }
   .chip { font-size: .85rem; }
 }
+.training { margin: 0 0 1rem; }
+.training summary { cursor: pointer; color: var(--accent); font-weight: 600; }
+.training p { background: var(--muted); border-radius: .75rem; padding: .75rem 1rem; margin: .5rem 0 0; }

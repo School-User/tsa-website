@@ -246,7 +246,7 @@ input[type="radio"], input[type="checkbox"] { accent-color: var(--unit, var(--ac
 
 /* home polish */
 .hero { margin-bottom: 1.5rem; }
-.badges { display: grid; grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr)); gap: 1rem; }
+.badges { display: grid; grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr)); gap: 1rem; }
 .badge { width: auto; }
 
 /* phones: keep short module names in the pills (the row scrolls sideways) */

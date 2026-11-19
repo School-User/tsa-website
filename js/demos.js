@@ -53,7 +53,7 @@
   // and anything still long is cut into PIECE_MAX-letter chunks.
   var WORD_MAX = 6;
   var PIECE_MAX = 5;
-  var ENDINGS = ['ation', 'ing', 'ers', 'est', 'ed', 'er', 'ly', "'s", "'", 's'];
+  var ENDINGS = ['ation', 'ably', 'ibly', 'ing', 'ers', 'est', 'ed', 'er', 'ly', "'s", "'", 's'];
   var PREFIXES = ['un', 're', 'dis'];
 
   function splitWord(word) {
@@ -123,6 +123,9 @@
     'When students ask a vague question, AI gives a vague answer. ' +
     'Teachers use AI to plan lessons, and students use AI to practice. ' +
     'AI is a tool for learning, not a replacement for thinking.';
+
+  var trainingBox = document.getElementById('training-text');
+  if (trainingBox) trainingBox.textContent = TRAINING; // so students can see where the counts come from
 
   var model = Object.create(null);   // word -> { nextWord: count }
   var vocab = Object.create(null);   // every word in the paragraph
@@ -289,7 +292,7 @@
     // XP once every part has at least two words in it.
     part.field.addEventListener('input', function () {
       updatePrompt();
-      var filled = PARTS.filter(function (p) { return p.field && p.field.value.trim().split(/\s+/).length >= 2; }).length;
+      var filled = PARTS.filter(function (p) { return p.field && (p.field.value.match(/[\p{L}\p{N}]+/gu) || []).length >= 2; }).length;
       if (filled === PARTS.length) award('prompt');
     });
   });

@@ -153,7 +153,7 @@
       var n = parseInt(moduleId.slice(1), 10);
       var p = make('p', 'quiz-next');
       if (passed && read < total) {
-        p.textContent = 'Next: mark ' + (total - read === 1 ? 'the last lesson' : 'the other ' + (total - read) + ' lessons') + ' as read to master this module.';
+        p.textContent = 'Next: mark ' + (read === 0 ? 'all ' + total + ' lessons' : total - read === 1 ? 'the last lesson' : 'the other ' + (total - read) + ' lessons') + ' as read to master this module.';
         return p;
       }
       var link = make('a', passed ? 'btn' : 'btn ghost', passed ? (n < 6 ? 'Next: Module ' + (n + 1) : 'Back to your dashboard') : 'Back to your dashboard');

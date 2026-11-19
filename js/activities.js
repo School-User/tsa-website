@@ -55,14 +55,19 @@
         if (hints[i].test(rewrite.value)) found.push(boxes[i].value);
       }
 
-      var message = 'The weak prompt needs all four parts. Role, context, and format are missing, and the task is too vague.';
-      if (missed.length) message += ' Also check ' + missed.join(', ') + '.';
-      message += found.length
-        ? ' Your rewrite has hints of ' + found.join(', ') + '.'
-        : ' No keywords for the four parts were spotted in your rewrite.';
-      message += ' Compare your rewrite with the lesson example below.';
+      // Part 1: did they spot that all four parts were missing or vague?
+      var message = missed.length === 0
+        ? 'Right: all four parts were missing or too vague.'
+        : 'Look again: ' + missed.join(', ') + (missed.length === 1 ? ' is' : ' are') + ' also missing or too vague in “Tell me about cells.”';
+      // Part 2: which parts does the rewrite seem to include (simple keyword hints)?
+      var notFound = [];
+      for (var j = 0; j < boxes.length; j++) if (found.indexOf(boxes[j].value) === -1) notFound.push(boxes[j].value);
+      message += notFound.length === 0
+        ? ' Your rewrite seems to include all four parts.'
+        : ' Your rewrite may still need: ' + notFound.join(', ') + '.';
+      message += ' Compare it with the lesson example below.';
       example.hidden = false;
-      feedback(status, message, missed.length === 0 && found.length === boxes.length);
+      feedback(status, message, missed.length === 0 && notFound.length === 0);
     }
 
     card.querySelector('button').addEventListener('click', checkPrompt);
