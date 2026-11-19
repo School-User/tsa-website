@@ -53,3 +53,4 @@
 - 2026-11-19 | Claude Code | module icons (same line drawings as the badges) on home cards and beside each module page title via a CSS mask; header colour bar replaced by the icon
 - 2026-11-19 | Claude Code | practice cards now give 10 XP once each (progress.js completePractice, AIL6 progress code with practice bits, old codes still restore; tests added), '+10 XP' note on the card, XP rules/max XP/data summary updated
 - 2026-11-19 | Codex | added two independent, non-vendor sources (U.S. Department of Education 2023 AI report via ERIC; Common Sense Education teacher tips) used in Module 2 and Module 3, a worked minutes-to-seconds example in Module 6 Lesson 2, less repeated vendor phrasing in Modules 5-6. Claude Code opened both sources and confirmed the quoted sentences and the citation author/date, styled the new code block
+- 2026-11-19 | Claude Code | diagram labels drawn larger on phones (12->14, 14->16 SVG units) so they read at ~10-12px
