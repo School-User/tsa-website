@@ -6,7 +6,7 @@
     { id: 'm3', href: 'module3.html', title: 'Using AI ethically at school', blurb: 'Integrity, privacy, bias, and how to cite and disclose AI use.' },
     { id: 'm4', href: 'module4.html', title: 'Going deeper', blurb: 'Kinds of AI, risks experts list, prompting with examples, and why rules exist.' },
     { id: 'm5', href: 'module5.html', title: 'Building with AI responsibly', blurb: 'The 4Ds, learning to code with AI, checking AI-written code, and your own commitment.' },
-    { id: 'm6', href: 'module6.html', title: 'Coding with AI, hands on', blurb: 'Ask for code clearly, understand it, find bugs, and run tests and checks.' }
+    { id: 'm6', href: 'module6.html', title: 'Coding with AI: hands-on', blurb: 'Ask for code clearly, understand it, find bugs, and run tests and checks.' }
   ];
   var LESSONS_PER_MODULE = 4;
   var BADGE_NAMES = { m1: 'AI Basics', m2: 'Tool Pro', m3: 'Ethical Thinker', m4: 'Deep Diver', m5: 'Responsible Builder', m6: 'Code Checker', 'reflective-learner': 'Reflective Learner' };
@@ -114,7 +114,7 @@
   copyBtn.addEventListener('click', function () {
     copyText(codeOut.textContent).then(
       function () { msg.textContent = 'Copied. Paste it on your other device.'; },
-      function () { msg.textContent = 'Could not copy automatically. Tap the code to select it, then copy it by hand.'; });
+      function () { msg.textContent = 'Could not copy automatically. Select the code and copy it yourself.'; });
   });
 
   document.getElementById('restore').addEventListener('click', function () {
@@ -126,14 +126,14 @@
       render();
       msg.textContent = gained > 0
         ? 'Progress restored. Added ' + gained + ' XP from that code.'
-        : 'That code is valid, but this device already has all of that progress, so nothing changed. Restore on the OTHER device, the one that is missing progress.';
+        : 'That code is valid, but this device already has all of that progress, so nothing changed. Restore it on the other device, the one that is missing progress.';
     } else {
       msg.textContent = 'That code does not look right. Check for typos and try again.';
     }
   });
 
   document.getElementById('reset').addEventListener('click', function () {
-    if (window.confirm('Reset all XP and badges?')) { Progress.reset(); render(); }
+    if (window.confirm('Reset all progress? This clears XP, badges, lessons, quiz scores, and demos.')) { Progress.reset(); render(); }
   });
   render();
 })();

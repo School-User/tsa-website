@@ -301,7 +301,7 @@
 
     var filled = PARTS.length - missing.length;
     var message = filled === PARTS.length
-      ? 'All 4 parts are filled in. The AI knows who to be, what to do, what to know, and what the answer should look like.'
+      ? 'All four parts are filled in. You have told the AI who to be, what to do, what to know, and what the answer should look like.'
       : filled + ' of 4 parts filled in. Missing: ' + missing.join(', ') + '.';
     if (status.textContent !== message) status.textContent = message;
   }

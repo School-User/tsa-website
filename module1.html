@@ -24,15 +24,15 @@
 <nav class="module-nav" aria-label="Modules"><ul>
   <li><a href="module1.html" aria-current="page"><span>1</span><span class="module-nav-label"> · What AI is</span></a></li>
   <li><a href="module2.html"><span>2</span><span class="module-nav-label"> · Using AI tools</span></a></li>
-  <li><a href="module3.html"><span>3</span><span class="module-nav-label"> · Ethical AI</span></a></li>
+  <li><a href="module3.html"><span>3</span><span class="module-nav-label"> · Using AI ethically</span></a></li>
   <li><a href="module4.html"><span>4</span><span class="module-nav-label"> · Going deeper</span></a></li>
-  <li><a href="module5.html"><span>5</span><span class="module-nav-label"> · Building responsibly</span></a></li>
+  <li><a href="module5.html"><span>5</span><span class="module-nav-label"> · Building with AI</span></a></li>
   <li><a href="module6.html"><span>6</span><span class="module-nav-label"> · Coding with AI</span></a></li>
 </ul></nav></header>
 
 <main id="main">
   <h1>What AI actually is</h1>
-  <p class="lead">Explore what AI is, how it learns and produces text, and why its answers need checking.</p>
+  <p class="lead">Explore what AI is, how it learns, how it produces text, and why its answers need checking.</p>
 
   <figure class="diagram">
     <svg viewBox="0 0 480 120" role="img" aria-label="Training data is fed into a model, which learns patterns and produces a prediction.">
@@ -75,7 +75,7 @@
   <section class="card" aria-labelledby="lesson-3">
     <h2 id="lesson-3">How chatbots work</h2>
     <p>A chatbot is a program that responds to messages in a conversation. Many modern chatbots use a language model, a computer model trained on patterns in text. During training, the model learns to predict what text might come next. When responding, it uses your message and the conversation so far to generate a reply one piece at a time.</p>
-    <p>Those pieces are called tokens. As <a href="https://help.openai.com/en/articles/4936856-understanding-and-counting-tokens">OpenAI's token guide</a> explains, a token may be a whole word, part of a word, or punctuation. “Predicting the next word” is a useful shortcut, but predicting the next token is more precise. The model repeatedly selects a next token based on the text available to it, building a response.</p>
+    <p>Those pieces are called tokens. As <a href="https://help.openai.com/en/articles/4936856-understanding-and-counting-tokens">OpenAI's token guide</a> explains, a token may be a whole word, part of a word, or a punctuation mark. “Predicting the next word” is a useful shortcut, but predicting the next token is more precise. The model repeatedly selects a next token based on the text available to it, building a response.</p>
     <p>A fluent reply can feel like a conversation with a person. But the chatbot generates responses using learned patterns and computation, so do not assume it understands or feels things the way a person does. Treat its confidence or friendly tone as no guarantee that it is right.</p>
     <p class="try"><strong>Try it:</strong> <a href="demos.html#tok-h">split your own sentence into tokens</a>, then <a href="demos.html#pred-h">watch a tiny model guess the next word</a>.</p>
     <button class="btn" type="button" data-lesson="l3">Mark as read</button>
@@ -111,7 +111,7 @@ const QUESTIONS = [
     "why": "Machine learning is part of AI, and many generative tools are built using it."
   },
   {
-    "q": "Which example uses AI rather than only following a fixed, hand-written arithmetic rule?",
+    "q": "Which example uses machine learning instead of a fixed rule written by a person?",
     "options": [
       "A calculator adding two numbers with a fixed built-in rule.",
       "A light switch turning on as soon as it is pressed.",
@@ -125,7 +125,7 @@ const QUESTIONS = [
     "q": "A model trained on labeled dog and non-dog photos sees a new photo; what does its prediction represent?",
     "options": [
       "An estimate based on patterns learned during training.",
-      "Proof that the photo must contain a dog in it.",
+      "Proof that the photo contains a dog.",
       "A memory of having met that animal before.",
       "A guarantee that every future prediction will be right."
     ],
@@ -144,7 +144,7 @@ const QUESTIONS = [
     "why": "A token is a unit of text processed by the model and is not always a whole word."
   },
   {
-    "q": "A chatbot confidently gives a recent date and an unfamiliar citation; what should you do?",
+    "q": "A chatbot confidently gives a date for a recent event and an unfamiliar citation; what should you do?",
     "options": [
       "Assume both are correct because the answer sounds confident.",
       "Check the date and citation in reliable, current sources.",

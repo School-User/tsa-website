@@ -146,7 +146,7 @@
       var n = parseInt(moduleId.slice(1), 10);
       var p = make('p', 'quiz-next');
       if (passed && read < total) {
-        p.textContent = 'Next: mark the other ' + (total - read) + ' lesson' + (total - read === 1 ? '' : 's') + ' as read to master this module.';
+        p.textContent = 'Next: mark ' + (total - read === 1 ? 'the last lesson' : 'the other ' + (total - read) + ' lessons') + ' as read to master this module.';
         return p;
       }
       var link = make('a', passed ? 'btn' : 'btn ghost', passed ? (n < 6 ? 'Next: Module ' + (n + 1) : 'Back to your dashboard') : 'Back to your dashboard');
@@ -181,10 +181,10 @@
       result.className = 'quiz-result ' + (correct >= pass ? 'passed' : 'failed');
       result.appendChild(make('p', 'quiz-score', correct + ' of ' + questions.length + ' correct'));
       result.appendChild(make('p', '', correct >= pass
-        ? 'Passed. You earned this module\'s badge.'
-        : 'Not passed yet. The pass mark is ' + pass + ' of ' + questions.length + '. Check the feedback above, then retry.'));
+        ? 'Passed. You earned this module’s badge.'
+        : 'Not passed yet. The passing score is ' + pass + ' of ' + questions.length + '. Check the feedback above, then retry.'));
       result.appendChild(make('p', 'muted',
-        'This attempt is worth ' + (correct * 10) + ' quiz XP at 10 per correct answer. Only your best score counts, so a retake adds XP only if it beats your earlier best.'));
+        'This score is worth ' + (correct * 10) + ' quiz XP (10 per correct answer). Only your best score counts, so a retake adds XP only if it beats your earlier best.'));
       result.appendChild(nextStep(correct >= pass));
 
       alertBox.textContent = '';

@@ -5,8 +5,8 @@
 <script src="js/theme.js" defer></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Module 6: Coding with AI, hands on – AI Lab</title>
-<meta name="description" content="Coding with AI, hands on: asking for code clearly, understanding it before you use it, finding bugs, and testing what AI writes.">
+<title>Module 6: Coding with AI: hands-on – AI Lab</title>
+<meta name="description" content="Coding with AI: hands-on: asking for code clearly, understanding it before you use it, finding bugs, and testing what AI writes.">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/activities.css">
 <script src="js/activities.js" defer></script>
@@ -26,14 +26,14 @@
 <nav class="module-nav" aria-label="Modules"><ul>
   <li><a href="module1.html"><span>1</span><span class="module-nav-label"> · What AI is</span></a></li>
   <li><a href="module2.html"><span>2</span><span class="module-nav-label"> · Using AI tools</span></a></li>
-  <li><a href="module3.html"><span>3</span><span class="module-nav-label"> · Ethical AI</span></a></li>
+  <li><a href="module3.html"><span>3</span><span class="module-nav-label"> · Using AI ethically</span></a></li>
   <li><a href="module4.html"><span>4</span><span class="module-nav-label"> · Going deeper</span></a></li>
-  <li><a href="module5.html"><span>5</span><span class="module-nav-label"> · Building responsibly</span></a></li>
+  <li><a href="module5.html"><span>5</span><span class="module-nav-label"> · Building with AI</span></a></li>
   <li><a href="module6.html" aria-current="page"><span>6</span><span class="module-nav-label"> · Coding with AI</span></a></li>
 </ul></nav></header>
 
 <main id="main">
-  <h1>Coding with AI, hands on</h1>
+  <h1>Coding with AI: hands-on</h1>
   <p class="lead">Practice asking for code clearly, understanding it before you use it, finding bugs, and testing what AI writes.</p>
 
   <figure class="diagram">
@@ -65,7 +65,7 @@
 
   <section class="card" aria-labelledby="lesson-1">
     <h2 id="lesson-1">Asking for code clearly</h2>
-    <p>Good prompts for code follow the same rules as other prompts, only more precisely. Say what you want, what language you are using, and what the result should do.</p>
+    <p>Good prompts for code follow the same rules as other prompts, but they need to be more precise. Say what you want, what language you are using, and what the result should do.</p>
     <p><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices">Anthropic suggests a test</a>: show your prompt to a colleague with little background on the task. If they would be confused, Anthropic says Claude will be too, and a clear prompt helps any tool.</p>
     <p><a href="https://docs.github.com/en/copilot/get-started/best-practices">GitHub suggests</a> being specific about your requirements and breaking complex tasks into smaller pieces. Anthropic also notes that if you only ask “can you suggest some changes,” Claude will sometimes give suggestions instead of making them, so say which you want. Examples help: Anthropic recommends including 3–5 examples for best results.</p>
     <button class="btn" type="button" data-lesson="l1">Mark as read</button>
@@ -74,7 +74,7 @@
   <section class="card" aria-labelledby="lesson-2">
     <h2 id="lesson-2">Understand it before you use it</h2>
     <p>GitHub's guidance says to understand suggested code before you implement it. If you do not understand a suggestion, you can ask the tool to explain the code.</p>
-    <p>If you cannot explain a line, you do not yet own it. Ask “what does this line do?” and explain it back in your own words.</p>
+    <p>If you cannot explain a line, you do not yet own it. Ask “What does this line do?” and explain it in your own words.</p>
     <button class="btn" type="button" data-lesson="l2">Mark as read</button>
   </section>
 
@@ -87,8 +87,8 @@
 
   <section class="card" aria-labelledby="lesson-4">
     <h2 id="lesson-4">Tests and checks</h2>
-    <p><a href="https://docs.github.com/en/copilot/tutorials/review-ai-generated-code">GitHub's tutorial on reviewing AI-generated code</a> says to run automated tests and static analysis tools first, and to make sure the code compiles and all tests pass. If your project has no tests yet, start with the simple checks below.</p>
-    <p>It warns you to watch out for hallucinated or suspicious packages—a library the AI names that may not exist—so verify packages yourself. It also says to watch for tests that were deleted or skipped instead of fixed, and to be skeptical of code that looks right but does not match your intent.</p>
+    <p><a href="https://docs.github.com/en/copilot/tutorials/review-ai-generated-code">GitHub's tutorial on reviewing AI-generated code</a> says to run automated tests and use static analysis tools first, and to make sure the code compiles and all tests pass. If your project has no tests yet, start with the simple checks below.</p>
+    <p>It warns you to watch out for made-up or suspicious packages (libraries the AI names that may not exist), so verify each package yourself. It also says to watch for tests that were deleted or skipped instead of fixed, and to be skeptical of code that looks right but does not match your intent.</p>
     <p>For a small website like this one, a test can be as simple as opening the page and trying each button.</p>
     <button class="btn" type="button" data-lesson="l4">Mark as read</button>
   </section>

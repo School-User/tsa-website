@@ -25,9 +25,9 @@
 <nav class="module-nav" aria-label="Modules"><ul>
   <li><a href="module1.html"><span>1</span><span class="module-nav-label"> · What AI is</span></a></li>
   <li><a href="module2.html"><span>2</span><span class="module-nav-label"> · Using AI tools</span></a></li>
-  <li><a href="module3.html"><span>3</span><span class="module-nav-label"> · Ethical AI</span></a></li>
+  <li><a href="module3.html"><span>3</span><span class="module-nav-label"> · Using AI ethically</span></a></li>
   <li><a href="module4.html"><span>4</span><span class="module-nav-label"> · Going deeper</span></a></li>
-  <li><a href="module5.html"><span>5</span><span class="module-nav-label"> · Building responsibly</span></a></li>
+  <li><a href="module5.html"><span>5</span><span class="module-nav-label"> · Building with AI</span></a></li>
   <li><a href="module6.html"><span>6</span><span class="module-nav-label"> · Coding with AI</span></a></li>
 </ul></nav></header>
 
@@ -38,7 +38,7 @@
   <p class="demo-privacy">Nothing you type on this page leaves your browser. All three demos are plain JavaScript running on this page: there is no internet request, no account, and no API key, and your text is not saved.</p>
 
   <section class="card" aria-labelledby="demo-xp-h">
-    <h2 id="demo-xp-h" style="margin-top:0">Your demo XP</h2>
+    <h2 id="demo-xp-h" style="margin-top:0">Your XP so far</h2>
     <div class="stats">
       <span>Level <strong id="demo-level">1</strong></span>
       <span><strong id="demo-xp">0</strong> XP</span>
@@ -67,7 +67,7 @@
       <li><span class="chip chip--punct" aria-hidden="true">,</span> punctuation</li>
     </ul>
 
-    <p class="demo-note">This is a simplified illustration, not a real tokenizer. A real model uses a learned vocabulary of many thousands of pieces, and it also has its own rules for spaces, accents, and emoji, so your count here will not match a real model.</p>
+    <p class="demo-note">This is a simplified illustration, not a real tokenizer. A real model uses a learned vocabulary of many thousands of pieces, and it also has its own rules for spaces, accents, and emoji, so your count here will not match a real model’s count.</p>
   </section>
 
   <section class="card" aria-labelledby="pred-h">
@@ -89,13 +89,13 @@
     </div>
     <p class="demo-output" id="generated" aria-live="polite"></p>
 
-    <p class="demo-note">The “generate” button picks each next word at random, weighted by the counts: a word that followed the current word twice as often in the paragraph is twice as likely to be chosen. If a run reaches the end of a sentence, it starts again from another word, shown as … . That is how a language model produces different answers to the same question, in a very small way.</p>
+    <p class="demo-note">The “generate” button picks each next word at random, weighted by the counts: a word that followed the current word twice as often in the paragraph is twice as likely to be chosen. If a run reaches the end of a sentence, it starts again from another word, shown as “…”. Random choices like these are one small reason a language model can give different answers to the same question.</p>
   </section>
 
   <section class="card" aria-labelledby="prompt-h">
     <h2 id="prompt-h">3 · Build a stronger prompt</h2>
     <p class="try">From <a href="module2.html#lesson-2">Module 2, Lesson 2: Writing a good prompt</a>.</p>
-    <p>A prompt works better when it says who the AI should act as, what you actually want, the context it needs, and how the answer should be laid out. When a part is missing, the model has to guess, and it usually fills the gap with something generic. Fill in the fields below and watch the prompt and the checklist change.</p>
+    <p>A prompt works better when it says who the AI should act as, what you actually want, the context it needs, and how the answer should be laid out. When a part is missing, the model has to guess, and the answer may fill the gap with something generic. Fill in the fields below and watch the prompt and the checklist change.</p>
 
     <div class="prompt-fields">
       <div class="demo-field">
@@ -125,7 +125,7 @@
     <p class="demo-status" id="prompt-status" aria-live="polite"></p>
     <ul class="checklist" id="prompt-checklist" aria-label="Prompt parts checklist"></ul>
 
-    <h3>Weak prompt vs strong prompt</h3>
+    <h3>Weak prompt vs. strong prompt</h3>
     <div class="examples">
       <div class="example example--weak">
         <h4>Weak prompt</h4>
