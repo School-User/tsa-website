@@ -14,6 +14,12 @@
     element.appendChild(document.createTextNode(message.slice(cut)));
   }
 
+  // "Role", "Role and Task", "Role, Task, and Format".
+  function listOf(items) {
+    if (items.length < 3) return items.join(' and ');
+    return items.slice(0, -1).join(', ') + ', and ' + items[items.length - 1];
+  }
+
   // Finishing a practice card gives 10 XP once (saved by js/progress.js).
   // The module id comes from the current module pill, e.g. module3.html -> m3.
   function finished(card) {
@@ -77,13 +83,13 @@
       // Part 1: did they spot that all four parts were missing or vague?
       var message = missed.length === 0
         ? 'Right: all four parts were missing or too vague.'
-        : 'Look again: ' + missed.join(', ') + (missed.length === 1 ? ' is' : ' are') + ' also missing or too vague in “Tell me about cells.”';
+        : 'Look again: ' + listOf(missed) + (missed.length === 1 ? ' is' : ' are') + ' missing or too vague in “Tell me about cells.”';
       // Part 2: which parts does the rewrite seem to include (simple keyword hints)?
       var notFound = [];
       for (var j = 0; j < boxes.length; j++) if (found.indexOf(boxes[j].value) === -1) notFound.push(boxes[j].value);
       message += notFound.length === 0
         ? ' Your rewrite seems to include all four parts.'
-        : ' Your rewrite may still need: ' + notFound.join(', ') + '.';
+        : ' Your rewrite may still need ' + listOf(notFound) + '.';
       message += ' Compare it with the lesson example below.';
       example.hidden = false;
       feedback(status, message, missed.length === 0 && notFound.length === 0);

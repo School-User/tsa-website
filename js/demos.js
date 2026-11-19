@@ -48,10 +48,10 @@
      --------------------------------------------------------------- */
 
   var TOKEN_RE = /[\p{L}\p{N}'\u2019]+|\p{Extended_Pictographic}\uFE0F?|[^\s\p{L}\p{N}'\u2019]/gu;
-  // Words up to WORD_MAX letters stay whole. Longer words lose a common
+  // Words up to WORD_MAX (7) letters stay whole. Longer words lose a common
   // ending first (learn|ing, pattern|s), the way real tokenizers often split,
   // and anything still long is cut into PIECE_MAX-letter chunks.
-  var WORD_MAX = 6;
+  var WORD_MAX = 7;
   var PIECE_MAX = 5;
   var ENDINGS = ['ation', 'ably', 'ibly', 'ing', 'ers', 'est', 'ed', 'er', 'ly', "'s", "'", 's'];
   var PREFIXES = ['un', 're', 'dis'];
@@ -68,7 +68,9 @@
     for (var p = 0; p < PREFIXES.length && stem.length > WORD_MAX + 1; p++) {
       if (stem.toLowerCase().indexOf(PREFIXES[p]) === 0) { out.push({ text: stem.slice(0, PREFIXES[p].length), kind: 'piece' }); stem = stem.slice(PREFIXES[p].length); }
     }
-    if (stem.length <= WORD_MAX + 2) out.push({ text: stem, kind: 'piece' });
+    // A word that lost nothing is still one whole word (patient, biology).
+    if (out.length === 0 && !end && stem.length <= WORD_MAX + 1) return [{ text: word, kind: 'word' }];
+    if (stem.length <= WORD_MAX + 1) out.push({ text: stem, kind: 'piece' });
     else for (var i = 0; i < stem.length; i += PIECE_MAX) out.push({ text: stem.slice(i, i + PIECE_MAX), kind: 'piece' });
     if (end) out.push({ text: end, kind: 'piece' });
     return out;
@@ -292,7 +294,11 @@
     // XP once every part has at least two words in it.
     part.field.addEventListener('input', function () {
       updatePrompt();
-      var filled = PARTS.filter(function (p) { return p.field && (p.field.value.match(/[\p{L}\p{N}]+/gu) || []).length >= 2; }).length;
+      var texts = PARTS.map(function (p) { return p.field ? p.field.value.trim().toLowerCase() : ''; });
+      // A part counts with 2+ words, and only if it is not a copy of another part.
+      var filled = PARTS.filter(function (p, i) {
+        return (texts[i].match(/[\p{L}\p{N}]+/gu) || []).length >= 2 && texts.indexOf(texts[i]) === i;
+      }).length;
       if (filled === PARTS.length) award('prompt');
     });
   });
