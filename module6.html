@@ -8,6 +8,8 @@
 <title>Module 6: Coding with AI, hands on – AI Lab</title>
 <meta name="description" content="Coding with AI, hands on: asking for code clearly, understanding it before you use it, finding bugs, and testing what AI writes.">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/activities.css">
+<script src="js/activities.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -89,6 +91,32 @@
     <p>It warns you to watch out for hallucinated or suspicious packages—a library the AI names that may not exist—so verify packages yourself. It also says to watch for tests that were deleted or skipped instead of fixed, and to be skeptical of code that looks right but does not match your intent.</p>
     <p>For a small website like this one, a test can be as simple as opening the page and trying each button.</p>
     <button class="btn" type="button" data-lesson="l4">Mark as read</button>
+  </section>
+
+  <section class="card activity" id="bug-practice" aria-labelledby="bug-title">
+    <h2 id="bug-title">Practice: find the bug</h2>
+    <p>An AI assistant wrote this function to average a nonempty list of scores. Read it before running the tests, as you would with any AI-written code.</p>
+    <pre class="field"><code id="bug-code"></code></pre>
+    <fieldset>
+      <legend>Which test do you predict will fail?</legend>
+      <div class="quiz-options">
+        <label><input type="radio" name="bug-prediction" value="1"> <span></span></label>
+        <label><input type="radio" name="bug-prediction" value="2"> <span></span></label>
+        <label><input type="radio" name="bug-prediction" value="3"> <span></span></label>
+      </div>
+      <button class="btn" id="run-bug-tests" type="button">Run the tests</button>
+      <p class="quiz-feedback" id="bug-feedback" aria-live="polite" aria-atomic="true"></p>
+    </fieldset>
+
+    <div id="bug-results" hidden>
+      <h3>Original results</h3>
+      <ol id="original-results"></ol>
+      <p>This is a logic error. The function runs, but it always divides by 3. Divide by <code>scores.length</code> to use the actual number of scores.</p>
+      <h3>Fixed version</h3>
+      <pre class="field"><code id="fixed-code"></code></pre>
+      <p class="muted">The same tests run again with the fix.</p>
+      <ol id="fixed-results"></ol>
+    </div>
   </section>
 
   <h2>Check your understanding</h2>

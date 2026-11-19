@@ -1,0 +1,38 @@
+/* Use the module accent and the shared light/dark palette. */
+.activity { border-top: 4px solid var(--unit, var(--accent)); }
+.activity fieldset { min-inline-size: 0; border: 0; padding: 0; margin: 0 0 1rem; }
+.activity legend { font-weight: 700; padding: 0; }
+.activity .quiz-feedback:empty { margin: 0; padding: 0; }
+
+.activity-example {
+  background: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: .75rem;
+  margin: .5rem 0 .75rem;
+}
+
+.activity-example .btn {
+  max-width: 100%;
+  min-height: 2rem;
+  padding: .1rem .5rem;
+  margin-block: .2rem;
+  background: var(--surface);
+  overflow-wrap: anywhere;
+}
+
+.activity-example .btn[aria-pressed="true"] {
+  color: var(--unit, var(--accent));
+  border-color: currentColor;
+  text-decoration: underline;
+}
+
+/* Keep code readable on small screens. */
+.activity pre.field {
+  width: 100%;
+  background: var(--muted);
+  font: .9rem/1.5 ui-monospace, monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.activity pre.field { font-variant-ligatures: none; }

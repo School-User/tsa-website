@@ -8,6 +8,8 @@
 <title>Module 3: Using AI ethically at school – AI Lab</title>
 <meta name="description" content="Explore academic integrity, privacy, fairness, and responsible disclosure when using AI at school.">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/activities.css">
+<script src="js/activities.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -72,6 +74,40 @@
     <p>Instead, describe the problem without identifying anyone: “A student is having trouble organizing a schedule” is safer than including a name and personal history. Remove identifying details from examples, and ask your teacher before uploading class materials. Some details can still identify a person even after a name is removed, so check the whole passage.</p>
     <p>Services can handle and store data differently. <a href="https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research">UNESCO's guidance</a> stresses protecting learners' data privacy; read the tool's privacy information and follow school rules before using it. If you accidentally share sensitive information, tell a trusted adult or teacher promptly and follow their guidance.</p>
     <button class="btn" type="button" data-lesson="l2">Mark as read</button>
+  </section>
+
+  <section class="card activity" id="privacy-practice" aria-labelledby="privacy-title">
+    <h2 id="privacy-title">Practice: make this prompt safe</h2>
+    <fieldset>
+      <legend>1. Select the private parts of this fictional draft.</legend>
+      <p class="activity-example">“Help me write a message to my
+        <button class="btn ghost" type="button" aria-pressed="false">lab partner</button>
+        <button class="btn ghost" type="button" aria-pressed="false" data-private>Maya Chen</button>
+        (<button class="btn ghost" type="button" aria-pressed="false" data-private>maya.chen@example-school.org</button>,
+        <button class="btn ghost" type="button" aria-pressed="false" data-private>555-0142</button>)
+        about how to <button class="btn ghost" type="button" aria-pressed="false">catch up on the lab</button>
+        after she missed class for <button class="btn ghost" type="button" aria-pressed="false" data-private>a therapy appointment</button>.”
+      </p>
+      <button class="btn" id="check-private" type="button">Check</button>
+      <p class="quiz-feedback" id="private-feedback" aria-live="polite" aria-atomic="true"></p>
+    </fieldset>
+
+    <fieldset id="privacy-choice" hidden>
+      <legend>2. What should you do before using AI to draft the message?</legend>
+      <div class="quiz-options">
+        <label><input type="radio" name="privacy-choice" value="name"> Remove only the name and paste the rest.</label>
+        <label><input type="radio" name="privacy-choice" value="general"> Remove the private details, describe the situation generally, and check the class AI rule.</label>
+        <label><input type="radio" name="privacy-choice" value="disclose"> Paste the whole draft and disclose the AI use afterward.</label>
+      </div>
+      <button class="btn" id="check-privacy-choice" type="button">Check answer</button>
+      <p class="quiz-feedback" id="privacy-choice-feedback" aria-live="polite" aria-atomic="true"></p>
+    </fieldset>
+
+    <div id="privacy-example" hidden>
+      <h3>3. Use a safer prompt if AI is allowed</h3>
+      <p class="activity-example">“Help me draft a message to a lab partner about how to catch up on a missed lab.”</p>
+      <p><strong>Example disclosure.</strong> “I used an AI chatbot to help draft this message; I removed personal details first.”</p>
+    </div>
   </section>
 
   <section class="card" aria-labelledby="lesson-3">
