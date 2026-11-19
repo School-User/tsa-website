@@ -250,7 +250,29 @@
   }
 
   // Restore and wire every <button data-lesson="..."> for a module.
+  // A short "On this page" list under the module intro: every lesson,
+  // the practice card and the quiz, built from the page's own h2 headings.
+  function buildPageIndex() {
+    var lead = document.querySelector('main > .lead');
+    var headings = document.querySelectorAll('main > section > h2[id], main > h2[id]');
+    if (!lead || headings.length < 2) return;
+    var nav = make('nav', 'page-index');
+    nav.setAttribute('aria-label', 'On this page');
+    var list = make('ul');
+    Array.prototype.forEach.call(headings, function (h) {
+      var item = make('li');
+      var link = make('a', '', h.textContent);
+      link.href = '#' + h.id;
+      item.appendChild(link);
+      list.appendChild(item);
+    });
+    nav.appendChild(make('p', 'page-index-title', 'On this page'));
+    nav.appendChild(list);
+    lead.insertAdjacentElement('afterend', nav);
+  }
+
   function initLessons(moduleId) {
+    buildPageIndex();
     var progress = store();
     var buttons;
     var completed = [];

@@ -15,9 +15,8 @@
     var next = modes[(modes.indexOf(mode) + 1) % modes.length];
     if (mode === 'auto') document.documentElement.removeAttribute('data-theme');
     else document.documentElement.setAttribute('data-theme', mode);
-    // A small symbol shows the current choice: ◐ follows the device, ☀ light, ☾ dark.
-    var icon = { auto: '◐', light: '☀', dark: '☾' }[mode];
-    button.textContent = icon + ' ' + label;
+    // Light and dark get a sun or moon; Auto (follow the device) says "Theme: Auto".
+    button.textContent = { auto: 'Theme: Auto', light: '☀ Light', dark: '☾ Dark' }[mode];
     button.setAttribute('aria-label', 'Theme: ' + label + '. Activate to switch to ' + next.charAt(0).toUpperCase() + next.slice(1));
   }
   button.addEventListener('click', function () {
