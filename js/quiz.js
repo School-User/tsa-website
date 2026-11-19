@@ -75,7 +75,9 @@
     } else {
       text = 'Not quite. ';
       if (question.options && question.options[question.answer] !== undefined) {
-        text += 'The correct answer is: ' + question.options[question.answer].replace(/[.!?]$/, '') + '. ';
+        var right = question.options[question.answer];
+        // Add a period only if the answer doesn't already end a sentence ("…paragraphs.”).
+        text += 'The correct answer is: ' + right + (/[.!?]["”’]?$/.test(right) ? ' ' : '. ');
       }
     }
     text += question.why || '';
@@ -165,6 +167,10 @@
         var chosen = answerOf(fieldsets[i]);
         if (chosen === questions[i].answer) correct++;
         fillFeedback(feedbacks[i], questions[i], chosen);
+        // Outline the right option green, and a wrong pick red.
+        var labels = fieldsets[i].querySelectorAll('label');
+        if (labels[questions[i].answer]) labels[questions[i].answer].classList.add('is-correct');
+        if (chosen !== questions[i].answer && labels[chosen]) labels[chosen].classList.add('is-wrong');
       }
 
       if (progress && typeof progress.submitQuiz === 'function') {
@@ -208,6 +214,9 @@
       for (i = 0; i < fieldsets.length; i++) {
         feedbacks[i].textContent = '';
         show(feedbacks[i], false);
+        Array.prototype.forEach.call(fieldsets[i].querySelectorAll('label'), function (label) {
+          label.classList.remove('is-correct', 'is-wrong');
+        });
       }
       inputs.forEach(function (input) {
         input.checked = false;
