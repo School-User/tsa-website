@@ -106,7 +106,8 @@
   // XP only for real text of your own: at least three tokens.
   tokenInput.addEventListener('input', function () {
     renderTokens();
-    if (roughTokens(tokenInput.value).length >= 3) award('tokens');
+    var words = roughTokens(tokenInput.value).filter(function (t) { return t.kind !== 'punct'; });
+    if (words.length >= 3) award('tokens');
   });
   renderTokens();
 
@@ -123,9 +124,11 @@
     'AI is a tool for learning, not a replacement for thinking.';
 
   var model = Object.create(null);   // word -> { nextWord: count }
+  var vocab = Object.create(null);   // every word in the paragraph
 
   TRAINING.split(/[.!?]+/).forEach(function (sentence) {
     var words = sentence.toLowerCase().match(/[a-z']+/g) || [];
+    words.forEach(function (w) { vocab[w] = true; });
     for (var i = 0; i < words.length - 1; i++) {
       var next = model[words[i]] || (model[words[i]] = Object.create(null));
       next[words[i + 1]] = (next[words[i + 1]] || 0) + 1;
@@ -166,8 +169,10 @@
       return;
     }
     if (rows.length === 0) {
-      predictions.appendChild(el('p', 'demo-empty',
-        '“' + word + '” is not in the mini training paragraph. Try ' +
+      predictions.appendChild(el('p', 'demo-empty', vocab[word]
+        ? '“' + word + '” is in the paragraph, but only at the end of a sentence, so nothing ever follows it. Try ' +
+          someKnownWords(4).join(', ') + '.'
+        : '“' + word + '” is not in the mini training paragraph. Try ' +
         someKnownWords(4).join(', ') + '.'));
       return;
     }
@@ -238,7 +243,7 @@
       var known = Object.keys(model);
       start = known[Math.floor(Math.random() * known.length)];
       note = typed
-        ? '“' + typed + '” is not in the mini training text, so this run starts from “' + start + '” instead: '
+        ? '“' + typed + (vocab[typed] ? '” has no next word in the paragraph' : '” is not in the mini training paragraph') + ', so this run starts from “' + start + '” instead: '
         : 'This run starts from “' + start + '”: ';
     }
 
@@ -256,7 +261,6 @@
     button.addEventListener('click', function () {
       seedInput.value = button.getAttribute('data-seed');
       renderPredictions();
-      award('nextword');
       seedInput.focus();
     });
   });
@@ -281,10 +285,10 @@
     part.field = document.getElementById(part.input);
     part.item = el('li');
     checklist.appendChild(part.item);
-    // XP once every part of the prompt has some text in it.
+    // XP once every part has at least two words in it.
     part.field.addEventListener('input', function () {
       updatePrompt();
-      var filled = PARTS.filter(function (p) { return p.field && p.field.value.trim(); }).length;
+      var filled = PARTS.filter(function (p) { return p.field && p.field.value.trim().split(/\s+/).length >= 2; }).length;
       if (filled === PARTS.length) award('prompt');
     });
   });

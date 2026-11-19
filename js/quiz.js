@@ -193,6 +193,9 @@
       result.appendChild(make('p', 'muted',
         'This score is worth ' + (correct * 10) + ' quiz XP (10 per correct answer). Only your best score counts, so a retake adds XP only if it beats your earlier best.'));
       result.appendChild(nextStep(correct >= pass));
+      // Screen-reader and keyboard users land on the score, not at the top of the quiz.
+      result.setAttribute('tabindex', '-1');
+      result.focus();
 
       alertBox.textContent = '';
       show(alertBox, false);

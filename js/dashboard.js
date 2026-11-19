@@ -33,7 +33,9 @@
     var s = Progress.load(), xp = Progress.xp(s), into = xp % 100;
     document.getElementById('level').textContent = Progress.level(s);
     document.getElementById('xp').textContent = xp;
-    document.getElementById('next').textContent = (100 - into) + ' XP to next level';
+    // Every lesson, every quiz answer and every demo: the most XP there is.
+    var maxXp = MODULES.length * (LESSONS_PER_MODULE + 5) * 10 + Progress.DEMOS.length * Progress.DEMO_XP;
+    document.getElementById('next').textContent = xp >= maxXp ? 'All XP earned. Great work!' : (100 - into) + ' XP to next level';
     var bar = document.getElementById('xpbar');
     bar.setAttribute('aria-valuenow', into);
     bar.firstElementChild.style.width = into + '%';
