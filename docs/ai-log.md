@@ -38,3 +38,4 @@
 - 2026-11-18 | Claude Code | quiz results: big score line, pass/fail colour, next step (unread lessons, next module or dashboard) in js/quiz.js
 - 2026-11-18 | Claude Code | 'Try it' links from Module 1 Lesson 3 and Module 2 Lesson 2 to the matching demos, with links back from each demo
 - 2026-11-18 | Claude Code | after a Claude judge pass (119/150): per-module unit colours on module pages, header aligned to reading column, one-row module nav, quiz feedback weight and answer punctuation, badge unlock rules shown, aligned module cards, data page headings and red delete buttons, tokenizer splits common endings (learn|ing), 10th-grade wording
+- 2026-11-18 | Claude Code | home hero illustration (hand-written inline SVG: tokens -> network -> best guess) and a CSS speech-bubble logo; Reference graphics line updated
