@@ -7,20 +7,22 @@
   var LESSON_XP = 10;      // per lesson
   var QUIZ_XP = 10;        // per correct quiz answer
   var DEMO_XP = 10;        // per demo tried
+  var PRACTICE_XP = 10;    // per module practice card finished
   var MODULES = ['m1', 'm2', 'm3', 'm4', 'm5', 'm6'];
   var DEMOS = ['tokens', 'nextword', 'prompt'];
   var memory = null;       // fallback when localStorage is blocked
 
-  function empty() { return { lessons: {}, quiz: {}, demos: [] }; }
+  function empty() { return { lessons: {}, quiz: {}, demos: [], practice: [] }; }
 
-  // Older saved data has no demos array, so that is the only optional field.
+  // Older saved data has no demos or practice arrays, so those are optional.
   function valid(s) {
     return s && typeof s === 'object' &&
       s.lessons && typeof s.lessons === 'object' && !Array.isArray(s.lessons) &&
       s.quiz && typeof s.quiz === 'object' && !Array.isArray(s.quiz) &&
       Object.keys(s.lessons).every(function (k) { return Array.isArray(s.lessons[k]); }) &&
       Object.keys(s.quiz).every(function (k) { return typeof s.quiz[k] === 'number' && isFinite(s.quiz[k]); }) &&
-      (s.demos === undefined || Array.isArray(s.demos));
+      (s.demos === undefined || Array.isArray(s.demos)) &&
+      (s.practice === undefined || Array.isArray(s.practice));
   }
 
   // Keep only known module ids, string lesson ids, whole quiz scores in 0-5
@@ -44,6 +46,11 @@
     if (Array.isArray(s.demos)) {
       s.demos.forEach(function (id) {
         if (DEMOS.indexOf(id) !== -1 && out.demos.indexOf(id) === -1) out.demos.push(id);
+      });
+    }
+    if (Array.isArray(s.practice)) {
+      s.practice.forEach(function (id) {
+        if (MODULES.indexOf(id) !== -1 && out.practice.indexOf(id) === -1) out.practice.push(id);
       });
     }
     return out;
@@ -82,6 +89,14 @@
     return save(s);
   }
 
+  // A module's practice card counts once, the first time it is finished.
+  function completePractice(moduleId) {
+    var s = load();
+    if (MODULES.indexOf(moduleId) === -1 || s.practice.indexOf(moduleId) !== -1) return s;
+    s.practice.push(moduleId);
+    return save(s);
+  }
+
   // Keeps the best score, so retaking a quiz can never farm extra XP.
   function submitQuiz(moduleId, correct, total) {
     var s = load();
@@ -95,6 +110,7 @@
     for (id in s.lessons) total += s.lessons[id].length * LESSON_XP;
     for (id in s.quiz) total += s.quiz[id] * QUIZ_XP;
     total += (Array.isArray(s.demos) ? s.demos.length : 0) * DEMO_XP;
+    total += (Array.isArray(s.practice) ? s.practice.length : 0) * PRACTICE_XP;
     return total;
   }
 
@@ -115,12 +131,13 @@
   // Format: AIL5- then, per module, one hex digit (which of the 4 lessons are
   // read, as bits) and one quiz score (0-5, or X for "not taken"), then one
   // checksum character that catches typos. AIL5 adds one digit for the demos
-  // tried (bits). Example: AIL5-F5F5F5F5F5F57K
-  // Older AIL1- to AIL4- codes (fewer modules, no demos) still restore.
+  // tried (bits). AIL6 adds two hex digits for the practice cards finished
+  // (one bit per module). Example: AIL6-F5F5F5F5F5F573FK
+  // Older AIL1- to AIL5- codes (fewer modules, no demos or practice) still restore.
   var LESSON_IDS = ['l1', 'l2', 'l3', 'l4'];
-  var PREFIX = 'AIL5-';
+  var PREFIX = 'AIL6-';
   var CODE_MODULES = { 'AIL1-': ['m1', 'm2', 'm3'], 'AIL2-': ['m1', 'm2', 'm3', 'm4'],
-    'AIL3-': ['m1', 'm2', 'm3', 'm4', 'm5'], 'AIL4-': MODULES, 'AIL5-': MODULES };
+    'AIL3-': ['m1', 'm2', 'm3', 'm4', 'm5'], 'AIL4-': MODULES, 'AIL5-': MODULES, 'AIL6-': MODULES };
 
   // Position-weighted sum, so swapped characters are caught too.
   function checksum(body) {
@@ -139,6 +156,8 @@
       var score = s.quiz[m] === undefined ? 'X' : String(Math.min(5, s.quiz[m]));
       return mask.toString(16).toUpperCase() + score;
     }).join('') + DEMOS.reduce(function (m, d, i) { return s.demos.indexOf(d) !== -1 ? m | 1 << i : m; }, 0).toString(16).toUpperCase();
+    var practiceBits = MODULES.reduce(function (m, id, i) { return s.practice.indexOf(id) !== -1 ? m | 1 << i : m; }, 0);
+    body += ('0' + practiceBits.toString(16).toUpperCase()).slice(-2); // always two digits
     return PREFIX + body + checksum(body);
   }
 
@@ -148,13 +167,14 @@
     if (typeof code !== 'string') return null;
     // Forgiving: any case, stray spaces, text around it, phone "smart" dashes.
     var c = code.toUpperCase().replace(/[\u2010-\u2015\u2212]/g, '-');
-    var found = c.match(/AIL[1-5]-?[0-9A-Z]+/) || c.replace(/\s+/g, '').match(/AIL[1-5]-?[0-9A-Z]+/);
+    var found = c.match(/AIL[1-6]-?[0-9A-Z]+/) || c.replace(/\s+/g, '').match(/AIL[1-6]-?[0-9A-Z]+/);
     if (!found) return null;
     c = found[0].replace(/^(AIL\d)-?/, '$1-');
     var mods = CODE_MODULES[c.slice(0, 5)];
-    var hasDemos = c.slice(0, 5) === 'AIL5-';
+    var hasDemos = c.slice(0, 5) === 'AIL5-' || c.slice(0, 5) === 'AIL6-';
+    var hasPractice = c.slice(0, 5) === 'AIL6-';
     var body = c.slice(5, -1);
-    if (!mods || !new RegExp('^([0-9A-F][0-5X]){' + mods.length + '}' + (hasDemos ? '[0-7]' : '') + '$').test(body) ||
+    if (!mods || !new RegExp('^([0-9A-F][0-5X]){' + mods.length + '}' + (hasDemos ? '[0-7]' : '') + (hasPractice ? '[0-3][0-9A-F]' : '') + '$').test(body) ||
         checksum(body) !== c.slice(-1)) return null;
     var s = load();
     mods.forEach(function (mod, i) {
@@ -167,16 +187,21 @@
       if (score !== 'X' && !(s.quiz[mod] >= Number(score))) s.quiz[mod] = Number(score);
     });
     if (hasDemos) {
-      var dm = parseInt(body.charAt(body.length - 1), 16);
+      var dm = parseInt(body.charAt(mods.length * 2), 16);
       s.demos = s.demos || [];
       DEMOS.forEach(function (d, i) { if (dm & (1 << i) && s.demos.indexOf(d) === -1) s.demos.push(d); });
+    }
+    if (hasPractice) {
+      var pm = parseInt(body.slice(-2), 16);
+      s.practice = s.practice || [];
+      MODULES.forEach(function (m, i) { if (pm & (1 << i) && s.practice.indexOf(m) === -1) s.practice.push(m); });
     }
     return save(s);
   }
 
   var api = { load: load, completeLesson: completeLesson, submitQuiz: submitQuiz,
-              completeDemo: completeDemo, xp: xp, level: level, badges: badges,
-              reset: reset, PASS: PASS, DEMO_XP: DEMO_XP, DEMOS: DEMOS,
+              completeDemo: completeDemo, completePractice: completePractice, xp: xp, level: level, badges: badges,
+              reset: reset, PASS: PASS, DEMO_XP: DEMO_XP, DEMOS: DEMOS, PRACTICE_XP: PRACTICE_XP,
               exportCode: exportCode, importCode: importCode };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.Progress = api;

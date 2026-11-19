@@ -63,7 +63,7 @@ assert.strictEqual(P.xp(P.load()), 0);
 P = fresh();
 P.completeLesson('m1', 'l1'); P.completeLesson('m1', 'l3'); P.submitQuiz('m1', 4, 5); P.completeLesson('m3', 'l4');
 const code = P.exportCode();
-assert.ok(/^AIL5-([0-9A-F][0-5X]){6}[0-7][0-9A-Z]$/.test(code), 'code format: ' + code);
+assert.ok(/^AIL6-([0-9A-F][0-5X]){6}[0-7][0-3][0-9A-F][0-9A-Z]$/.test(code), 'code format: ' + code);
 assert.ok(code.length <= 24, 'code stays short');
 
 // round trip into a fresh browser
@@ -127,7 +127,7 @@ assert.strictEqual(P.xp(P.completeDemo('unknown')), 30, 'unknown demo ignored');
 
 // progress codes still work with demos in state, and a restore keeps local demos
 const demoCode = P.exportCode();
-assert.ok(/^AIL5-([0-9A-F][0-5X]){6}[0-7][0-9A-Z]$/.test(demoCode), 'code format unchanged');
+assert.ok(/^AIL6-([0-9A-F][0-5X]){6}[0-7][0-3][0-9A-F][0-9A-Z]$/.test(demoCode), 'code format with demos');
 const withDemos = fresh();
 withDemos.completeDemo('tokens');
 withDemos.importCode(demoCode);
@@ -172,5 +172,31 @@ assert.ok(fresh().importCode(demoCode.replace('-', '')), 'missing dash ok');
   st.setItem('aiPortal.v1', JSON.stringify({ lessons: { m1: 'abc' }, quiz: { m1: 'x' } }));
   P = fresh(st);
   assert.strictEqual(P.xp(P.load ? P.load() : { lessons: {}, quiz: {} }), 0, 'bad types give 0 XP, not NaN');
+}
+// ---- practice cards: 10 XP each, once per module, carried by AIL6 codes ----
+{
+  P = fresh();
+  let ps = P.completePractice('m3');
+  assert.strictEqual(P.xp(ps), 10, 'one practice card = 10 XP');
+  assert.strictEqual(P.xp(P.completePractice('m3')), 10, 'finishing it again adds nothing');
+  assert.strictEqual(P.xp(P.completePractice('m9')), 10, 'unknown module ignored');
+  P.completePractice('m6');
+  const pCode = P.exportCode();
+  assert.ok(/^AIL6-.*24.$/.test(pCode), 'practice bits m3+m6 = 0x24: ' + pCode);
+  const q = fresh(); q.completePractice('m1');
+  q.importCode(pCode);
+  assert.deepStrictEqual(q.load().practice.sort(), ['m1', 'm3', 'm6'], 'restore adds practice and keeps local');
+  // an old AIL5 code (no practice digits) still restores
+  const b5 = 'F5' + 'X'.repeat(0) + '0X0X0X0X0X' + '1';
+  let s5 = 0; for (let i = 0; i < b5.length; i++) s5 += parseInt(b5[i] === 'X' ? '6' : b5[i], 36) * (i + 1);
+  const old5 = 'AIL5-' + b5 + (s5 % 36).toString(36).toUpperCase();
+  const r = fresh();
+  assert.ok(r.importCode(old5), 'AIL5 code restores: ' + old5);
+  assert.strictEqual(r.load().quiz.m1, 5);
+  assert.deepStrictEqual(r.load().demos, ['tokens']);
+  assert.deepStrictEqual(r.load().practice, [], 'AIL5 has no practice');
+  // old saved data without a practice array still loads
+  const st = memStorage(); st.setItem('aiPortal.v1', JSON.stringify({ lessons: {}, quiz: {}, demos: ['tokens'] }));
+  assert.deepStrictEqual(fresh(st).load().practice, [], 'missing practice becomes an empty array');
 }
 console.log('progress: all tests passed');

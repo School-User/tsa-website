@@ -44,8 +44,8 @@
     var s = Progress.load(), xp = Progress.xp(s), into = xp % 100;
     document.getElementById('level').textContent = Progress.level(s);
     document.getElementById('xp').textContent = xp;
-    // Every lesson, every quiz answer and every demo: the most XP there is.
-    var maxXp = MODULES.length * (LESSONS_PER_MODULE + 5) * 10 + Progress.DEMOS.length * Progress.DEMO_XP;
+    // Every lesson, quiz answer, practice card and demo: the most XP there is.
+    var maxXp = MODULES.length * ((LESSONS_PER_MODULE + 5) * 10 + Progress.PRACTICE_XP) + Progress.DEMOS.length * Progress.DEMO_XP;
     var isMax = xp >= maxXp;
     if (isMax) into = 100; // a full bar, not the leftover of the last level
     document.getElementById('next').textContent = isMax ? 'All XP earned. Great work!' : (100 - into) + ' XP to next level';
@@ -168,7 +168,7 @@
   });
 
   document.getElementById('reset').addEventListener('click', function () {
-    if (window.confirm('Reset all progress? This clears XP, badges, lessons, quiz scores, and demos.')) {
+    if (window.confirm('Reset all progress? This clears XP, badges, lessons, quiz scores, practice cards, and demos.')) {
       Progress.reset(); render();
       codeOut.textContent = ''; copyBtn.hidden = true; // the old code no longer matches
     }

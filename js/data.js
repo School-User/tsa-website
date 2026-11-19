@@ -36,7 +36,7 @@
     // "1 lesson" but "2 lessons".
     var count = function (n, one, many) { return n + ' ' + (n === 1 ? one : many); };
     $('summary').textContent = Progress.xp(s) + ' XP, ' + count(lessons, 'lesson', 'lessons') + ' read, ' +
-      count(Object.keys(s.quiz).length, 'quiz', 'quizzes') + ' taken, ' + count(s.demos.length, 'demo', 'demos') + ' tried.';
+      count(Object.keys(s.quiz).length, 'quiz', 'quizzes') + ' taken, ' + count(s.practice.length, 'practice card', 'practice cards') + ' finished, ' + count(s.demos.length, 'demo', 'demos') + ' tried.';
     // A brand-new visitor has nothing to move yet, so no code is shown.
     $('code').textContent = Progress.xp(s) > 0 || Object.keys(s.quiz).length ? Progress.exportCode() : 'none yet';
   }

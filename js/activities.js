@@ -14,11 +14,28 @@
     element.appendChild(document.createTextNode(message.slice(cut)));
   }
 
+  // Finishing a practice card gives 10 XP once (saved by js/progress.js).
+  // The module id comes from the current module pill, e.g. module3.html -> m3.
+  function finished(card) {
+    var current = document.querySelector('.module-nav [aria-current]');
+    if (!current || !window.Progress) return;
+    var moduleId = 'm' + current.getAttribute('href').match(/\d/)[0];
+    var before = Progress.xp(Progress.load());
+    var after = Progress.xp(Progress.completePractice(moduleId));
+    if (after > before && !card.querySelector('.practice-xp')) {
+      var note = document.createElement('p');
+      note.className = 'practice-xp';
+      note.textContent = '+' + (after - before) + ' XP for finishing this practice.';
+      card.appendChild(note);
+    }
+  }
+
   // Both sorting cards keep each answer and reason beside its select in HTML.
   function initSort(card) {
     var selects = card.querySelectorAll('select');
 
     function checkAnswers() {
+      var allRight = true;
       for (var i = 0; i < selects.length; i++) {
         var select = selects[i];
         var status = document.getElementById(select.getAttribute('aria-describedby'));
@@ -26,7 +43,9 @@
         var correct = select.value === answer;
         var message = (correct ? 'Correct. ' : 'Try again. ') + answer + '. ' + select.dataset.reason;
         feedback(status, select.value ? message : 'Choose an answer first.', correct);
+        if (!correct) allRight = false;
       }
+      if (allRight) finished(card);
     }
 
     card.querySelector('button').addEventListener('click', checkAnswers);
@@ -68,6 +87,7 @@
       message += ' Compare it with the lesson example below.';
       example.hidden = false;
       feedback(status, message, missed.length === 0 && notFound.length === 0);
+      if (missed.length === 0 && notFound.length === 0) finished(card);
     }
 
     card.querySelector('button').addEventListener('click', checkPrompt);
@@ -86,6 +106,7 @@
       var correct = answer.value === 'pattern';
       var message = correct ? 'Correct. ' : 'Try again. ';
       feedback(status, message + 'Use the two sample cards to show the pattern, then ask for new cards with a term and a one-line definition.', correct);
+      if (correct) finished(card);
     }
 
     card.querySelector('button').addEventListener('click', checkPrompt);
@@ -136,6 +157,7 @@
         ? 'The draft still has contact information and a medical detail. Try again.'
         : 'Remove private information and follow class rules before disclosing AI use. Try again.';
       feedback(choiceFeedback, correct ? 'Correct. See the safer prompt and example disclosure below.' : tryAgain, correct);
+      if (correct) finished(card);
       card.querySelector('#privacy-example').hidden = !correct;
     }
 
@@ -205,6 +227,7 @@
         (cases.length - fixedFailures.length) + ' of ' + cases.length + ' tests passed after the fix.';
       card.querySelector('#bug-results').hidden = false;
       feedback(status, (correct ? 'Correct prediction. ' : 'Check your prediction. ') + result, correct);
+      finished(card); // running the tests and reading the results finishes this one
     }
 
     card.querySelector('#bug-code').textContent = source(averageScore);

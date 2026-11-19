@@ -70,3 +70,5 @@ ul.activity-example { padding-inline-start: 2rem; }
 @media (max-width: 560px) {
   .activity pre.codeblock { white-space: pre-wrap; overflow-wrap: anywhere; }
 }
+.practice-xp { display: inline-block; margin: .75rem 0 0; padding: .3rem .8rem; border-radius: 99px; font-weight: 700; font-size: .9rem;
+  color: var(--gold-text); background: color-mix(in srgb, var(--gold) 16%, var(--surface)); border: 1px solid var(--gold); }
