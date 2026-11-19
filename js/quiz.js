@@ -75,7 +75,7 @@
     } else {
       text = 'Not quite. ';
       if (question.options && question.options[question.answer] !== undefined) {
-        text += 'The correct answer is "' + question.options[question.answer] + '". ';
+        text += 'The correct answer is: ' + question.options[question.answer].replace(/[.!?]$/, '') + '. ';
       }
     }
     text += question.why || '';

@@ -25,6 +25,7 @@
 <main id="main">
   <h1>My data</h1>
   <section class="card">
+    <h2 style="margin-top:0">What is saved</h2>
     <p>AI Lab has no accounts, no sign-in and no server. Everything it remembers is saved only in this browser, and you control all of it here.</p>
     <p><strong>Saved now:</strong> <span id="summary"></span></p>
     <p>Progress code: <output class="code" id="code"></output></p>
@@ -37,12 +38,12 @@
   <section class="card">
     <h2 style="margin-top:0">Start over</h2>
     <p>Deletes XP, badges, lesson checkmarks, quiz scores and demos. Your theme choice stays.</p>
-    <p><button class="btn ghost" id="restart" type="button">Delete my progress</button></p>
+    <p><button class="btn ghost danger" id="restart" type="button">Delete my progress</button></p>
   </section>
   <section class="card">
     <h2 style="margin-top:0">Delete everything</h2>
     <p>Removes all data this site saved in this browser. There is no account to close, so this is the full delete. Download first if you may want it back.</p>
-    <p><button class="btn ghost" id="wipe" type="button">Delete all my data</button></p>
+    <p><button class="btn ghost danger" id="wipe" type="button">Delete all my data</button></p>
   </section>
   <p id="msg" role="status"></p>
 </main>

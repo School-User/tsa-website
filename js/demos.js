@@ -48,23 +48,33 @@
      --------------------------------------------------------------- */
 
   var TOKEN_RE = /[A-Za-z0-9'\u2019]+|[^\sA-Za-z0-9'\u2019]/g;
-  var PIECE_MAX = 4;
+  // Words up to WORD_MAX letters stay whole. Longer words lose a common
+  // ending first (learn|ing, pattern|s), the way real tokenizers often split,
+  // and anything still long is cut into PIECE_MAX-letter chunks.
+  var WORD_MAX = 6;
+  var PIECE_MAX = 5;
+  var ENDINGS = ['ation', 'ing', 'ers', 'est', 'ed', 'er', 'ly', 's'];
+
+  function splitWord(word) {
+    if (word.length <= WORD_MAX) return [{ text: word, kind: 'word' }];
+    var stem = word, end = '';
+    for (var e = 0; e < ENDINGS.length; e++) {
+      var cut = word.length - ENDINGS[e].length;
+      if (cut >= 3 && word.toLowerCase().slice(cut) === ENDINGS[e] && !/(ss|is|us)$/i.test(word)) { stem = word.slice(0, cut); end = word.slice(cut); break; }
+    }
+    var out = [];
+    if (stem.length <= WORD_MAX + 1) out.push({ text: stem, kind: 'piece' });
+    else for (var i = 0; i < stem.length; i += PIECE_MAX) out.push({ text: stem.slice(i, i + PIECE_MAX), kind: 'piece' });
+    if (end) out.push({ text: end, kind: 'piece' });
+    return out;
+  }
 
   function roughTokens(text) {
     var raw = text.match(TOKEN_RE) || [];
     var tokens = [];
     raw.forEach(function (piece) {
-      if (/^[A-Za-z0-9'\u2019]+$/.test(piece)) {
-        if (piece.length > PIECE_MAX) {
-          for (var i = 0; i < piece.length; i += PIECE_MAX) {
-            tokens.push({ text: piece.slice(i, i + PIECE_MAX), kind: 'piece' });
-          }
-        } else {
-          tokens.push({ text: piece, kind: 'word' });
-        }
-      } else {
-        tokens.push({ text: piece, kind: 'punct' });
-      }
+      if (/^[A-Za-z0-9'\u2019]+$/.test(piece)) tokens.push.apply(tokens, splitWord(piece));
+      else tokens.push({ text: piece, kind: 'punct' });
     });
     return tokens;
   }

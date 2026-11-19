@@ -10,6 +10,7 @@
   ];
   var LESSONS_PER_MODULE = 4;
   var BADGE_NAMES = { m1: 'AI Basics', m2: 'Tool Pro', m3: 'Ethical Thinker', m4: 'Deep Diver', m5: 'Responsible Builder', m6: 'Code Checker', 'reflective-learner': 'Reflective Learner' };
+  var BADGE_RULES = { m1: 'Pass the Module 1 quiz', m2: 'Pass the Module 2 quiz', m3: 'Pass the Module 3 quiz', m4: 'Pass the Module 4 quiz', m5: 'Pass the Module 5 quiz', m6: 'Pass the Module 6 quiz', 'reflective-learner': 'Earn all six module badges' };
   var BADGE_ICONS = { m1: '1', m2: '2', m3: '3', m4: '4', m5: '5', m6: '6', 'reflective-learner': '★' };
 
   function el(tag, attrs, text) {
@@ -67,6 +68,7 @@
       var li = el('li', { 'class': 'badge' + (has ? '' : ' locked') });
       li.appendChild(el('div', { 'class': 'medal', 'aria-hidden': 'true' }, BADGE_ICONS[id]));
       li.appendChild(el('span', {}, BADGE_NAMES[id]));
+      li.appendChild(el('small', {}, has ? 'Earned' : BADGE_RULES[id]));
       li.appendChild(el('span', { 'class': 'sr-only' }, has ? ' (earned)' : ' (locked)'));
       shelf.appendChild(li);
     });

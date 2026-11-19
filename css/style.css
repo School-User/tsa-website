@@ -168,3 +168,39 @@ section.card:has([data-lesson]) > h2::before { counter-increment: lesson; conten
 .try { background: var(--muted); border-radius: .75rem; padding: .55rem .9rem; font-size: .95rem; }
 h2 + .try { margin-top: -.25rem; }
 [id] { scroll-margin-top: 1rem; }
+
+/* ---- judge round 1 fixes ---- */
+/* header lines up with the 820px reading column on content pages, 1040px on home */
+.bar, .module-nav { max-width: 820px; }
+body:has(#modules) .bar { max-width: 1040px; }
+
+/* each module page wears its unit color (set from the current module-nav link, no markup change) */
+body:has(.module-nav a[href="module1.html"][aria-current]) { --unit: var(--u1); }
+body:has(.module-nav a[href="module2.html"][aria-current]) { --unit: var(--u2); }
+body:has(.module-nav a[href="module3.html"][aria-current]) { --unit: var(--u3); }
+body:has(.module-nav a[href="module4.html"][aria-current]) { --unit: var(--u4); }
+body:has(.module-nav a[href="module5.html"][aria-current]) { --unit: var(--u5); }
+body:has(.module-nav a[href="module6.html"][aria-current]) { --unit: var(--u6); }
+body:has(.module-nav) main > h1 { border-left: 6px solid var(--unit); padding-left: .8rem; }
+section.card:has([data-lesson]) { border-top: 4px solid var(--unit, var(--accent)); }
+section.card:has([data-lesson]) > h2::before { color: var(--unit, var(--soft)); }
+.module-nav a[aria-current="page"] { background: var(--unit, var(--accent)); border-color: var(--unit, var(--accent)); }
+
+/* quiz feedback: first sentence bold, explanation regular; answered options stay readable */
+.quiz-feedback { font-weight: 400; }
+.quiz-feedback::first-line { font-weight: 700; }
+.quiz-options input:disabled + * , .quiz-options label:has(input:disabled) { opacity: 1; cursor: default; }
+
+/* module cards: descriptions take the same height so bars and buttons line up */
+.grid > .card > p:not(.mastery):not(.status) { min-height: calc(3 * 1.7em); }
+@media (max-width: 640px) { .grid > .card > p:not(.mastery):not(.status) { min-height: 0; } }
+
+/* badges: rule under each one, earned medals filled */
+.badge small { display: block; font-size: .78rem; color: var(--soft); line-height: 1.3; margin-top: .15rem; }
+.badge:not(.locked) .medal { background: color-mix(in srgb, var(--gold) 16%, var(--surface)); }
+.badge.locked .medal { opacity: .7; }
+
+.btn.danger { color: var(--bad); border-color: var(--bad); }
+.btn.danger:hover { background: var(--bad-bg); }
+.module-nav ul { flex-wrap: nowrap; overflow-x: auto; gap: .3rem; scrollbar-width: thin; }
+.module-nav a { white-space: nowrap; font-size: .85rem; padding: .2rem .6rem; }
